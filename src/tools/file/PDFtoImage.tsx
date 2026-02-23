@@ -1,0 +1,121 @@
+import { useState, useCallback } from 'react';
+import * as pdfjsLib from 'pdfjs-dist';
+import { Select } from '../../components/ui/FormControls';
+import { Button } from '../../components/ui/FormControls';
+import { FileUpload, PrivacyBadge, DownloadButton } from '../../components/ui/FileComponents';
+
+// Configure PDF.js worker
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+
+interface PageResult {
+  dataUrl: string;
+  blob: Blob;
+  width: number;
+  height: number;
+  page: number;
+}
+
+export default function PDFtoImage() {
+  const [pages, setPages] = useState<PageResult[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [format, setFormat] = useState('png');
+  const [scale, setScale] = useState('2');
+
+  const processFile = useCallback(async (files: File[]) => {
+    const f = files[0];
+    if (!f?.type.includes('pdf')) return;
+    setPages([]);
+    setLoading(true);
+    setProgress(0);
+
+    try {
+      const buf = await f.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+      const imgs: PageResult[] = [];
+      const sc = parseFloat(scale);
+
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const vp = page.getViewport({ scale: sc });
+        const canvas = document.createElement('canvas');
+        canvas.width = vp.width;
+        canvas.height = vp.height;
+        const ctx = canvas.getContext('2d')!;
+        await page.render({ canvasContext: ctx, viewport: vp }).promise;
+
+        const mime = format === 'jpg' ? 'image/jpeg' : 'image/png';
+        const dataUrl = canvas.toDataURL(mime, format === 'jpg' ? 0.92 : undefined);
+        const res = await fetch(dataUrl);
+        const blob = await res.blob();
+
+        imgs.push({ dataUrl, blob, width: Math.round(vp.width), height: Math.round(vp.height), page: i });
+        setProgress(Math.round((i / pdf.numPages) * 100));
+      }
+      setPages(imgs);
+    } catch (err) {
+      console.error('PDF conversion failed:', err);
+    }
+    setLoading(false);
+  }, [format, scale]);
+
+  const downloadAll = () => {
+    pages.forEach((p, i) => {
+      const a = document.createElement('a');
+      a.href = p.dataUrl;
+      a.download = `page-${i + 1}.${format}`;
+      a.click();
+    });
+  };
+
+  return (
+    <div>
+      <PrivacyBadge />
+      <div className="grid grid-cols-2 gap-2.5 mb-3.5">
+        <Select label="Format" value={format} onChange={setFormat} options={[
+          { value: 'png', label: 'PNG (lossless)' }, { value: 'jpg', label: 'JPG (smaller)' },
+        ]} />
+        <Select label="Quality" value={scale} onChange={setScale} options={[
+          { value: '1', label: '1x (fast)' }, { value: '2', label: '2x (good)' }, { value: '3', label: '3x (HD)' },
+        ]} />
+      </div>
+
+      <FileUpload accept=".pdf" onFiles={processFile} label="Drop a PDF file here" icon="📄" />
+
+      {loading && (
+        <div className="mb-4">
+          <div className="flex justify-between mb-1">
+            <span className="text-xs font-semibold text-surface-600 dark:text-surface-500">Converting...</span>
+            <span className="text-xs font-bold text-brand-500">{progress}%</span>
+          </div>
+          <div className="h-1.5 rounded-full bg-surface-200 dark:bg-surface-800 overflow-hidden">
+            <div className="h-full bg-brand-500 rounded-full transition-all duration-300" style={{ width: `${progress}%` }} />
+          </div>
+        </div>
+      )}
+
+      {pages.length > 0 && (
+        <div>
+          <div className="flex justify-between items-center mb-3">
+            <span className="text-sm font-bold text-surface-900 dark:text-surface-100">{pages.length} page{pages.length > 1 ? 's' : ''} converted</span>
+            {pages.length > 1 && (
+              <Button variant="secondary" onClick={downloadAll} className="!py-2 !px-3 !text-xs">⬇ Download All</Button>
+            )}
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {pages.map((p, i) => (
+              <div key={i} className="rounded-xl overflow-hidden border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900">
+                <img src={p.dataUrl} alt={`Page ${i + 1}`} className="w-full block" />
+                <div className="p-2 flex justify-between items-center">
+                  <span className="text-[11px] text-surface-500">Page {i + 1} • {p.width}×{p.height}</span>
+                  <button onClick={() => { const a = document.createElement('a'); a.href = p.dataUrl; a.download = `page-${i + 1}.${format}`; a.click(); }}
+                    className="bg-brand-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-md">⬇</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

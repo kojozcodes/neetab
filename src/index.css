@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-surface-50 text-surface-900 font-sans;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dark body {
+    @apply bg-surface-950 text-surface-100;
+  }
+
+  ::selection {
+    @apply bg-brand-500/20 text-brand-700;
+  }
+
+  .dark ::selection {
+    @apply bg-brand-500/30 text-brand-300;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-surface-300 dark:bg-surface-700 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-surface-400 dark:bg-surface-600;
+  }
+
+  /* Input/Select reset */
+  input[type="range"] {
+    @apply accent-brand-500;
+  }
+
+  input[type="color"] {
+    -webkit-appearance: none;
+    border: none;
+    padding: 0;
+  }
+  input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+  input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 8px;
+  }
+}
+
+@layer components {
+  /* Glassmorphism header */
+  .glass-header {
+    @apply backdrop-blur-xl bg-white/85 dark:bg-surface-950/90;
+    border-bottom: 1px solid theme('colors.surface.300');
+  }
+  .dark .glass-header {
+    border-bottom-color: theme('colors.surface.800');
+  }
+
+  /* Card base style */
+  .card {
+    @apply bg-white dark:bg-surface-900 border border-surface-300 dark:border-surface-800
+           rounded-2xl shadow-soft dark:shadow-soft-dark
+           transition-all duration-200;
+  }
+  .card:hover {
+    @apply shadow-medium dark:shadow-medium-dark border-brand-500/30 -translate-y-0.5;
+  }
+
+  /* Result display box */
+  .result-box {
+    @apply bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800/40
+           rounded-xl p-4 mt-3;
+  }
+
+  /* Input field */
+  .input-field {
+    @apply w-full px-4 py-3 bg-surface-100 dark:bg-surface-800
+           border-[1.5px] border-surface-300 dark:border-surface-700
+           rounded-xl text-[15px] text-surface-900 dark:text-surface-100
+           outline-none transition-colors duration-200
+           focus:border-brand-500 dark:focus:border-brand-500
+           placeholder:text-surface-500 dark:placeholder:text-surface-600;
+  }
+
+  /* Tag pill */
+  .tag {
+    @apply text-[10px] px-2.5 py-0.5 rounded-full
+           bg-surface-200 dark:bg-surface-800
+           text-surface-600 dark:text-surface-500
+           font-semibold;
+  }
+
+  /* Ad container */
+  .ad-slot {
+    @apply w-full flex items-center justify-center
+           bg-surface-100 dark:bg-surface-900
+           border border-surface-200 dark:border-surface-800
+           rounded-xl overflow-hidden min-h-[90px];
+  }
+
+  /* Staggered fade-in for tool cards */
+  .stagger-in > * {
+    @apply animate-slide-up;
+  }
+  .stagger-in > *:nth-child(1) { animation-delay: 0ms; }
+  .stagger-in > *:nth-child(2) { animation-delay: 40ms; }
+  .stagger-in > *:nth-child(3) { animation-delay: 80ms; }
+  .stagger-in > *:nth-child(4) { animation-delay: 120ms; }
+  .stagger-in > *:nth-child(5) { animation-delay: 160ms; }
+  .stagger-in > *:nth-child(6) { animation-delay: 200ms; }
+  .stagger-in > *:nth-child(7) { animation-delay: 240ms; }
+  .stagger-in > *:nth-child(8) { animation-delay: 280ms; }
+  .stagger-in > *:nth-child(9) { animation-delay: 320ms; }
+  .stagger-in > *:nth-child(n+10) { animation-delay: 360ms; }
+}
