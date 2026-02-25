@@ -17,7 +17,7 @@ app = FastAPI(title="Neetab Conversion API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Restrict in production: ["https://neetab.com"]
+    allow_origins=["https://neetab.com", "https://www.neetab.com", "http://localhost:5173"],
     allow_methods=["POST"],
     allow_headers=["*"],
 )
