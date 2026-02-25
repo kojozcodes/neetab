@@ -31,11 +31,15 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 border-t border-surface-200 dark:border-surface-800">
           <div className="flex items-center gap-2">
-            <div className="w-5 h-5 rounded bg-gradient-to-br from-brand-500 to-brand-400 flex items-center justify-center text-white text-[9px] font-bold font-display">
-              N
-            </div>
+            <svg width="20" height="20" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#FF6B35"/><stop offset="100%" stopColor="#FF8F65"/></linearGradient></defs>
+              <rect width="32" height="32" rx="8" fill="url(#fg)"/>
+              <circle cx="9.5" cy="9.5" r="2.8" fill="rgba(255,255,255,0.95)"/><circle cx="16" cy="9.5" r="2.8" fill="rgba(255,255,255,0.95)"/><circle cx="22.5" cy="9.5" r="2.8" fill="rgba(255,255,255,0.95)"/>
+              <circle cx="9.5" cy="16" r="2.8" fill="rgba(255,255,255,0.95)"/><circle cx="16" cy="16" r="2.8" fill="rgba(255,255,255,0.95)"/><circle cx="22.5" cy="16" r="2.8" fill="rgba(255,255,255,0.95)"/>
+              <circle cx="9.5" cy="22.5" r="2.8" fill="rgba(255,255,255,0.95)"/><circle cx="16" cy="22.5" r="2.8" fill="rgba(255,255,255,0.95)"/><circle cx="22.5" cy="22.5" r="2.8" fill="rgba(255,255,255,0.95)"/>
+            </svg>
             <span className="text-xs text-surface-500">
-              <strong className="text-surface-700 dark:text-surface-300">Neetab</strong> — Neat tools. One tab.
+              <span className="font-bold text-surface-700 dark:text-surface-300">Nee</span><span className="font-bold text-brand-500">tab</span> — Neat tools. One tab.
             </span>
           </div>
           <div className="text-[11px] text-surface-400">
