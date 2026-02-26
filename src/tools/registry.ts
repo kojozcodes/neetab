@@ -50,6 +50,13 @@ const PasswordGen = lazy(() => import('./generators/PasswordGenerator'));
 const QRCodeGen = lazy(() => import('./generators/QRCodeGenerator'));
 const JSONFormat = lazy(() => import('./generators/JSONFormatter'));
 
+const Base64 = lazy(() => import('./devtools/Base64Tool'));
+const HashGen = lazy(() => import('./devtools/HashGenerator'));
+const UUIDGen = lazy(() => import('./devtools/UUIDGenerator'));
+const URLEncode = lazy(() => import('./devtools/URLEncoderDecoder'));
+const TextDiffTool = lazy(() => import('./devtools/TextDiff'));
+const TimestampConvert = lazy(() => import('./devtools/TimestampConverter'));
+
 // ─── Tool Definitions (ordered by traffic potential within each category) ───
 const tools: Tool[] = [
   // ═══ FILE TOOLS (highest traffic) ═══
@@ -228,6 +235,66 @@ const tools: Tool[] = [
       h1: 'Password Generator',
     },
     component: PasswordGen,
+  },
+  {
+    id: 'base64', slug: 'base64-encoder-decoder', name: 'Base64 Encoder', desc: 'Encode & decode Base64 strings',
+    emoji: '🔡', tags: ['base64', 'encode', 'decode', 'dev'], category: 'Dev Tools',
+    seo: {
+      title: 'Base64 Encoder & Decoder — Free Online | Neetab',
+      description: 'Encode text to Base64 or decode Base64 to text instantly. Free online Base64 tool with swap functionality.',
+      h1: 'Base64 Encoder & Decoder',
+    },
+    component: Base64,
+  },
+  {
+    id: 'hash', slug: 'hash-generator', name: 'Hash Generator', desc: 'MD5, SHA-1, SHA-256, SHA-512',
+    emoji: '#️⃣', tags: ['hash', 'md5', 'sha', 'checksum', 'dev'], category: 'Dev Tools',
+    seo: {
+      title: 'Hash Generator — MD5, SHA-256 & More | Neetab',
+      description: 'Generate MD5, SHA-1, SHA-256, and SHA-512 hashes instantly. Free online hash generator. Real-time as you type.',
+      h1: 'Hash Generator',
+    },
+    component: HashGen,
+  },
+  {
+    id: 'uuid', slug: 'uuid-generator', name: 'UUID Generator', desc: 'Generate random UUID v4 strings',
+    emoji: '🆔', tags: ['uuid', 'guid', 'random', 'id', 'dev'], category: 'Dev Tools',
+    seo: {
+      title: 'UUID Generator — Random UUID v4 | Neetab',
+      description: 'Generate random UUID v4 strings. Bulk generate, uppercase, no-dash formats. Free online UUID generator.',
+      h1: 'UUID Generator',
+    },
+    component: UUIDGen,
+  },
+  {
+    id: 'urlencode', slug: 'url-encoder-decoder', name: 'URL Encoder', desc: 'Encode & decode URLs',
+    emoji: '🔗', tags: ['url', 'encode', 'decode', 'percent', 'dev'], category: 'Dev Tools',
+    seo: {
+      title: 'URL Encoder & Decoder — Free Online | Neetab',
+      description: 'Encode and decode URLs online. Supports encodeURIComponent and encodeURI. Free URL encoding tool.',
+      h1: 'URL Encoder & Decoder',
+    },
+    component: URLEncode,
+  },
+  {
+    id: 'textdiff', slug: 'text-diff', name: 'Text Diff', desc: 'Compare two texts side by side',
+    emoji: '📋', tags: ['diff', 'compare', 'text', 'merge', 'dev'], category: 'Dev Tools',
+    seo: {
+      title: 'Text Diff — Compare Text Online Free | Neetab',
+      description: 'Compare two texts and see differences highlighted. Added, removed, and unchanged lines. Free online diff tool.',
+      h1: 'Text Diff & Compare',
+    },
+    component: TextDiffTool,
+  },
+  {
+    id: 'timestamp', slug: 'timestamp-converter', name: 'Timestamp Converter', desc: 'Unix timestamp ↔ human date',
+    emoji: '🕐', tags: ['time', 'unix', 'epoch', 'date', 'dev'], category: 'Dev Tools',
+    seo: {
+      title: 'Unix Timestamp Converter — Epoch to Date | Neetab',
+      description: 'Convert Unix timestamps to human-readable dates and vice versa. Live clock, auto-detect seconds/milliseconds.',
+      h1: 'Unix Timestamp Converter',
+    },
+    component: TimestampConvert,
   },
 
   // ═══ CONVERTERS ═══

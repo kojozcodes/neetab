@@ -20,4 +20,10 @@
   <url><loc>https://neetab.com/tools/password-generator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://neetab.com/tools/unit-converter</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://neetab.com/tools/word-counter</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://neetab.com/tools/base64-encoder-decoder</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://neetab.com/tools/hash-generator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://neetab.com/tools/uuid-generator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://neetab.com/tools/url-encoder-decoder</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://neetab.com/tools/text-diff</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://neetab.com/tools/timestamp-converter</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
