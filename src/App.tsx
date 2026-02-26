@@ -4,6 +4,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import ToolPage from './pages/ToolPage';
+import Privacy from './pages/Privacy';
+import About from './pages/About';
 
 export default function App() {
   const { theme, toggle } = useTheme();
@@ -15,6 +17,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/tools/:slug" element={<ToolPage />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </main>
       <Footer />
