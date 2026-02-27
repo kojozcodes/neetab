@@ -7,13 +7,16 @@ Deploy via Docker for consistent LibreOffice availability.
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.background import BackgroundTask
 import tempfile
 import os
 import subprocess
 import uuid
+import time
+import glob
 from pathlib import Path
 
-app = FastAPI(title="Neetab Conversion API", version="1.0.0")
+app = FastAPI(title="Neetab Conversion API", version="1.1.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -26,14 +29,33 @@ UPLOAD_DIR = Path(tempfile.gettempdir()) / "neetab_uploads"
 UPLOAD_DIR.mkdir(exist_ok=True)
 
 MAX_FILE_SIZE = 50 * 1024 * 1024  # 50MB
+TEMP_FILE_MAX_AGE = 300  # 5 minutes
 
 
-def cleanup(filepath: Path):
-    """Remove temp file after response."""
+def cleanup(*filepaths: Path):
+    """Remove temp files."""
+    for fp in filepaths:
+        try:
+            fp.unlink(missing_ok=True)
+        except Exception:
+            pass
+
+
+def cleanup_old_files():
+    """Remove any temp files older than TEMP_FILE_MAX_AGE seconds (safety net)."""
     try:
-        filepath.unlink(missing_ok=True)
+        now = time.time()
+        for f in UPLOAD_DIR.iterdir():
+            if f.is_file() and (now - f.stat().st_mtime) > TEMP_FILE_MAX_AGE:
+                f.unlink(missing_ok=True)
     except Exception:
         pass
+
+
+@app.on_event("startup")
+async def startup_cleanup():
+    """Clean any leftover temp files from previous runs."""
+    cleanup_old_files()
 
 
 @app.post("/api/convert/pdf-to-word")
@@ -64,19 +86,22 @@ async def pdf_to_word(file: UploadFile = File(...)):
         if not docx_path.exists():
             raise HTTPException(500, "Conversion failed")
 
+        # Return file, then clean up BOTH files in background
         return FileResponse(
             str(docx_path),
             media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             filename=file.filename.replace('.pdf', '.docx'),
-            background=None,  # Don't delete before sending
+            background=BackgroundTask(cleanup, pdf_path, docx_path),
         )
     except ImportError:
+        cleanup(pdf_path, docx_path)
         raise HTTPException(500, "pdf2docx not installed")
+    except HTTPException:
+        cleanup(pdf_path, docx_path)
+        raise
     except Exception as e:
+        cleanup(pdf_path, docx_path)
         raise HTTPException(500, f"Conversion failed: {str(e)}")
-    finally:
-        cleanup(pdf_path)
-        # docx_path cleaned up after response via middleware or scheduler
 
 
 @app.post("/api/convert/word-to-pdf")
@@ -110,24 +135,33 @@ async def word_to_pdf(file: UploadFile = File(...)):
         if not pdf_path.exists():
             raise HTTPException(500, "PDF output not found")
 
+        # Return file, then clean up BOTH files in background
         return FileResponse(
             str(pdf_path),
             media_type="application/pdf",
             filename=file.filename.replace('.docx', '.pdf').replace('.doc', '.pdf'),
+            background=BackgroundTask(cleanup, docx_path, pdf_path),
         )
     except subprocess.TimeoutExpired:
+        cleanup(docx_path, pdf_path)
         raise HTTPException(504, "Conversion timed out")
     except FileNotFoundError:
+        cleanup(docx_path, pdf_path)
         raise HTTPException(500, "LibreOffice not installed. Use Docker deployment.")
+    except HTTPException:
+        cleanup(docx_path, pdf_path)
+        raise
     except Exception as e:
+        cleanup(docx_path, pdf_path)
         raise HTTPException(500, f"Conversion failed: {str(e)}")
-    finally:
-        cleanup(docx_path)
 
 
 @app.get("/api/health")
 async def health():
     """Health check endpoint."""
+    # Clean old files on each health check (runs every 30s via Docker healthcheck)
+    cleanup_old_files()
+
     # Check LibreOffice availability
     try:
         result = subprocess.run(['libreoffice', '--version'], capture_output=True, timeout=5)
@@ -135,10 +169,14 @@ async def health():
     except Exception:
         lo_version = "not available"
 
+    # Count any remaining temp files
+    temp_files = list(UPLOAD_DIR.iterdir())
+
     return {
         "status": "ok",
         "libreoffice": lo_version,
         "max_file_size": f"{MAX_FILE_SIZE // (1024*1024)}MB",
+        "temp_files": len(temp_files),
     }
 
 
