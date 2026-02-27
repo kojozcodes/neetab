@@ -1,7 +1,8 @@
 import { Suspense } from 'react';
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import AdSlot from '../components/AdSlot';
+import NotFound from './NotFound';
 import { toolBySlug, categories } from '../tools/registry';
 
 function ToolSkeleton() {
@@ -18,7 +19,7 @@ export default function ToolPage() {
   const { slug } = useParams<{ slug: string }>();
   const tool = slug ? toolBySlug(slug) : null;
 
-  if (!tool) return <Navigate to="/" replace />;
+  if (!tool) return <NotFound />;
 
   const category = categories.find(c => c.tools.some(t => t.id === tool.id));
   const Component = tool.component;
@@ -45,6 +46,16 @@ export default function ToolPage() {
         operatingSystem: 'Web',
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
         isPartOf: { '@type': 'WebApplication', name: 'Neetab', url: 'https://neetab.com' },
+      })}} />
+      {/* BreadcrumbList Schema */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://neetab.com' },
+          { '@type': 'ListItem', position: 2, name: category?.name || 'Tools', item: 'https://neetab.com' },
+          { '@type': 'ListItem', position: 3, name: tool.name, item: `https://neetab.com/tools/${tool.slug}` },
+        ],
       })}} />
 
       <div className="max-w-lg mx-auto px-4 pb-10">
@@ -75,6 +86,39 @@ export default function ToolPage() {
 
         {/* Ad below tool */}
         <AdSlot slot="tool-bottom" format="rectangle" />
+
+        {/* FAQ Section — SEO content */}
+        {tool.faq && tool.faq.length > 0 && (
+          <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: tool.faq.map(f => ({
+                '@type': 'Question',
+                name: f.q,
+                acceptedAnswer: { '@type': 'Answer', text: f.a },
+              })),
+            })}} />
+            <div className="mt-6 animate-fade-in" style={{ animationDelay: '150ms' }}>
+              <h2 className="text-[11px] font-bold uppercase tracking-wider text-surface-400 mb-2.5">
+                Frequently Asked Questions
+              </h2>
+              <div className="space-y-2.5">
+                {tool.faq.map((f, i) => (
+                  <details key={i} className="card group">
+                    <summary className="p-3 cursor-pointer text-xs font-bold text-surface-900 dark:text-surface-100 list-none flex items-center justify-between">
+                      {f.q}
+                      <span className="text-surface-400 group-open:rotate-180 transition-transform text-[10px]">▼</span>
+                    </summary>
+                    <div className="px-3 pb-3 text-xs text-surface-600 dark:text-surface-400 leading-relaxed">
+                      {f.a}
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
 
         {/* Related tools — horizontal scroll, doesn't waste vertical space */}
         {related.length > 0 && (

@@ -14,6 +14,7 @@ export interface Tool {
     description: string;
     h1: string;
   };
+  faq?: { q: string; a: string }[];
   component: React.LazyExoticComponent<ComponentType>;
 }
 
@@ -69,6 +70,11 @@ const tools: Tool[] = [
       h1: 'PDF to Word Converter',
     },
     component: PDF2Word,
+    faq: [
+      { q: 'Is my PDF file uploaded to a server?', a: 'When server conversion is available, your file is sent securely, processed immediately, and deleted right after. It is never stored or shared.' },
+      { q: 'What quality can I expect from the conversion?', a: 'Server conversion preserves layout, tables, images, and formatting. The output opens perfectly in Microsoft Word, Google Docs, and LibreOffice.' },
+      { q: 'Is there a file size limit?', a: 'You can convert PDFs up to 50MB. For best results, keep files under 20MB.' },
+    ],
   },
   {
     id: 'word2pdf', slug: 'word-to-pdf', name: 'Word to PDF', desc: 'Convert DOCX to PDF',
@@ -79,6 +85,10 @@ const tools: Tool[] = [
       h1: 'Word to PDF Converter',
     },
     component: Word2PDF,
+    faq: [
+      { q: 'Will my Word document formatting be preserved?', a: 'Yes. Server conversion uses LibreOffice which preserves fonts, tables, images, headers, footers, and page layout with near-perfect accuracy.' },
+      { q: 'Can I convert .doc files or only .docx?', a: 'Both .doc and .docx formats are supported for conversion to PDF.' },
+    ],
   },
   {
     id: 'imgcompress', slug: 'image-compressor', name: 'Image Compressor', desc: 'Reduce image file size instantly',
@@ -89,6 +99,10 @@ const tools: Tool[] = [
       h1: 'Image Compressor',
     },
     component: ImageCompress,
+    faq: [
+      { q: 'Does compression reduce image quality?', a: 'You control the quality slider. At 80% quality, most images look identical to the original while being 60-80% smaller in file size.' },
+      { q: 'Is my image uploaded anywhere?', a: 'No. Compression runs entirely in your browser. Your images never leave your device.' },
+    ],
   },
   {
     id: 'pdf2img', slug: 'pdf-to-image', name: 'PDF to Image', desc: 'Convert PDF pages to PNG/JPG',
@@ -99,6 +113,10 @@ const tools: Tool[] = [
       h1: 'PDF to Image Converter',
     },
     component: PDF2Image,
+    faq: [
+      { q: 'What image formats can I export to?', a: 'You can export PDF pages as high-quality PNG or JPG images.' },
+      { q: 'Can I convert a multi-page PDF?', a: 'Yes. Each page is converted to a separate image that you can download individually.' },
+    ],
   },
   {
     id: 'img2pdf', slug: 'image-to-pdf', name: 'Image to PDF', desc: 'Combine images into one PDF',
@@ -109,6 +127,9 @@ const tools: Tool[] = [
       h1: 'Image to PDF Converter',
     },
     component: Image2PDF,
+    faq: [
+      { q: 'Can I combine multiple images into one PDF?', a: 'Yes. Upload multiple images and they will be combined into a single PDF document, one image per page.' },
+    ],
   },
 
   // ═══ CALCULATORS ═══
@@ -121,6 +142,10 @@ const tools: Tool[] = [
       h1: 'Tip Calculator',
     },
     component: TipCalc,
+    faq: [
+      { q: 'How do I calculate a tip?', a: 'Enter your bill amount, select a tip percentage (15%, 18%, 20%, or custom), and optionally split between multiple people. The calculator shows tip amount, total, and per-person cost instantly.' },
+      { q: 'What is the standard tip percentage?', a: 'In the US, 15-20% is standard for restaurant service. 18% is a common middle ground.' },
+    ],
   },
   {
     id: 'bmi', slug: 'bmi-calculator', name: 'BMI Calculator', desc: 'Body mass index check',
@@ -131,6 +156,10 @@ const tools: Tool[] = [
       h1: 'BMI Calculator',
     },
     component: BMICalc,
+    faq: [
+      { q: 'What is a healthy BMI range?', a: 'A BMI between 18.5 and 24.9 is considered normal weight. Below 18.5 is underweight, 25-29.9 is overweight, and 30+ is obese. BMI is a screening tool and does not account for muscle mass or body composition.' },
+      { q: 'Does BMI apply to athletes?', a: 'BMI may overestimate body fat in athletes and muscular individuals. It is best used as a general screening tool, not a definitive health measure.' },
+    ],
   },
   {
     id: 'loan', slug: 'loan-calculator', name: 'Loan Calculator', desc: 'Monthly payments & total interest',
@@ -141,6 +170,9 @@ const tools: Tool[] = [
       h1: 'Loan Calculator',
     },
     component: LoanCalc,
+    faq: [
+      { q: 'How is monthly payment calculated?', a: 'The calculator uses the standard amortization formula based on your loan amount, interest rate, and loan term to compute exact monthly payments, total interest, and total cost.' },
+    ],
   },
   {
     id: 'percentage', slug: 'percentage-calculator', name: 'Percentage Calculator', desc: 'All percentage calculations',
@@ -151,6 +183,9 @@ const tools: Tool[] = [
       h1: 'Percentage Calculator',
     },
     component: PercentCalc,
+    faq: [
+      { q: 'How do I calculate what percent X is of Y?', a: 'Enter X and Y, and the calculator instantly shows the percentage. For example, 25 is 50% of 50.' },
+    ],
   },
   {
     id: 'discount', slug: 'discount-calculator', name: 'Discount Calculator', desc: 'Sale price & savings',
@@ -161,6 +196,9 @@ const tools: Tool[] = [
       h1: 'Discount Calculator',
     },
     component: DiscountCalc,
+    faq: [
+      { q: 'How do I calculate a sale price?', a: 'Enter the original price and discount percentage. The calculator shows you the discount amount and the final price you will pay.' },
+    ],
   },
   {
     id: 'age', slug: 'age-calculator', name: 'Age Calculator', desc: 'Exact age from birthdate',
@@ -171,6 +209,9 @@ const tools: Tool[] = [
       h1: 'Age Calculator',
     },
     component: AgeCalc,
+    faq: [
+      { q: 'How accurate is the age calculation?', a: 'The calculator computes your exact age in years, months, and days from your date of birth to today, accounting for leap years.' },
+    ],
   },
 
   // ═══ DESIGN TOOLS ═══
@@ -183,6 +224,10 @@ const tools: Tool[] = [
       h1: 'Color Palette Generator',
     },
     component: PaletteGen,
+    faq: [
+      { q: 'How are the color palettes generated?', a: 'Palettes are generated using color theory algorithms including complementary, analogous, triadic, and split-complementary harmonies based on your chosen base color.' },
+      { q: 'Can I export the palette?', a: 'Yes. You can copy individual HEX codes or the full palette with one click.' },
+    ],
   },
   {
     id: 'gradient', slug: 'css-gradient-generator', name: 'Gradient Maker', desc: 'Create CSS gradients visually',
@@ -193,6 +238,9 @@ const tools: Tool[] = [
       h1: 'CSS Gradient Generator',
     },
     component: GradientMaker,
+    faq: [
+      { q: 'What gradient types are supported?', a: 'Linear, radial, and conic gradients are supported. You can customize colors, angle, and position, then copy the CSS code directly.' },
+    ],
   },
   {
     id: 'color', slug: 'color-converter', name: 'Color Converter', desc: 'HEX ↔ RGB ↔ HSL',
@@ -203,6 +251,9 @@ const tools: Tool[] = [
       h1: 'Color Converter',
     },
     component: ColorConvert,
+    faq: [
+      { q: 'What color formats are supported?', a: 'Convert between HEX, RGB, and HSL color formats instantly. Enter any format and see all others in real time.' },
+    ],
   },
 
   // ═══ DEV TOOLS (new category) ═══
@@ -215,6 +266,10 @@ const tools: Tool[] = [
       h1: 'JSON Formatter & Validator',
     },
     component: JSONFormat,
+    faq: [
+      { q: 'Does this validate my JSON?', a: 'Yes. Invalid JSON is highlighted with an error message showing exactly where the problem is. Valid JSON is formatted with proper indentation.' },
+      { q: 'Can I minify JSON?', a: 'Yes. Use the minify button to remove all whitespace and produce compact JSON.' },
+    ],
   },
   {
     id: 'qr', slug: 'qr-code-generator', name: 'QR Code Generator', desc: 'Generate QR codes for any text or URL',
@@ -225,6 +280,10 @@ const tools: Tool[] = [
       h1: 'QR Code Generator',
     },
     component: QRCodeGen,
+    faq: [
+      { q: 'Can I customize the QR code?', a: 'Yes. You can adjust the size, error correction level, and foreground/background colors.' },
+      { q: 'What can I encode in a QR code?', a: 'Any text, URL, phone number, email, or WiFi credentials. The QR code is generated instantly as you type.' },
+    ],
   },
   {
     id: 'password', slug: 'password-generator', name: 'Password Generator', desc: 'Secure random passwords',
@@ -235,6 +294,10 @@ const tools: Tool[] = [
       h1: 'Password Generator',
     },
     component: PasswordGen,
+    faq: [
+      { q: 'How secure are the generated passwords?', a: 'Passwords are generated using your browser\'s cryptographic random number generator. They are never sent to any server.' },
+      { q: 'What makes a strong password?', a: 'A strong password is at least 16 characters long and includes uppercase, lowercase, numbers, and symbols. Our generator creates passwords that meet all these criteria.' },
+    ],
   },
   {
     id: 'base64', slug: 'base64-encoder-decoder', name: 'Base64 Encoder', desc: 'Encode & decode Base64 strings',
@@ -245,6 +308,9 @@ const tools: Tool[] = [
       h1: 'Base64 Encoder & Decoder',
     },
     component: Base64,
+    faq: [
+      { q: 'What is Base64 encoding?', a: 'Base64 is a method of encoding binary data as ASCII text. It is commonly used in emails, data URLs, and API payloads.' },
+    ],
   },
   {
     id: 'hash', slug: 'hash-generator', name: 'Hash Generator', desc: 'MD5, SHA-1, SHA-256, SHA-512',
@@ -255,6 +321,9 @@ const tools: Tool[] = [
       h1: 'Hash Generator',
     },
     component: HashGen,
+    faq: [
+      { q: 'What is the difference between MD5 and SHA-256?', a: 'MD5 produces a 128-bit hash and is faster but considered insecure for cryptographic use. SHA-256 produces a 256-bit hash and is the current standard for secure hashing.' },
+    ],
   },
   {
     id: 'uuid', slug: 'uuid-generator', name: 'UUID Generator', desc: 'Generate random UUID v4 strings',
@@ -265,6 +334,9 @@ const tools: Tool[] = [
       h1: 'UUID Generator',
     },
     component: UUIDGen,
+    faq: [
+      { q: 'What is a UUID?', a: 'A UUID (Universally Unique Identifier) is a 128-bit identifier that is guaranteed to be unique. UUID v4 uses random numbers and is the most commonly used version.' },
+    ],
   },
   {
     id: 'urlencode', slug: 'url-encoder-decoder', name: 'URL Encoder', desc: 'Encode & decode URLs',
@@ -275,6 +347,9 @@ const tools: Tool[] = [
       h1: 'URL Encoder & Decoder',
     },
     component: URLEncode,
+    faq: [
+      { q: 'When should I URL encode?', a: 'URL encoding is needed when passing special characters (spaces, &, =, ?) in URLs, query parameters, or form data. It converts unsafe characters to percent-encoded format.' },
+    ],
   },
   {
     id: 'textdiff', slug: 'text-diff', name: 'Text Diff', desc: 'Compare two texts side by side',
@@ -285,6 +360,9 @@ const tools: Tool[] = [
       h1: 'Text Diff & Compare',
     },
     component: TextDiffTool,
+    faq: [
+      { q: 'How does the text comparison work?', a: 'The tool uses a longest common subsequence algorithm to find differences between two texts, highlighting added, removed, and unchanged lines.' },
+    ],
   },
   {
     id: 'timestamp', slug: 'timestamp-converter', name: 'Timestamp Converter', desc: 'Unix timestamp ↔ human date',
@@ -295,6 +373,10 @@ const tools: Tool[] = [
       h1: 'Unix Timestamp Converter',
     },
     component: TimestampConvert,
+    faq: [
+      { q: 'What is a Unix timestamp?', a: 'A Unix timestamp is the number of seconds that have elapsed since January 1, 1970 (UTC). It is the standard way computers track time.' },
+      { q: 'Does it handle milliseconds?', a: 'Yes. The converter auto-detects whether your input is in seconds or milliseconds and converts accordingly.' },
+    ],
   },
 
   // ═══ CONVERTERS ═══
@@ -307,6 +389,9 @@ const tools: Tool[] = [
       h1: 'Unit Converter',
     },
     component: UnitConvert,
+    faq: [
+      { q: 'What units can I convert?', a: 'Length, weight, temperature, volume, speed, area, and data storage. All common units within each category are supported.' },
+    ],
   },
 
   // ═══ TEXT TOOLS ═══
@@ -319,6 +404,9 @@ const tools: Tool[] = [
       h1: 'Word Counter',
     },
     component: WordCount,
+    faq: [
+      { q: 'What does this tool count?', a: 'Characters (with and without spaces), words, sentences, paragraphs, and estimated reading time.' },
+    ],
   },
 ];
 

@@ -9,7 +9,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
       manifest: {
-        name: 'Neetab — Neat tools. One tab.',
+        name: 'Neetab | Neat tools. One tab.',
         short_name: 'Neetab',
         description: 'Free online calculators, converters, design tools & file converters. Fast, private, beautifully simple.',
         theme_color: '#FF6B35',
