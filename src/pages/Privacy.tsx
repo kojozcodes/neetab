@@ -4,7 +4,7 @@ export default function Privacy() {
   return (
     <>
       <SEO
-        title="Privacy Policy — Neetab"
+        title="Privacy Policy | Neetab"
         description="Neetab privacy policy. Learn how we handle your data — spoiler: most tools run entirely in your browser."
         path="/privacy"
       />

@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Neetab — Free Online Tools | PDF Converter, Calculator, Design Tools & More"
+        title="Neetab | Free Online Tools, PDF Converter & Calculators"
         description="Free online PDF to Word converter, image compressor, color palette generator, tip calculator & 15+ more tools. Fast, private, no sign-up."
         path="/"
       />

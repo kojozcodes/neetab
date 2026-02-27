@@ -39,7 +39,7 @@ export default function Footer() {
               <circle cx="9.5" cy="22.5" r="2.8" fill="rgba(255,255,255,0.95)"/><circle cx="16" cy="22.5" r="2.8" fill="rgba(255,255,255,0.95)"/><circle cx="22.5" cy="22.5" r="2.8" fill="rgba(255,255,255,0.95)"/>
             </svg>
             <span className="text-xs text-surface-500">
-              <span className="font-bold text-surface-700 dark:text-surface-300">Nee</span><span className="font-bold text-brand-500">tab</span> — Neat tools. One tab.
+              <span className="font-bold text-surface-700 dark:text-surface-300">Nee</span><span className="font-bold text-brand-500">tab</span> | Neat tools. One tab.
             </span>
           </div>
           <div className="text-[11px] text-surface-400">

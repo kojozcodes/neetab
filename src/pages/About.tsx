@@ -5,7 +5,7 @@ export default function About() {
   return (
     <>
       <SEO
-        title="About Neetab — Neat Tools. One Tab."
+        title="About Neetab | Neat Tools. One Tab."
         description="Neetab is a collection of free online tools — calculators, converters, design tools & file converters. Fast, private, no sign-up required."
         path="/about"
       />
