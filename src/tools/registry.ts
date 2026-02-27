@@ -292,7 +292,7 @@ const tools: Tool[] = [
   },
   {
     id: 'password', slug: 'password-generator', name: 'Password Generator', desc: 'Secure random passwords',
-    emoji: '🔐', tags: ['security', 'random', 'strong', 'password'], category: 'Dev Tools',
+    emoji: '🔐', tags: ['security', 'random', 'strong', 'password'], category: 'Dev Tools', popular: true,
     seo: {
       title: 'Password Generator | Secure Random Passwords | Neetab',
       description: 'Generate strong, secure passwords. Customize length, uppercase, numbers, symbols. Cryptographically secure.',

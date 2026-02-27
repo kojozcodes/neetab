@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="border-t border-surface-200 dark:border-surface-800 mt-16">
       <div className="max-w-4xl mx-auto px-5 py-10">
         {/* Tool links for SEO internal linking */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-8">
           {categories.map(cat => (
             <div key={cat.slug}>
               <h3 className="text-xs font-bold text-surface-700 dark:text-surface-300 mb-2">

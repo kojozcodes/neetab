@@ -23,7 +23,7 @@ export default function Home() {
     <>
       <SEO
         title="Neetab | Free Online Tools, PDF Converter & Calculators"
-        description="Free online PDF to Word converter, image compressor, color palette generator, tip calculator & 15+ more tools. Fast, private, no sign-up."
+        description={`Free online PDF to Word converter, image compressor, color palette generator, tip calculator & ${totalToolCount - 4} more tools. Fast, private, no sign-up.`}
         path="/"
       />
 
@@ -37,7 +37,7 @@ export default function Home() {
             </span>
           </h1>
           <p className="text-surface-500 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
-            PDF converter, calculators, design tools & more — free, fast, private.
+            PDF converter, calculators, design tools & more - free, fast, private.
           </p>
         </div>
 
