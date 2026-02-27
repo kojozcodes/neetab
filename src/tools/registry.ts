@@ -31,6 +31,7 @@ const Image2PDF = lazy(() => import('./file/ImageToPDF'));
 const ImageCompress = lazy(() => import('./file/ImageCompressor'));
 const PDF2Word = lazy(() => import('./file/PDFtoWord'));
 const Word2PDF = lazy(() => import('./file/WordToPDF'));
+const InvoiceGen = lazy(() => import('./file/InvoiceGenerator'));
 
 const TipCalc = lazy(() => import('./calculators/TipCalculator'));
 const PercentCalc = lazy(() => import('./calculators/PercentageCalculator'));
@@ -42,10 +43,13 @@ const LoanCalc = lazy(() => import('./calculators/LoanCalculator'));
 const PaletteGen = lazy(() => import('./design/ColorPalette'));
 const GradientMaker = lazy(() => import('./design/GradientMaker'));
 const ColorConvert = lazy(() => import('./design/ColorConverter'));
+const FaviconGen = lazy(() => import('./design/FaviconGenerator'));
 
 const UnitConvert = lazy(() => import('./converters/UnitConverter'));
+const CurrencyConvert = lazy(() => import('./converters/CurrencyConverter'));
 
 const WordCount = lazy(() => import('./text/WordCounter'));
+const TTS = lazy(() => import('./text/TextToSpeech'));
 
 const PasswordGen = lazy(() => import('./generators/PasswordGenerator'));
 const QRCodeGen = lazy(() => import('./generators/QRCodeGenerator'));
@@ -62,6 +66,7 @@ const MarkdownPrev = lazy(() => import('./devtools/MarkdownPreview'));
 const CSSMin = lazy(() => import('./devtools/CSSMinifier'));
 const LoremGen = lazy(() => import('./text/LoremIpsumGenerator'));
 const Pomodoro = lazy(() => import('./generators/PomodoroTimer'));
+const Countdown = lazy(() => import('./generators/CountdownTimer'));
 
 // ─── Tool Definitions (ordered by traffic potential within each category) ───
 const tools: Tool[] = [
@@ -134,6 +139,23 @@ const tools: Tool[] = [
     component: Image2PDF,
     faq: [
       { q: 'Can I combine multiple images into one PDF?', a: 'Yes. Upload multiple images and they will be combined into a single PDF document, one image per page.' },
+    ],
+  },
+  {
+    id: 'invoice', slug: 'invoice-generator', name: 'Invoice Generator', desc: 'Create professional PDF invoices',
+    emoji: '🧾', tags: ['invoice', 'bill', 'pdf', 'business', 'receipt', 'freelance'], category: 'File Tools',
+    seo: {
+      title: 'Free Invoice Generator | Create PDF Invoices Online | Neetab',
+      description: 'Create professional PDF invoices for free. Add line items, tax, notes. Download instantly. No sign-up, no watermarks.',
+      h1: 'Free Invoice Generator',
+    },
+    component: InvoiceGen,
+    faq: [
+      { q: 'Is this invoice generator really free?', a: 'Yes, completely free with no watermarks, no sign-up, and no limits on how many invoices you can create.' },
+      { q: 'Are my invoices saved or stored?', a: 'No. Everything runs in your browser. Your business information and invoices never leave your device.' },
+      { q: 'Can I add tax to my invoices?', a: 'Yes. Set a tax percentage and it will be automatically calculated and displayed on the invoice.' },
+      { q: 'What currencies are supported?', a: 'You can choose from common currency symbols including $, €, £, ¥, ₹, ₦, C$, and A$.' },
+      { q: 'Can I customize the invoice number?', a: 'Yes. The invoice number is auto-generated but fully editable. Use any numbering scheme you prefer.' },
     ],
   },
 
@@ -258,6 +280,22 @@ const tools: Tool[] = [
     component: ColorConvert,
     faq: [
       { q: 'What color formats are supported?', a: 'Convert between HEX, RGB, and HSL color formats instantly. Enter any format and see all others in real time.' },
+    ],
+  },
+  {
+    id: 'favicon', slug: 'favicon-generator', name: 'Favicon Generator', desc: 'Generate all favicon sizes from one image',
+    emoji: '⭐', tags: ['favicon', 'icon', 'website', 'pwa', 'apple-touch'], category: 'Design Tools',
+    seo: {
+      title: 'Favicon Generator | Create All Sizes from One Image | Neetab',
+      description: 'Generate favicons in all sizes (16x16 to 512x512) from one image. Download PNG icons for browsers, Apple Touch, Android, and PWA.',
+      h1: 'Favicon Generator',
+    },
+    component: FaviconGen,
+    faq: [
+      { q: 'What sizes do I need for a favicon?', a: 'At minimum: 16x16 and 32x32 for browsers, 180x180 for Apple Touch Icon, and 192x192 and 512x512 for Android/PWA. This tool generates all of them.' },
+      { q: 'What image format should I upload?', a: 'PNG or SVG work best. Use a square image for optimal results. The tool will resize and crop automatically.' },
+      { q: 'Are the favicons generated locally?', a: 'Yes. All processing happens in your browser using the HTML Canvas API. No images are uploaded to any server.' },
+      { q: 'How do I add favicons to my website?', a: 'Place the files in your site root and add link tags in your HTML head: <link rel="icon" sizes="32x32" href="/favicon-32x32.png"> for each size.' },
     ],
   },
 
@@ -398,6 +436,22 @@ const tools: Tool[] = [
       { q: 'What units can I convert?', a: 'Length, weight, temperature, volume, speed, area, and data storage. All common units within each category are supported.' },
     ],
   },
+  {
+    id: 'currency', slug: 'currency-converter', name: 'Currency Converter', desc: 'Real-time exchange rates',
+    emoji: '💱', tags: ['currency', 'money', 'exchange', 'forex', 'rate', 'dollar', 'euro'], category: 'Converters',
+    seo: {
+      title: 'Currency Converter | Live Exchange Rates | Neetab',
+      description: 'Convert between 30+ world currencies with live exchange rates. Free currency calculator with real-time data from the European Central Bank.',
+      h1: 'Currency Converter',
+    },
+    component: CurrencyConvert,
+    faq: [
+      { q: 'Where do the exchange rates come from?', a: 'Rates are sourced from the European Central Bank via the Frankfurter API. They are updated daily on business days.' },
+      { q: 'How many currencies are supported?', a: 'Over 30 currencies including USD, EUR, GBP, JPY, CAD, AUD, INR, NGN, BRL, and many more.' },
+      { q: 'Are the rates real-time?', a: 'Rates are updated once per business day by the European Central Bank. For intraday trading rates, use a dedicated forex platform.' },
+      { q: 'Is my conversion data saved?', a: 'No. Conversions happen in real-time in your browser. Nothing is stored or tracked.' },
+    ],
+  },
 
   // ═══ TEXT TOOLS ═══
   {
@@ -470,6 +524,22 @@ const tools: Tool[] = [
     ],
   },
   {
+    id: 'tts', slug: 'text-to-speech', name: 'Text to Speech', desc: 'Read text aloud with natural voices',
+    emoji: '🔊', tags: ['speech', 'voice', 'read', 'tts', 'audio', 'accessibility'], category: 'Text Tools',
+    seo: {
+      title: 'Text to Speech | Free Online TTS Reader | Neetab',
+      description: 'Convert text to speech free online. Multiple voices and languages. Adjustable speed and pitch. No sign-up required.',
+      h1: 'Text to Speech',
+    },
+    component: TTS,
+    faq: [
+      { q: 'What voices are available?', a: 'The available voices depend on your browser and operating system. Most modern browsers offer dozens of voices in multiple languages.' },
+      { q: 'Does this work offline?', a: 'Yes. Text-to-speech uses your browser built-in speech synthesis engine. No internet connection is needed after the page loads.' },
+      { q: 'Is there a text length limit?', a: 'The input is limited to 10,000 characters. For very long texts, consider splitting into sections for best results.' },
+      { q: 'Can I adjust the reading speed?', a: 'Yes. Use the Speed slider to go from 0.25x (very slow) to 2x (double speed). The Pitch slider adjusts voice tone.' },
+    ],
+  },
+  {
     id: 'pomodoro', slug: 'pomodoro-timer', name: 'Pomodoro Timer', desc: '25-minute focus timer with breaks',
     emoji: '🍅', tags: ['timer', 'pomodoro', 'focus', 'productivity', 'time'], category: 'Productivity',
     seo: {
@@ -481,6 +551,22 @@ const tools: Tool[] = [
     faq: [
       { q: 'What is the Pomodoro Technique?', a: 'A time management method using 25-minute focused work sessions followed by 5-minute breaks. After 4 sessions, take a longer 15-minute break.' },
       { q: 'Will I hear a sound when the timer ends?', a: 'Yes. A short notification sound plays when each session ends, so you know when to take a break or resume work.' },
+    ],
+  },
+  {
+    id: 'countdown', slug: 'countdown-timer', name: 'Countdown Timer', desc: 'Set a timer for any duration',
+    emoji: '⏳', tags: ['countdown', 'timer', 'alarm', 'clock', 'stopwatch'], category: 'Productivity',
+    seo: {
+      title: 'Countdown Timer | Free Online Timer with Alarm | Neetab',
+      description: 'Free online countdown timer. Set hours, minutes, and seconds. Visual progress ring and audio alarm. Quick presets for common durations.',
+      h1: 'Countdown Timer',
+    },
+    component: Countdown,
+    faq: [
+      { q: 'Will the timer still run if I switch tabs?', a: 'Yes. The countdown continues in the background and the page title updates with the remaining time so you can see it in your tab bar.' },
+      { q: 'Will I hear an alarm when it finishes?', a: 'Yes. Three short beeps play when the countdown reaches zero. Make sure your volume is on.' },
+      { q: 'What are the quick presets?', a: 'One-click buttons for 1, 5, 10, 15, and 30 minutes, plus 1 hour. You can also set any custom time.' },
+      { q: 'Can I pause and resume?', a: 'Yes. Click Pause to stop the countdown temporarily, then Resume to continue from where you left off.' },
     ],
   },
 ];

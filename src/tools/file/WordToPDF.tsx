@@ -53,7 +53,15 @@ export default function WordToPDF() {
 
       const buf = await f.arrayBuffer();
       const result = await mammoth.default.convertToHtml({ arrayBuffer: buf });
-      setHtmlContent(result.value);
+      // Sanitize: strip <script>, <iframe>, event handlers, javascript: URLs
+      const sanitized = result.value
+        .replace(/<script[\s\S]*?<\/script>/gi, '')
+        .replace(/<iframe[\s\S]*?<\/iframe>/gi, '')
+        .replace(/<link[^>]*>/gi, '')
+        .replace(/<style[\s\S]*?<\/style>/gi, '')
+        .replace(/\s+on\w+\s*=\s*["'][^"']*["']/gi, '')
+        .replace(/href\s*=\s*["']javascript:[^"']*["']/gi, 'href="#"');
+      setHtmlContent(sanitized);
       setProgress(50);
 
       // Wait for DOM render

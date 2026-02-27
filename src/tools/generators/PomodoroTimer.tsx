@@ -27,6 +27,7 @@ export default function PomodoroTimer() {
   const [isRunning, setIsRunning] = useState(false);
   const [sessions, setSessions] = useState(0);
   const intervalRef = useRef<number | null>(null);
+  const audioCtxRef = useRef<AudioContext | null>(null);
 
   const switchMode = useCallback((m: Mode) => {
     setMode(m);
@@ -40,9 +41,11 @@ export default function PomodoroTimer() {
         setTimeLeft(prev => {
           if (prev <= 1) {
             setIsRunning(false);
-            // Play notification sound
+            // Play notification sound (reuse AudioContext)
             try {
-              const ctx = new AudioContext();
+              if (!audioCtxRef.current) audioCtxRef.current = new AudioContext();
+              const ctx = audioCtxRef.current;
+              if (ctx.state === 'suspended') ctx.resume();
               const osc = ctx.createOscillator();
               const gain = ctx.createGain();
               osc.connect(gain);

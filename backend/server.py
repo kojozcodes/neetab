@@ -4,8 +4,8 @@ Uses pdf2docx for PDF→Word and LibreOffice headless for Word→PDF.
 Deploy via Docker for consistent LibreOffice availability.
 """
 
-from fastapi import FastAPI, UploadFile, File, HTTPException
-from fastapi.responses import FileResponse
+from fastapi import FastAPI, UploadFile, File, HTTPException, Request
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.background import BackgroundTask
 import tempfile
@@ -13,10 +13,11 @@ import os
 import subprocess
 import uuid
 import time
-import glob
+import asyncio
 from pathlib import Path
+from collections import defaultdict
 
-app = FastAPI(title="Neetab Conversion API", version="1.1.0")
+app = FastAPI(title="Neetab Conversion API", version="1.2.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -30,6 +31,25 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 
 MAX_FILE_SIZE = 50 * 1024 * 1024  # 50MB
 TEMP_FILE_MAX_AGE = 300  # 5 minutes
+RATE_LIMIT_WINDOW = 60  # seconds
+RATE_LIMIT_MAX = 10  # requests per window per IP
+
+# LibreOffice cannot run concurrently — use a lock
+libreoffice_lock = asyncio.Lock()
+
+# Simple in-memory rate limiter
+rate_limit_store: dict[str, list[float]] = defaultdict(list)
+
+
+def check_rate_limit(ip: str) -> bool:
+    """Returns True if request is allowed, False if rate limited."""
+    now = time.time()
+    # Clean old entries
+    rate_limit_store[ip] = [t for t in rate_limit_store[ip] if now - t < RATE_LIMIT_WINDOW]
+    if len(rate_limit_store[ip]) >= RATE_LIMIT_MAX:
+        return False
+    rate_limit_store[ip].append(now)
+    return True
 
 
 def cleanup(*filepaths: Path):
@@ -59,8 +79,12 @@ async def startup_cleanup():
 
 
 @app.post("/api/convert/pdf-to-word")
-async def pdf_to_word(file: UploadFile = File(...)):
+async def pdf_to_word(request: Request, file: UploadFile = File(...)):
     """Convert PDF to DOCX using pdf2docx (preserves layout, tables, images)."""
+    client_ip = request.client.host if request.client else "unknown"
+    if not check_rate_limit(client_ip):
+        raise HTTPException(429, "Too many requests. Please wait a minute.")
+
     if not file.filename or not file.filename.lower().endswith('.pdf'):
         raise HTTPException(400, "Only PDF files are accepted")
 
@@ -73,11 +97,9 @@ async def pdf_to_word(file: UploadFile = File(...)):
     docx_path = UPLOAD_DIR / f"{job_id}.docx"
 
     try:
-        # Save uploaded PDF
         with open(pdf_path, "wb") as f:
             f.write(content)
 
-        # Convert with pdf2docx
         from pdf2docx import Converter
         cv = Converter(str(pdf_path))
         cv.convert(str(docx_path))
@@ -86,11 +108,14 @@ async def pdf_to_word(file: UploadFile = File(...)):
         if not docx_path.exists():
             raise HTTPException(500, "Conversion failed")
 
-        # Return file, then clean up BOTH files in background
+        # Sanitize filename for Content-Disposition header
+        safe_name = "".join(c for c in (file.filename or "document.pdf") if c.isalnum() or c in ".-_ ").strip()
+        safe_name = (safe_name.replace('.pdf', '') or 'document') + '.docx'
+
         return FileResponse(
             str(docx_path),
             media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            filename=file.filename.replace('.pdf', '.docx'),
+            filename=safe_name,
             background=BackgroundTask(cleanup, pdf_path, docx_path),
         )
     except ImportError:
@@ -105,8 +130,12 @@ async def pdf_to_word(file: UploadFile = File(...)):
 
 
 @app.post("/api/convert/word-to-pdf")
-async def word_to_pdf(file: UploadFile = File(...)):
+async def word_to_pdf(request: Request, file: UploadFile = File(...)):
     """Convert DOCX to PDF using LibreOffice headless."""
+    client_ip = request.client.host if request.client else "unknown"
+    if not check_rate_limit(client_ip):
+        raise HTTPException(429, "Too many requests. Please wait a minute.")
+
     if not file.filename or not file.filename.lower().endswith(('.docx', '.doc')):
         raise HTTPException(400, "Only Word documents are accepted")
 
@@ -122,12 +151,13 @@ async def word_to_pdf(file: UploadFile = File(...)):
         with open(docx_path, "wb") as f:
             f.write(content)
 
-        # Convert with LibreOffice
-        result = subprocess.run([
-            'libreoffice', '--headless', '--convert-to', 'pdf',
-            '--outdir', str(UPLOAD_DIR),
-            str(docx_path)
-        ], capture_output=True, timeout=120)
+        # Lock ensures only one LibreOffice process runs at a time
+        async with libreoffice_lock:
+            result = subprocess.run([
+                'libreoffice', '--headless', '--convert-to', 'pdf',
+                '--outdir', str(UPLOAD_DIR),
+                str(docx_path)
+            ], capture_output=True, timeout=120)
 
         if result.returncode != 0:
             raise HTTPException(500, f"LibreOffice failed: {result.stderr.decode()}")
@@ -135,11 +165,14 @@ async def word_to_pdf(file: UploadFile = File(...)):
         if not pdf_path.exists():
             raise HTTPException(500, "PDF output not found")
 
-        # Return file, then clean up BOTH files in background
+        # Sanitize filename for Content-Disposition header
+        safe_name = "".join(c for c in (file.filename or "document.docx") if c.isalnum() or c in ".-_ ").strip()
+        safe_name = (safe_name.replace('.docx', '').replace('.doc', '') or 'document') + '.pdf'
+
         return FileResponse(
             str(pdf_path),
             media_type="application/pdf",
-            filename=file.filename.replace('.docx', '.pdf').replace('.doc', '.pdf'),
+            filename=safe_name,
             background=BackgroundTask(cleanup, docx_path, pdf_path),
         )
     except subprocess.TimeoutExpired:
@@ -159,17 +192,14 @@ async def word_to_pdf(file: UploadFile = File(...)):
 @app.get("/api/health")
 async def health():
     """Health check endpoint."""
-    # Clean old files on each health check (runs every 30s via Docker healthcheck)
     cleanup_old_files()
 
-    # Check LibreOffice availability
     try:
         result = subprocess.run(['libreoffice', '--version'], capture_output=True, timeout=5)
         lo_version = result.stdout.decode().strip()
     except Exception:
         lo_version = "not available"
 
-    # Count any remaining temp files
     temp_files = list(UPLOAD_DIR.iterdir())
 
     return {
@@ -182,4 +212,5 @@ async def health():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)

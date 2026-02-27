@@ -47,6 +47,14 @@ export default function TextDiff() {
   const [stats, setStats] = useState({ added: 0, removed: 0, same: 0 });
 
   const compare = () => {
+    const MAX_LINES = 5000;
+    const linesA = textA.split('\n').length;
+    const linesB = textB.split('\n').length;
+    if (linesA > MAX_LINES || linesB > MAX_LINES) {
+      setDiff([]);
+      setStats({ added: 0, removed: 0, same: 0 });
+      return;
+    }
     const result = computeDiff(textA, textB);
     setDiff(result);
     setStats({
@@ -72,6 +80,7 @@ export default function TextDiff() {
                 onChange={e => setTextA(e.target.value)}
                 placeholder="Paste original text..."
                 className="input-field min-h-[140px] resize-y font-mono text-xs"
+                maxLength={500000}
               />
             </div>
             <div>
@@ -81,6 +90,7 @@ export default function TextDiff() {
                 onChange={e => setTextB(e.target.value)}
                 placeholder="Paste modified text..."
                 className="input-field min-h-[140px] resize-y font-mono text-xs"
+                maxLength={500000}
               />
             </div>
           </div>

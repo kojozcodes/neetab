@@ -12,6 +12,7 @@ export default function QRCodeGenerator() {
   const [bgColor, setBgColor] = useState('#FFFFFF');
   const [blob, setBlob] = useState<Blob | null>(null);
   const [imgUrl, setImgUrl] = useState('');
+  const prevUrlRef = useRef('');
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const generate = useCallback(async () => {
@@ -26,7 +27,7 @@ export default function QRCodeGenerator() {
         color: { dark: fgColor, light: bgColor },
         errorCorrectionLevel: 'M',
       });
-      canvas.toBlob(b => { if (b) { setBlob(b); setImgUrl(URL.createObjectURL(b)); } }, 'image/png');
+      canvas.toBlob(b => { if (b) { if (prevUrlRef.current) URL.revokeObjectURL(prevUrlRef.current); const url = URL.createObjectURL(b); prevUrlRef.current = url; setBlob(b); setImgUrl(url); } }, 'image/png');
     } catch {
       // Fallback: render via Google Charts (works without npm package)
       const url = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}&color=${fgColor.slice(1)}&bgcolor=${bgColor.slice(1)}`;

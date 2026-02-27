@@ -1,8 +1,13 @@
 import { useState } from 'react';
 
-// Simple markdown parser — no dependencies
+function escapeHtml(str: string): string {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// Simple markdown parser — no dependencies, HTML-safe
 function parseMarkdown(md: string): string {
-  let html = md
+  // First escape all HTML to prevent XSS
+  let html = escapeHtml(md)
     // Code blocks (must come before inline code)
     .replace(/```(\w*)\n([\s\S]*?)```/g, '<pre class="bg-surface-200 dark:bg-surface-900 rounded-lg p-3 overflow-x-auto text-xs font-mono my-2"><code>$2</code></pre>')
     // Inline code
@@ -16,11 +21,11 @@ function parseMarkdown(md: string): string {
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
     .replace(/~~(.+?)~~/g, '<del>$1</del>')
-    // Links & images
+    // Links (href is escaped already since we escaped HTML first)
     .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="max-w-full rounded-lg my-2" />')
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-brand-500 underline" target="_blank" rel="noopener">$1</a>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-brand-500 underline" target="_blank" rel="noopener noreferrer">$1</a>')
     // Blockquotes
-    .replace(/^> (.+)$/gm, '<blockquote class="border-l-3 border-brand-300 pl-3 italic text-surface-500 my-2">$1</blockquote>')
+    .replace(/^&gt; (.+)$/gm, '<blockquote class="border-l-3 border-brand-300 pl-3 italic text-surface-500 my-2">$1</blockquote>')
     // Horizontal rules
     .replace(/^---$/gm, '<hr class="border-surface-300 dark:border-surface-700 my-3" />')
     // Unordered lists
@@ -90,6 +95,7 @@ export default function MarkdownPreview() {
             onChange={e => setInput(e.target.value)}
             className="input-field min-h-[250px] resize-y font-mono text-xs"
             placeholder="Type Markdown here..."
+            maxLength={100000}
           />
         )}
         <div

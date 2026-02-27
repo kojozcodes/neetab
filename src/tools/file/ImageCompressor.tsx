@@ -36,6 +36,8 @@ export default function ImageCompressor() {
     canvas.getContext('2d')!.drawImage(origImg.el, 0, 0, w, h);
     canvas.toBlob(blob => {
       if (!blob) return;
+      // Revoke previous ObjectURL to prevent memory leak
+      if (result?.url) URL.revokeObjectURL(result.url);
       setResult({ blob, url: URL.createObjectURL(blob), w, h, size: blob.size });
     }, outputFormat === 'png' ? 'image/png' : 'image/jpeg', quality / 100);
   }, [origImg, quality, maxWidth, outputFormat]);
@@ -90,7 +92,7 @@ export default function ImageCompressor() {
                 <span className="text-xs text-surface-500">{(origSize / 1024).toFixed(0)}KB → {(result.size / 1024).toFixed(0)}KB</span>
               </div>
               <DownloadButton blob={result.blob} filename={`compressed-${origImg.name.replace(/\.[^.]+$/, '')}.${outputFormat}`} label="⬇ Download Compressed Image" />
-              <button onClick={() => { setOrigImg(null); setResult(null); }}
+              <button onClick={() => { if (result?.url) URL.revokeObjectURL(result.url); setOrigImg(null); setResult(null); }}
                 className="w-full mt-1.5 py-1.5 text-[11px] font-semibold text-surface-400 hover:text-brand-500 transition-colors">
                 Compress another image
               </button>
