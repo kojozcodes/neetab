@@ -57,6 +57,11 @@ const UUIDGen = lazy(() => import('./devtools/UUIDGenerator'));
 const URLEncode = lazy(() => import('./devtools/URLEncoderDecoder'));
 const TextDiffTool = lazy(() => import('./devtools/TextDiff'));
 const TimestampConvert = lazy(() => import('./devtools/TimestampConverter'));
+const RegexTest = lazy(() => import('./devtools/RegexTester'));
+const MarkdownPrev = lazy(() => import('./devtools/MarkdownPreview'));
+const CSSMin = lazy(() => import('./devtools/CSSMinifier'));
+const LoremGen = lazy(() => import('./text/LoremIpsumGenerator'));
+const Pomodoro = lazy(() => import('./generators/PomodoroTimer'));
 
 // ─── Tool Definitions (ordered by traffic potential within each category) ───
 const tools: Tool[] = [
@@ -408,6 +413,76 @@ const tools: Tool[] = [
       { q: 'What does this tool count?', a: 'Characters (with and without spaces), words, sentences, paragraphs, and estimated reading time.' },
     ],
   },
+  {
+    id: 'regex', slug: 'regex-tester', name: 'Regex Tester', desc: 'Test regular expressions with live highlighting',
+    emoji: '🔎', tags: ['regex', 'regular expression', 'pattern', 'test', 'dev'], category: 'Dev Tools',
+    seo: {
+      title: 'Regex Tester | Test Regular Expressions Online | Neetab',
+      description: 'Test regular expressions with real-time highlighting and match details. Supports all JavaScript regex flags. Free online regex tester.',
+      h1: 'Regex Tester',
+    },
+    component: RegexTest,
+    faq: [
+      { q: 'What regex flavors are supported?', a: 'This tool uses JavaScript regular expressions, which support flags like global (g), case-insensitive (i), multiline (m), and dotall (s).' },
+      { q: 'Does this tool support named capture groups?', a: 'Yes. JavaScript named capture groups using (?<name>...) syntax are fully supported and displayed in match results.' },
+    ],
+  },
+  {
+    id: 'markdown', slug: 'markdown-preview', name: 'Markdown Preview', desc: 'Write Markdown and preview it live',
+    emoji: '📝', tags: ['markdown', 'preview', 'editor', 'dev'], category: 'Dev Tools',
+    seo: {
+      title: 'Markdown Preview | Live Editor | Neetab',
+      description: 'Write Markdown and see a live preview side by side. Supports headings, bold, italic, code blocks, links, lists, and more.',
+      h1: 'Markdown Preview',
+    },
+    component: MarkdownPrev,
+    faq: [
+      { q: 'What Markdown features are supported?', a: 'Headings, bold, italic, strikethrough, links, images, code blocks, inline code, blockquotes, ordered and unordered lists, and horizontal rules.' },
+      { q: 'Can I export the rendered HTML?', a: 'You can copy the Markdown source and use it anywhere. The preview shows how it will render in most Markdown viewers.' },
+    ],
+  },
+  {
+    id: 'cssminify', slug: 'css-minifier', name: 'CSS Minifier', desc: 'Minify or beautify CSS code',
+    emoji: '🎨', tags: ['css', 'minify', 'beautify', 'compress', 'dev'], category: 'Dev Tools',
+    seo: {
+      title: 'CSS Minifier & Beautifier | Free Online | Neetab',
+      description: 'Minify CSS to reduce file size or beautify minified CSS for readability. Shows size savings. Free online CSS tool.',
+      h1: 'CSS Minifier & Beautifier',
+    },
+    component: CSSMin,
+    faq: [
+      { q: 'How much can CSS minification save?', a: 'Typically 20-50% of file size by removing comments, whitespace, and unnecessary characters. The exact savings depend on your CSS formatting.' },
+      { q: 'Does minification change how my CSS works?', a: 'No. Minification only removes formatting and comments. The CSS rules and behavior remain identical.' },
+    ],
+  },
+  {
+    id: 'lorem', slug: 'lorem-ipsum-generator', name: 'Lorem Ipsum', desc: 'Generate placeholder text',
+    emoji: '📄', tags: ['lorem', 'ipsum', 'placeholder', 'text', 'dummy'], category: 'Text Tools',
+    seo: {
+      title: 'Lorem Ipsum Generator | Placeholder Text | Neetab',
+      description: 'Generate lorem ipsum placeholder text. Choose paragraphs, sentences, or words. Customizable count. Free online generator.',
+      h1: 'Lorem Ipsum Generator',
+    },
+    component: LoremGen,
+    faq: [
+      { q: 'What is Lorem Ipsum?', a: 'Lorem Ipsum is dummy text used in the design and printing industry as placeholder content. It has been the industry standard since the 1500s.' },
+      { q: 'Can I generate a specific number of words?', a: 'Yes. Choose between paragraphs, sentences, or exact word count, and set any number from 1 to 100.' },
+    ],
+  },
+  {
+    id: 'pomodoro', slug: 'pomodoro-timer', name: 'Pomodoro Timer', desc: '25-minute focus timer with breaks',
+    emoji: '🍅', tags: ['timer', 'pomodoro', 'focus', 'productivity', 'time'], category: 'Productivity',
+    seo: {
+      title: 'Pomodoro Timer | Focus Timer Online | Neetab',
+      description: 'Free online Pomodoro timer. 25-minute focus sessions with short and long breaks. Track completed sessions. Audio notifications.',
+      h1: 'Pomodoro Timer',
+    },
+    component: Pomodoro,
+    faq: [
+      { q: 'What is the Pomodoro Technique?', a: 'A time management method using 25-minute focused work sessions followed by 5-minute breaks. After 4 sessions, take a longer 15-minute break.' },
+      { q: 'Will I hear a sound when the timer ends?', a: 'Yes. A short notification sound plays when each session ends, so you know when to take a break or resume work.' },
+    ],
+  },
 ];
 
 // ─── Categories ordered by traffic potential ───
@@ -418,6 +493,7 @@ export const categories: Category[] = [
   { name: 'Dev Tools', emoji: '🛠️', slug: 'dev-tools', tools: tools.filter(t => t.category === 'Dev Tools') },
   { name: 'Converters', emoji: '🔄', slug: 'converters', tools: tools.filter(t => t.category === 'Converters') },
   { name: 'Text Tools', emoji: '📝', slug: 'text-tools', tools: tools.filter(t => t.category === 'Text Tools') },
+  { name: 'Productivity', emoji: '🍅', slug: 'productivity', tools: tools.filter(t => t.category === 'Productivity') },
 ];
 
 export const allTools = tools;
