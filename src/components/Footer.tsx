@@ -43,7 +43,7 @@ export default function Footer() {
             </span>
           </div>
           <div className="text-[11px] text-surface-400">
-            100% free • Your data stays private • No sign-up required
+            Free to use • Privacy-first • No sign-up required
           </div>
           <div className="flex items-center gap-3 text-[11px]">
             <Link to="/about" className="text-surface-400 hover:text-brand-500 transition-colors">About</Link>

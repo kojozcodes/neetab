@@ -98,6 +98,9 @@ const tools: Tool[] = [
     faq: [
       { q: 'Will my Word document formatting be preserved?', a: 'Yes. Server conversion uses LibreOffice which preserves fonts, tables, images, headers, footers, and page layout with near-perfect accuracy.' },
       { q: 'Can I convert .doc files or only .docx?', a: 'Both .doc and .docx formats are supported for conversion to PDF.' },
+      { q: 'Is there a file size limit?', a: 'You can convert Word documents up to 50MB. Most documents are well under this limit.' },
+      { q: 'Is my document uploaded to a server?', a: 'When server conversion is used, your file is sent securely, processed immediately, and deleted right after. It is never stored, read, or shared.' },
+      { q: 'Can I convert multiple documents at once?', a: 'Currently you can convert one document at a time. Upload another file after each conversion completes.' },
     ],
   },
   {
@@ -111,7 +114,9 @@ const tools: Tool[] = [
     component: ImageCompress,
     faq: [
       { q: 'Does compression reduce image quality?', a: 'You control the quality slider. At 80% quality, most images look identical to the original while being 60-80% smaller in file size.' },
-      { q: 'Is my image uploaded anywhere?', a: 'No. Compression runs entirely in your browser. Your images never leave your device.' },
+      { q: 'Is my image uploaded anywhere?', a: 'No. Compression runs entirely in your browser using the HTML Canvas API. Your images never leave your device.' },
+      { q: 'What image formats are supported?', a: 'You can compress PNG, JPG, and WebP images. You can also convert between these formats during compression.' },
+      { q: 'How much can I reduce the file size?', a: 'Typical results are 50-80% reduction. A 5MB photo often compresses to under 1MB with no visible quality loss at 80% quality.' },
     ],
   },
   {
@@ -126,6 +131,8 @@ const tools: Tool[] = [
     faq: [
       { q: 'What image formats can I export to?', a: 'You can export PDF pages as high-quality PNG or JPG images.' },
       { q: 'Can I convert a multi-page PDF?', a: 'Yes. Each page is converted to a separate image that you can download individually.' },
+      { q: 'Is my PDF uploaded to a server?', a: 'No. PDF to image conversion runs entirely in your browser using PDF.js. Your files never leave your device.' },
+      { q: 'What resolution are the output images?', a: 'Images are rendered at the PDF native resolution, which is typically 72-150 DPI. The result is sharp enough for screen use and most print purposes.' },
     ],
   },
   {
@@ -139,6 +146,9 @@ const tools: Tool[] = [
     component: Image2PDF,
     faq: [
       { q: 'Can I combine multiple images into one PDF?', a: 'Yes. Upload multiple images and they will be combined into a single PDF document, one image per page.' },
+      { q: 'What image formats can I use?', a: 'PNG, JPG, JPEG, WebP, and other common image formats are all supported.' },
+      { q: 'Can I reorder the pages?', a: 'Yes. After uploading, you can drag and rearrange images to set the page order before creating the PDF.' },
+      { q: 'Is my data private?', a: 'Yes. The entire conversion happens in your browser using jsPDF. No images are uploaded to any server.' },
     ],
   },
   {
@@ -172,6 +182,8 @@ const tools: Tool[] = [
     faq: [
       { q: 'How do I calculate a tip?', a: 'Enter your bill amount, select a tip percentage (15%, 18%, 20%, or custom), and optionally split between multiple people. The calculator shows tip amount, total, and per-person cost instantly.' },
       { q: 'What is the standard tip percentage?', a: 'In the US, 15-20% is standard for restaurant service. 18% is a common middle ground.' },
+      { q: 'Can I split the bill between multiple people?', a: 'Yes. Enter the number of people and the calculator will divide the total evenly, showing each person\'s share including tip.' },
+      { q: 'Does this work for non-restaurant tips?', a: 'Absolutely. Use it for any service — delivery drivers, hairdressers, hotel staff, or any situation where you want to calculate a percentage of a bill.' },
     ],
   },
   {
@@ -199,6 +211,9 @@ const tools: Tool[] = [
     component: LoanCalc,
     faq: [
       { q: 'How is monthly payment calculated?', a: 'The calculator uses the standard amortization formula based on your loan amount, interest rate, and loan term to compute exact monthly payments, total interest, and total cost.' },
+      { q: 'Can I use this for a mortgage?', a: 'Yes. Enter your home loan amount, annual interest rate, and loan term (typically 15 or 30 years) to see your monthly mortgage payment.' },
+      { q: 'Does this include taxes and insurance?', a: 'This calculator shows principal and interest only. Property taxes, homeowner\'s insurance, and PMI are not included. Your actual mortgage payment may be higher.' },
+      { q: 'How does loan term affect total cost?', a: 'A shorter term means higher monthly payments but much less total interest. For example, a 15-year mortgage typically saves tens of thousands in interest compared to a 30-year mortgage.' },
     ],
   },
   {
@@ -212,6 +227,8 @@ const tools: Tool[] = [
     component: PercentCalc,
     faq: [
       { q: 'How do I calculate what percent X is of Y?', a: 'Enter X and Y, and the calculator instantly shows the percentage. For example, 25 is 50% of 50.' },
+      { q: 'Can I calculate percentage increase or decrease?', a: 'Yes. Select the "Percentage change" mode, enter the original and new values, and the calculator shows the percentage increase or decrease.' },
+      { q: 'How do I find what number is X% of Y?', a: 'Select "What is X% of Y" mode. Enter the percentage and the number, and the result appears instantly.' },
     ],
   },
   {
@@ -225,6 +242,8 @@ const tools: Tool[] = [
     component: DiscountCalc,
     faq: [
       { q: 'How do I calculate a sale price?', a: 'Enter the original price and discount percentage. The calculator shows you the discount amount and the final price you will pay.' },
+      { q: 'Can I calculate double discounts?', a: 'Enter the final combined discount percentage. For example, 20% off plus an extra 10% off is roughly 28% off the original price (not 30%, because the second discount applies to the already-reduced price).' },
+      { q: 'Does this include sales tax?', a: 'The calculator shows the discounted price before tax. Sales tax varies by location and is not included in the calculation.' },
     ],
   },
   {
@@ -238,6 +257,8 @@ const tools: Tool[] = [
     component: AgeCalc,
     faq: [
       { q: 'How accurate is the age calculation?', a: 'The calculator computes your exact age in years, months, and days from your date of birth to today, accounting for leap years.' },
+      { q: 'Does it show days until my next birthday?', a: 'Yes. The calculator shows how many days remain until your next birthday, so you can count down to the big day.' },
+      { q: 'Can I calculate age between two dates?', a: 'The calculator computes age from any date of birth to today. For a custom end date, you can adjust the calculation by entering a different start date.' },
     ],
   },
 
@@ -254,6 +275,8 @@ const tools: Tool[] = [
     faq: [
       { q: 'How are the color palettes generated?', a: 'Palettes are generated using color theory algorithms including complementary, analogous, triadic, and split-complementary harmonies based on your chosen base color.' },
       { q: 'Can I export the palette?', a: 'Yes. You can copy individual HEX codes or the full palette with one click.' },
+      { q: 'Can I lock a color and regenerate the rest?', a: 'Yes. Lock any colors you like, then generate new palettes. The locked colors stay fixed while the rest refresh.' },
+      { q: 'Are the palettes free for commercial use?', a: 'Yes. All generated palettes are free to use in personal and commercial projects with no attribution required.' },
     ],
   },
   {
@@ -267,6 +290,8 @@ const tools: Tool[] = [
     component: GradientMaker,
     faq: [
       { q: 'What gradient types are supported?', a: 'Linear, radial, and conic gradients are supported. You can customize colors, angle, and position, then copy the CSS code directly.' },
+      { q: 'Can I use more than two colors?', a: 'Yes. Add multiple color stops to create complex multi-color gradients. Each stop can be positioned precisely.' },
+      { q: 'How do I use the generated CSS?', a: 'Click the copy button to copy the CSS gradient code, then paste it as a background property in your stylesheet.' },
     ],
   },
   {
@@ -280,6 +305,8 @@ const tools: Tool[] = [
     component: ColorConvert,
     faq: [
       { q: 'What color formats are supported?', a: 'Convert between HEX, RGB, and HSL color formats instantly. Enter any format and see all others in real time.' },
+      { q: 'Can I use the visual color picker?', a: 'Yes. Click the color picker to visually choose a color, and all format values update automatically.' },
+      { q: 'How do I copy a color value?', a: 'Click the copy icon next to any color format to copy it to your clipboard for use in CSS, design tools, or any application.' },
     ],
   },
   {
@@ -311,7 +338,9 @@ const tools: Tool[] = [
     component: JSONFormat,
     faq: [
       { q: 'Does this validate my JSON?', a: 'Yes. Invalid JSON is highlighted with an error message showing exactly where the problem is. Valid JSON is formatted with proper indentation.' },
-      { q: 'Can I minify JSON?', a: 'Yes. Use the minify button to remove all whitespace and produce compact JSON.' },
+      { q: 'Can I minify JSON?', a: 'Yes. Use the minify button to remove all whitespace and produce compact JSON, ideal for reducing payload size in APIs.' },
+      { q: 'Is my JSON data private?', a: 'Yes. All processing happens in your browser. Your JSON data is never sent to any server.' },
+      { q: 'What indentation options are available?', a: 'You can format JSON with 2 spaces, 4 spaces, or tab indentation depending on your preference or project standards.' },
     ],
   },
   {
@@ -326,6 +355,8 @@ const tools: Tool[] = [
     faq: [
       { q: 'Can I customize the QR code?', a: 'Yes. You can adjust the size, error correction level, and foreground/background colors.' },
       { q: 'What can I encode in a QR code?', a: 'Any text, URL, phone number, email, or WiFi credentials. The QR code is generated instantly as you type.' },
+      { q: 'What format is the downloaded QR code?', a: 'QR codes are downloaded as PNG images that you can use in print materials, websites, presentations, or any digital medium.' },
+      { q: 'Is the QR code generated locally?', a: 'Yes. QR codes are generated in your browser. Your data is not sent to any server unless the browser library fails to load, in which case a fallback API is used.' },
     ],
   },
   {
@@ -338,8 +369,10 @@ const tools: Tool[] = [
     },
     component: PasswordGen,
     faq: [
-      { q: 'How secure are the generated passwords?', a: 'Passwords are generated using your browser\'s cryptographic random number generator. They are never sent to any server.' },
+      { q: 'How secure are the generated passwords?', a: 'Passwords are generated using your browser\'s cryptographic random number generator (crypto.getRandomValues). They are never sent to any server.' },
       { q: 'What makes a strong password?', a: 'A strong password is at least 16 characters long and includes uppercase, lowercase, numbers, and symbols. Our generator creates passwords that meet all these criteria.' },
+      { q: 'Can I generate multiple passwords at once?', a: 'You can quickly generate new passwords by clicking the generate button repeatedly. Each password is cryptographically random and independent.' },
+      { q: 'Should I use a password manager?', a: 'Yes. Generated passwords should be stored in a password manager like Bitwarden, 1Password, or KeePass. Never reuse passwords across different accounts.' },
     ],
   },
   {
@@ -353,6 +386,8 @@ const tools: Tool[] = [
     component: Base64,
     faq: [
       { q: 'What is Base64 encoding?', a: 'Base64 is a method of encoding binary data as ASCII text. It is commonly used in emails, data URLs, and API payloads.' },
+      { q: 'When would I need Base64?', a: 'Common uses include embedding images in HTML/CSS (data URLs), sending binary data in JSON APIs, encoding email attachments (MIME), and basic authentication headers.' },
+      { q: 'Is Base64 encryption?', a: 'No. Base64 is encoding, not encryption. It makes data transportable but does not protect it. Anyone can decode Base64 — never use it to secure sensitive data.' },
     ],
   },
   {
@@ -366,6 +401,8 @@ const tools: Tool[] = [
     component: HashGen,
     faq: [
       { q: 'What is the difference between MD5 and SHA-256?', a: 'MD5 produces a 128-bit hash and is faster but considered insecure for cryptographic use. SHA-256 produces a 256-bit hash and is the current standard for secure hashing.' },
+      { q: 'What are hashes used for?', a: 'Hashes verify file integrity, store passwords securely, create digital signatures, and detect data tampering. They produce a fixed-size fingerprint of any input.' },
+      { q: 'Is my data sent to a server?', a: 'No. All hashing runs in your browser using the Web Crypto API. Your data never leaves your device.' },
     ],
   },
   {
@@ -379,6 +416,8 @@ const tools: Tool[] = [
     component: UUIDGen,
     faq: [
       { q: 'What is a UUID?', a: 'A UUID (Universally Unique Identifier) is a 128-bit identifier that is guaranteed to be unique. UUID v4 uses random numbers and is the most commonly used version.' },
+      { q: 'Can I generate multiple UUIDs?', a: 'Yes. Generate UUIDs one at a time or in bulk. Options include uppercase, lowercase, and no-dash formats.' },
+      { q: 'Are UUIDs truly unique?', a: 'With 2^122 possible values, the chance of generating the same UUID v4 twice is astronomically small — effectively zero for any practical purpose.' },
     ],
   },
   {
@@ -392,6 +431,8 @@ const tools: Tool[] = [
     component: URLEncode,
     faq: [
       { q: 'When should I URL encode?', a: 'URL encoding is needed when passing special characters (spaces, &, =, ?) in URLs, query parameters, or form data. It converts unsafe characters to percent-encoded format.' },
+      { q: 'What is the difference between encodeURI and encodeURIComponent?', a: 'encodeURI encodes a full URL but preserves special URL characters like :, /, and ?. encodeURIComponent encodes everything, making it safe for use in query parameter values.' },
+      { q: 'Can I decode a URL?', a: 'Yes. Paste an encoded URL and switch to decode mode to see the original readable text.' },
     ],
   },
   {
@@ -405,6 +446,8 @@ const tools: Tool[] = [
     component: TextDiffTool,
     faq: [
       { q: 'How does the text comparison work?', a: 'The tool uses a longest common subsequence algorithm to find differences between two texts, highlighting added, removed, and unchanged lines.' },
+      { q: 'Is there a size limit?', a: 'For best performance, each text should be under 5,000 lines. Very large texts may slow down your browser.' },
+      { q: 'Can I compare code files?', a: 'Yes. The diff tool works with any text including source code, configuration files, markdown, and plain text documents.' },
     ],
   },
   {
@@ -434,6 +477,8 @@ const tools: Tool[] = [
     component: UnitConvert,
     faq: [
       { q: 'What units can I convert?', a: 'Length, weight, temperature, volume, speed, area, and data storage. All common units within each category are supported.' },
+      { q: 'Is the conversion accurate?', a: 'Yes. All conversions use precise mathematical formulas. Results are accurate to multiple decimal places.' },
+      { q: 'Can I convert temperature?', a: 'Yes. Convert between Celsius, Fahrenheit, and Kelvin. The calculator handles the non-linear conversion formulas automatically.' },
     ],
   },
   {
@@ -465,6 +510,8 @@ const tools: Tool[] = [
     component: WordCount,
     faq: [
       { q: 'What does this tool count?', a: 'Characters (with and without spaces), words, sentences, paragraphs, and estimated reading time.' },
+      { q: 'How is reading time calculated?', a: 'Reading time is estimated at 200 words per minute, which is the average adult reading speed.' },
+      { q: 'Is this useful for SEO and content writing?', a: 'Yes. Knowing your word count helps meet content length guidelines. Most SEO experts recommend 300+ words for blog posts and 1,500+ for in-depth articles.' },
     ],
   },
   {

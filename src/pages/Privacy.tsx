@@ -12,43 +12,51 @@ export default function Privacy() {
         <h1 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-surface-900 dark:text-surface-100 mb-6">
           Privacy Policy
         </h1>
-        <p className="text-xs text-surface-400 mb-8">Last updated: February 26, 2026</p>
+        <p className="text-xs text-surface-400 mb-8">Last updated: February 28, 2026</p>
 
         <div className="prose-custom space-y-6 text-sm text-surface-700 dark:text-surface-300 leading-relaxed">
           <section>
             <h2 className="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">Overview</h2>
             <p>
-              Neetab ("we", "us", "our") operates neetab.com. We are committed to protecting your privacy. 
-              The vast majority of our tools run entirely in your browser — your files and data never leave your device.
+              Neetab ("we", "us", "our") operates neetab.com. We are committed to protecting your privacy.
+              The majority of our tools run entirely in your browser — your files and data never leave your device.
+              A few tools do connect to external services, and we explain exactly which ones below.
             </p>
           </section>
 
           <section>
             <h2 className="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">Data We Collect</h2>
-            <p><strong>Analytics:</strong> We use Google Analytics to collect anonymous usage data such as pages visited, 
-              browser type, device type, and approximate location (country/city level). This helps us understand which tools 
+            <p><strong>Analytics:</strong> We use Google Analytics to collect anonymous usage data such as pages visited,
+              browser type, device type, and approximate location (country/city level). This helps us understand which tools
               are popular and improve the site. No personally identifiable information is collected.</p>
-            <p className="mt-2"><strong>Cookies:</strong> Google Analytics uses cookies to distinguish users. You can opt out 
-              by disabling cookies in your browser or using the 
-              <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline ml-1">
+            <p className="mt-2"><strong>Cookies:</strong> Google Analytics and Google AdSense use cookies. You can opt out
+              by disabling cookies in your browser or using the{' '}
+              <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">
                 Google Analytics Opt-out Browser Add-on
               </a>.</p>
           </section>
 
           <section>
-            <h2 className="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">File Processing</h2>
-            <p><strong>Client-side tools:</strong> Most tools (calculators, converters, design tools, text tools, and developer tools) 
-              process everything in your browser. No data is sent to any server.</p>
-            <p className="mt-2"><strong>Server-side tools:</strong> PDF to Word and Word to PDF may use our conversion server for 
-              higher quality results. Files sent to the server are processed immediately, never stored permanently, and deleted 
-              after conversion. We do not read, analyze, or share the contents of your files.</p>
+            <h2 className="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">How Your Data Is Processed</h2>
+            <p><strong>Client-side tools (most tools):</strong> Calculators, converters, design tools, text tools, and
+              developer tools process everything in your browser. No data is sent to any server.</p>
+            <p className="mt-2"><strong>PDF to Word and Word to PDF:</strong> These tools may send your file to our conversion
+              server (hosted on Railway) for higher quality results. Files are processed immediately and deleted after
+              conversion. We do not read, analyze, or share the contents of your files.</p>
+            <p className="mt-2"><strong>Currency Converter:</strong> This tool sends your selected currencies and amount to
+              the <a href="https://www.frankfurter.app" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">Frankfurter API</a> (a
+              free, open-source exchange rate API powered by European Central Bank data). No personal information is sent — only the
+              currency pair and amount.</p>
+            <p className="mt-2"><strong>QR Code Generator:</strong> This tool normally generates QR codes entirely in your browser.
+              If the browser library fails to load, it falls back to the <a href="https://goqr.me/api/" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">goQR.me API</a>,
+              which would receive the text you're encoding. This fallback is rare.</p>
           </section>
 
           <section>
             <h2 className="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">Advertising</h2>
-            <p>We may display ads through Google AdSense. Google may use cookies to serve ads based on your prior visits to 
-              this or other websites. You can opt out of personalized advertising by visiting 
-              <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline ml-1">
+            <p>We display ads through Google AdSense. Google may use cookies to serve ads based on your prior visits to
+              this or other websites. You can opt out of personalized advertising by visiting{' '}
+              <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">
                 Google Ads Settings
               </a>.</p>
           </section>
@@ -61,12 +69,14 @@ export default function Privacy() {
             <p><strong>Google Fonts</strong> — web fonts (DM Sans, DM Serif Display, JetBrains Mono)</p>
             <p><strong>Vercel</strong> — website hosting</p>
             <p><strong>Railway</strong> — file conversion server hosting</p>
+            <p><strong>Frankfurter API</strong> — currency exchange rates (European Central Bank data)</p>
+            <p><strong>goQR.me API</strong> — QR code generation (fallback only)</p>
           </section>
 
           <section>
             <h2 className="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">Data Retention</h2>
-            <p>We do not store any user files or personal data. Analytics data is retained by Google according to their 
-              standard retention policies.</p>
+            <p>We do not store any user files or personal data. Uploaded files are deleted immediately after processing.
+              Analytics data is retained by Google according to their standard retention policies.</p>
           </section>
 
           <section>
@@ -81,8 +91,8 @@ export default function Privacy() {
 
           <section>
             <h2 className="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">Contact</h2>
-            <p>If you have questions about this privacy policy, you can reach us at 
-              <span className="text-brand-500 font-medium ml-1">hello@neetab.com</span>.
+            <p>If you have questions about this privacy policy, you can reach us at{' '}
+              <a href="mailto:hello@neetab.com" className="text-brand-500 font-medium hover:underline">hello@neetab.com</a>.
             </p>
           </section>
         </div>
