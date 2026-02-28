@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { FileUpload, DownloadButton } from '../../components/ui/FileComponents';
 
 interface FaviconSize { size: number; label: string; use: string; }
@@ -27,6 +27,16 @@ export default function FaviconGenerator() {
   const [sourceName, setSourceName] = useState('');
   const [icons, setIcons] = useState<GeneratedIcon[]>([]);
   const [selectedSizes, setSelectedSizes] = useState<number[]>([16, 32, 48, 180, 192, 512]);
+  // Ref tracks current icons for cleanup on unmount without re-running effect
+  const iconsRef = useRef<GeneratedIcon[]>([]);
+  iconsRef.current = icons;
+
+  // Cleanup ObjectURLs only on unmount
+  useEffect(() => {
+    return () => {
+      iconsRef.current.forEach(i => URL.revokeObjectURL(i.url));
+    };
+  }, []);
 
   const processFile = useCallback((files: File[]) => {
     const f = files[0];
@@ -45,6 +55,9 @@ export default function FaviconGenerator() {
   }, [selectedSizes]);
 
   const generateIcons = (img: HTMLImageElement) => {
+    // Revoke previous URLs before generating new ones
+    icons.forEach(i => URL.revokeObjectURL(i.url));
+
     const results: GeneratedIcon[] = [];
     const sizesToGen = SIZES.filter(s => selectedSizes.includes(s.size));
 
@@ -53,7 +66,6 @@ export default function FaviconGenerator() {
       canvas.width = s.size;
       canvas.height = s.size;
       const ctx = canvas.getContext('2d')!;
-      // Draw with smooth scaling
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';
       ctx.drawImage(img, 0, 0, s.size, s.size);
@@ -109,10 +121,10 @@ export default function FaviconGenerator() {
                 <button
                   key={s.size}
                   onClick={() => toggleSize(s.size)}
-                  className={`px-2.5 py-1 text-[11px] font-semibold rounded-lg border transition-colors ${
+                  className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold border transition-colors ${
                     selectedSizes.includes(s.size)
-                      ? 'border-brand-500 bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400'
-                      : 'border-surface-300 dark:border-surface-700 text-surface-500'
+                      ? 'bg-brand-500 text-white border-brand-500'
+                      : 'bg-surface-100 dark:bg-surface-800 text-surface-500 border-surface-300 dark:border-surface-700'
                   }`}
                 >
                   {s.label}
@@ -120,45 +132,59 @@ export default function FaviconGenerator() {
               ))}
             </div>
           </div>
-          <FileUpload accept="image/*" onFiles={processFile} label="Drop an image (PNG, SVG, JPG)" icon="🎨" />
+          <FileUpload accept="image/*" onFiles={processFile} label="Drop an image or click to upload" icon="⭐" />
+          <div className="text-center text-[10px] text-surface-400 mt-1">
+            Upload a square PNG or SVG for best results
+          </div>
         </>
       ) : (
         <>
-          <div className="flex justify-between items-center mb-3">
-            <span className="text-sm font-bold text-surface-900 dark:text-surface-100">
-              {icons.length} favicon{icons.length !== 1 ? 's' : ''} generated
-            </span>
-            <div className="flex gap-2">
-              {icons.length > 1 && (
-                <button onClick={downloadAll} className="text-xs font-semibold text-brand-500 hover:text-brand-600">
-                  ⬇ Download All
-                </button>
-              )}
-              <button onClick={reset} className="text-xs font-semibold text-surface-400 hover:text-brand-500">
-                ← New image
-              </button>
-            </div>
+          {/* Source info + reset */}
+          <div className="flex items-center justify-between mb-3">
+            <div className="text-xs text-surface-500 truncate">{sourceName}</div>
+            <button onClick={reset} className="text-[11px] text-brand-500 hover:text-brand-600 font-semibold">
+              ← New image
+            </button>
           </div>
 
-          <div className="space-y-2">
+          {/* Generated icons grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-3">
             {icons.map(icon => (
-              <div key={icon.size} className="flex items-center gap-3 p-2.5 bg-surface-100 dark:bg-surface-800 rounded-xl border border-surface-200 dark:border-surface-700">
-                <div className="w-12 h-12 flex items-center justify-center bg-white dark:bg-surface-900 rounded-lg border border-surface-200 dark:border-surface-700" style={{ imageRendering: icon.size <= 32 ? 'pixelated' : 'auto' }}>
-                  <img src={icon.url} alt={icon.label} style={{ width: Math.min(icon.size, 48), height: Math.min(icon.size, 48) }} />
+              <div key={icon.size} className="bg-surface-100 dark:bg-surface-800 rounded-xl p-2.5 text-center">
+                <div className="flex items-center justify-center h-14 mb-1.5">
+                  <img
+                    src={icon.url}
+                    alt={`${icon.label} favicon`}
+                    style={{ width: Math.min(icon.size, 48), height: Math.min(icon.size, 48) }}
+                    className="rounded"
+                  />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-xs font-bold text-surface-900 dark:text-surface-100">{icon.label}</div>
-                  <div className="text-[10px] text-surface-500">{icon.use} · {(icon.blob.size / 1024).toFixed(1)}KB</div>
-                </div>
+                <div className="text-[11px] font-bold text-surface-900 dark:text-surface-100">{icon.label}</div>
+                <div className="text-[9px] text-surface-400 mb-1.5">{icon.use}</div>
                 <button
-                  onClick={() => { const a = document.createElement('a'); a.href = icon.url; a.download = `favicon-${icon.size}x${icon.size}.png`; a.click(); }}
-                  className="bg-brand-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-md flex-shrink-0"
+                  onClick={() => {
+                    const a = document.createElement('a');
+                    a.href = icon.url;
+                    a.download = `favicon-${icon.size}x${icon.size}.png`;
+                    a.click();
+                  }}
+                  className="text-[10px] font-semibold text-brand-500 hover:text-brand-600"
                 >
-                  ⬇
+                  Download
                 </button>
               </div>
             ))}
           </div>
+
+          {/* Download all */}
+          {icons.length > 1 && (
+            <button
+              onClick={downloadAll}
+              className="w-full flex items-center justify-center gap-2 py-3 px-5 mt-1 rounded-xl font-bold text-sm text-white bg-brand-500 hover:bg-brand-600 active:bg-brand-700 shadow-[0_2px_10px_rgba(255,107,53,0.3)] transition-all duration-150"
+            >
+              ⬇ Download All ({icons.length} icons)
+            </button>
+          )}
         </>
       )}
     </div>
