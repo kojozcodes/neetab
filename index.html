@@ -21,21 +21,28 @@
 
   <title>Neetab | Free Online Tools, PDF Converter & Calculators</title>
 
-  <!-- Fonts: preload critical font files, load CSS non-render-blocking -->
+  <!-- Fonts: DM Sans + DM Serif Display + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500;600&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500;600&display=swap" media="print" onload="this.media='all'" />
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500;600&display=swap" />
-  </noscript>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="canonical" href="https://neetab.com" />
 
-  <!-- JSON-LD Structured Data (inline, not render-blocking) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PVKZ9TNX9B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PVKZ9TNX9B');
+  </script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8140528818926560" crossorigin="anonymous"></script>
+
+  <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -56,36 +63,5 @@
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
-
-  <!-- GA & AdSense: loaded AFTER page renders via idle callback -->
-  <script>
-    function loadDeferredScripts() {
-      // Google Analytics
-      var ga = document.createElement('script');
-      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-PVKZ9TNX9B';
-      ga.async = true;
-      document.head.appendChild(ga);
-      ga.onload = function() {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-PVKZ9TNX9B');
-      };
-
-      // Google AdSense
-      var ads = document.createElement('script');
-      ads.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8140528818926560';
-      ads.async = true;
-      ads.crossOrigin = 'anonymous';
-      document.head.appendChild(ads);
-    }
-
-    // Use requestIdleCallback if available, else setTimeout
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(loadDeferredScripts);
-    } else {
-      setTimeout(loadDeferredScripts, 2000);
-    }
-  </script>
 </body>
 </html>
