@@ -160,22 +160,6 @@ const tools: ToolMeta[] = [
     ],
   },
   {
-    id: 'loan', slug: 'loan-calculator', name: 'Loan Calculator', desc: 'Monthly payments & total interest',
-    emoji: '🏦', tags: ['finance', 'mortgage', 'interest', 'payment'], category: 'Calculators',
-    componentPath: 'calculators/LoanCalculator',
-    seo: {
-      title: 'Loan Calculator | Monthly Payment & Interest | Neetab',
-      description: 'Free loan calculator. Calculate monthly payments, total interest, and total cost for mortgages, car loans, or personal loans.',
-      h1: 'Loan Calculator',
-    },
-    faq: [
-      { q: 'How is monthly payment calculated?', a: 'The calculator uses the standard amortization formula based on your loan amount, interest rate, and loan term to compute exact monthly payments, total interest, and total cost.' },
-      { q: 'Can I use this for a mortgage?', a: 'Yes. Enter your home loan amount, annual interest rate, and loan term (typically 15 or 30 years) to see your monthly mortgage payment.' },
-      { q: 'Does this include taxes and insurance?', a: 'This calculator shows principal and interest only. Property taxes, homeowner\'s insurance, and PMI are not included. Your actual mortgage payment may be higher.' },
-      { q: 'How does loan term affect total cost?', a: 'A shorter term means higher monthly payments but much less total interest. For example, a 15-year mortgage typically saves tens of thousands in interest compared to a 30-year mortgage.' },
-    ],
-  },
-  {
     id: 'percentage', slug: 'percentage-calculator', name: 'Percentage Calculator', desc: 'All percentage calculations',
     emoji: '📊', tags: ['math', 'percent', 'discount'], category: 'Calculators',
     componentPath: 'calculators/PercentageCalculator',
