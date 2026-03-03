@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://neetab.com/sitemap.xml
+Sitemap: https://neetab.com/sitemap-index.xml

@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Page Not Found | Neetab" description="The page you're looking for doesn't exist." path="/404">
+  <Header slot="header" />
+  <div class="max-w-lg mx-auto px-5 py-20 text-center animate-fade-in">
+    <div class="text-6xl mb-4">🔍</div>
+    <h1 class="font-display text-2xl font-bold text-surface-900 dark:text-surface-100 mb-2">Page not found</h1>
+    <p class="text-sm text-surface-500 mb-6">The tool or page you're looking for doesn't exist.</p>
+    <a href="/" class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold rounded-xl transition-colors">
+      ← Browse all tools
+    </a>
+  </div>
+  <Footer slot="footer" />
+</Layout>

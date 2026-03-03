@@ -1,0 +1,133 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ToolLoader from '../../components/ToolLoader';
+import AdSlot from '../../components/AdSlot';
+import { allTools, categories, type ToolMeta } from '../../data/tools';
+
+export function getStaticPaths() {
+  return allTools.map(tool => ({
+    params: { slug: tool.slug },
+    props: { tool },
+  }));
+}
+
+interface Props { tool: ToolMeta; }
+const { tool } = Astro.props;
+
+const category = categories.find(c => c.tools.some(t => t.id === tool.id));
+const related = category?.tools.filter(t => t.id !== tool.id).slice(0, 4) || [];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: tool.name,
+    url: `https://neetab.com/tools/${tool.slug}`,
+    description: tool.seo.description,
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Web',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    isPartOf: { '@type': 'WebApplication', name: 'Neetab', url: 'https://neetab.com' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://neetab.com' },
+      { '@type': 'ListItem', position: 2, name: category?.name || 'Tools', item: 'https://neetab.com' },
+      { '@type': 'ListItem', position: 3, name: tool.name, item: `https://neetab.com/tools/${tool.slug}` },
+    ],
+  },
+  ...(tool.faq && tool.faq.length > 0 ? [{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: tool.faq.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  }] : []),
+];
+---
+
+<Layout
+  title={tool.seo.title}
+  description={tool.seo.description}
+  path={`/tools/${tool.slug}`}
+  jsonLd={jsonLd}
+>
+  <Header slot="header" toolName={tool.name} />
+
+  <div class="max-w-lg mx-auto px-4 pb-10">
+    <!-- Breadcrumb (real HTML, crawlable) -->
+    <nav class="flex items-center gap-1.5 text-[11px] text-surface-400 py-2.5 animate-fade-in" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-brand-500 transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-surface-500 dark:text-surface-400">{category?.name}</span>
+      <span>/</span>
+      <span class="text-surface-600 dark:text-surface-300 font-medium">{tool.name}</span>
+    </nav>
+
+    <!-- Tool header (real HTML, crawlable) -->
+    <div class="text-center mb-4 animate-slide-up">
+      <span class="text-3xl">{tool.emoji}</span>
+      <h1 class="font-display text-xl sm:text-2xl font-bold tracking-tight text-surface-900 dark:text-surface-100 mt-1 mb-0.5">
+        {tool.seo.h1}
+      </h1>
+      <p class="text-surface-500 text-xs">{tool.desc}</p>
+    </div>
+
+    <!-- Tool body (React island — hydrates on load) -->
+    <div class="card p-4 sm:p-5 animate-slide-up" style="animation-delay: 60ms">
+      <ToolLoader client:load componentPath={tool.componentPath} />
+    </div>
+
+    <AdSlot client:visible slot="tool-bottom" format="rectangle" />
+
+    <!-- FAQ (real HTML, crawlable — this is the SEO gold) -->
+    {tool.faq && tool.faq.length > 0 && (
+      <div class="mt-6 animate-fade-in" style="animation-delay: 150ms">
+        <h2 class="text-[11px] font-bold uppercase tracking-wider text-surface-400 mb-2.5">
+          Frequently Asked Questions
+        </h2>
+        <div class="space-y-2.5">
+          {tool.faq.map((f, i) => (
+            <details class="card group">
+              <summary class="p-3 cursor-pointer text-xs font-bold text-surface-900 dark:text-surface-100 list-none flex items-center justify-between">
+                {f.q}
+                <span class="text-surface-400 group-open:rotate-180 transition-transform text-[10px]">▼</span>
+              </summary>
+              <div class="px-3 pb-3 text-xs text-surface-600 dark:text-surface-400 leading-relaxed">
+                {f.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Related tools (real HTML links, crawlable) -->
+    {related.length > 0 && (
+      <div class="mt-6 animate-fade-in" style="animation-delay: 200ms">
+        <h2 class="text-[11px] font-bold uppercase tracking-wider text-surface-400 mb-2.5">
+          More {category?.name}
+        </h2>
+        <div class="flex gap-2.5 overflow-x-auto pb-1 -mx-1 px-1 snap-x">
+          {related.map(t => (
+            <a href={`/tools/${t.slug}`} class="card p-3 flex items-center gap-2.5 flex-shrink-0 min-w-[160px] snap-start">
+              <span class="text-lg">{t.emoji}</span>
+              <div class="min-w-0">
+                <div class="text-xs font-bold text-surface-900 dark:text-surface-100 truncate">{t.name}</div>
+                <div class="text-[10px] text-surface-500 truncate">{t.desc}</div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+
+  <Footer slot="footer" />
+</Layout>

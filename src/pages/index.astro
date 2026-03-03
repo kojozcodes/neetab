@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SearchBox from '../components/SearchBox';
+import AdSlot from '../components/AdSlot';
+import { categories, allTools, popularTools, totalToolCount } from '../data/tools';
+
+const jsonLd = [{
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Neetab',
+  url: 'https://neetab.com',
+  description: 'Free online calculators, converters, design tools & file converters.',
+  applicationCategory: 'UtilityApplication',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+}];
+---
+
+<Layout
+  title="Neetab | Free Online Tools, PDF Converter & Calculators"
+  description={`Free online PDF to Word converter, image compressor, color palette generator, tip calculator & ${totalToolCount - 4} more tools. Fast, private, no sign-up.`}
+  path="/"
+  jsonLd={jsonLd}
+>
+  <Header slot="header" />
+
+  <div class="max-w-4xl mx-auto px-5 pb-12">
+    <!-- Hero -->
+    <div class="text-center pt-6 sm:pt-10 mb-6 animate-fade-in">
+      <h1 class="font-display text-[clamp(26px,5.5vw,44px)] font-bold tracking-tight leading-[1.1] mb-2">
+        Neat tools.{' '}
+        <span class="bg-gradient-to-r from-brand-500 to-brand-400 bg-clip-text text-transparent">
+          One tab.
+        </span>
+      </h1>
+      <p class="text-surface-500 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
+        PDF converter, calculators, design tools & more — free, fast, private.
+      </p>
+    </div>
+
+    <!-- Search (React island) -->
+    <div class="animate-slide-up" style="animation-delay: 80ms">
+      <SearchBox client:load tools={allTools} totalCount={totalToolCount} />
+    </div>
+
+    <!-- Popular Tools -->
+    <section class="mb-8 animate-slide-up" style="animation-delay: 120ms">
+      <h2 class="text-sm font-bold text-surface-600 dark:text-surface-400 mb-3 flex items-center gap-2">
+        <span class="text-lg">⭐</span> Popular
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 stagger-in">
+        {popularTools.map(t => (
+          <a href={`/tools/${t.slug}`} class="card p-3.5 flex flex-col items-center text-center group">
+            <div class="text-3xl mb-1.5 group-hover:scale-110 transition-transform">{t.emoji}</div>
+            <div class="text-[13px] font-bold text-surface-900 dark:text-surface-100 group-hover:text-brand-500 transition-colors leading-tight">{t.name}</div>
+            <div class="text-[11px] text-surface-500 mt-0.5 leading-snug">{t.desc}</div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <AdSlot client:visible slot="hero-bottom" format="horizontal" />
+
+    <!-- Category Sections -->
+    {categories.map((cat, catIdx) => (
+      <>
+        <section class="mb-7">
+          <h2 class="text-sm font-bold text-surface-600 dark:text-surface-400 mb-2.5 flex items-center gap-2">
+            <span class="text-lg">{cat.emoji}</span>
+            {cat.name}
+            <span class="text-xs font-medium text-surface-400">({cat.tools.length})</span>
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 stagger-in">
+            {cat.tools.map(t => (
+              <a href={`/tools/${t.slug}`} class="card p-4 flex items-start gap-3 group">
+                <div class="text-2xl leading-none flex-shrink-0 group-hover:scale-110 transition-transform">{t.emoji}</div>
+                <div class="min-w-0">
+                  <div class="text-sm font-bold text-surface-900 dark:text-surface-100 mb-0.5 group-hover:text-brand-500 transition-colors">{t.name}</div>
+                  <div class="text-xs text-surface-500 leading-relaxed">{t.desc}</div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+        {(catIdx === 1 || catIdx === 3) && (
+          <AdSlot client:visible slot={`category-${catIdx}`} format="horizontal" />
+        )}
+      </>
+    ))}
+  </div>
+
+  <Footer slot="footer" />
+</Layout>

@@ -5,7 +5,9 @@ import { Button } from '../../components/ui/FormControls';
 import { FileUpload, PrivacyBadge, DownloadButton } from '../../components/ui/FileComponents';
 
 // Configure PDF.js worker
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+if (typeof window !== 'undefined') {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+}
 
 interface PageResult {
   dataUrl: string;

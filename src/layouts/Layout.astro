@@ -1,0 +1,83 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  ogType?: string;
+  jsonLd?: object[];
+}
+
+const { title, description, path = '', ogType = 'website', jsonLd = [] } = Astro.props;
+const canonicalUrl = `https://neetab.com${path}`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FF6B35" />
+
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:image" content="https://neetab.com/og-image.png" />
+  <meta property="og:site_name" content="Neetab" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="https://neetab.com/og-image.png" />
+
+  {jsonLd.map(data => (
+    <script type="application/ld+json" set:html={JSON.stringify(data)} />
+  ))}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Google Analytics — same script, same ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PVKZ9TNX9B"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PVKZ9TNX9B');
+  </script>
+
+  <!-- Google AdSense — same script, same publisher ID -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8140528818926560" crossorigin="anonymous"></script>
+
+  <!-- Prevent theme flash -->
+  <script is:inline>
+    (function() {
+      var s = localStorage.getItem('neetab-theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (s === 'dark' || (!s && d)) document.documentElement.classList.add('dark');
+    })();
+  </script>
+</head>
+<body>
+  <div class="min-h-screen flex flex-col">
+    <slot name="header" />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <slot name="footer" />
+  </div>
+</body>
+</html>
