@@ -10,7 +10,6 @@ const componentMap: Record<string, React.LazyExoticComponent<React.ComponentType
   'file/InvoiceGenerator': lazy(() => import('../tools/file/InvoiceGenerator')),
   'calculators/TipCalculator': lazy(() => import('../tools/calculators/TipCalculator')),
   'calculators/BMICalculator': lazy(() => import('../tools/calculators/BMICalculator')),
-  'calculators/LoanCalculator': lazy(() => import('../tools/calculators/LoanCalculator')),
   'calculators/PercentageCalculator': lazy(() => import('../tools/calculators/PercentageCalculator')),
   'calculators/DiscountCalculator': lazy(() => import('../tools/calculators/DiscountCalculator')),
   'calculators/AgeCalculator': lazy(() => import('../tools/calculators/AgeCalculator')),
