@@ -3,7 +3,7 @@ import { FileUpload, DownloadButton } from '../../components/ui/FileComponents';
 import { ShieldIcon } from '../../components/ui/Icons';
 import ResultBox from '../../components/ui/ResultBox';
 
-const API_URL = import.meta.env.VITE_API_URL || '';
+const API_URL = import.meta.env.PUBLIC_API_URL || '';
 
 export default function PDFtoWord() {
   const [file, setFile] = useState<File | null>(null);
