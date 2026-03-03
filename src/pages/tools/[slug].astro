@@ -29,7 +29,13 @@ const jsonLd = [
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'Web',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-    isPartOf: { '@type': 'WebApplication', name: 'Neetab', url: 'https://neetab.com' },
+    isPartOf: {
+      '@type': 'WebApplication',
+      name: 'Neetab',
+      url: 'https://neetab.com',
+      applicationCategory: 'UtilityApplication',
+      operatingSystem: 'Web',
+    },
   },
   {
     '@context': 'https://schema.org',
