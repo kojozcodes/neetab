@@ -1,5 +1,4 @@
 import { useState, useCallback, useRef } from 'react';
-import { Select } from '../../components/ui/FormControls';
 import { FileUpload, DownloadButton } from '../../components/ui/FileComponents';
 import { ShieldIcon } from '../../components/ui/Icons';
 import ResultBox from '../../components/ui/ResultBox';
@@ -14,8 +13,6 @@ export default function WordToPDF() {
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [method, setMethod] = useState<'server' | 'client' | null>(null);
   const [error, setError] = useState('');
-  const [pageSize, setPageSize] = useState('a4');
-  const [orientation, setOrientation] = useState('portrait');
   const [htmlContent, setHtmlContent] = useState('');
   const renderRef = useRef<HTMLDivElement>(null);
 
@@ -73,7 +70,7 @@ export default function WordToPDF() {
       const canvas = await html2canvas.default(el, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
       setProgress(75);
 
-      const pdf = new jsPDF({ orientation: orientation as any, format: pageSize, unit: 'mm' });
+      const pdf = new jsPDF({ orientation: 'portrait', format: 'a4', unit: 'mm' });
       const pw = pdf.internal.pageSize.getWidth();
       const ph = pdf.internal.pageSize.getHeight();
       const margin = 15;
@@ -84,7 +81,7 @@ export default function WordToPDF() {
       const totalPages = Math.ceil(canvas.height / pageHeightPx);
 
       for (let i = 0; i < totalPages; i++) {
-        if (i > 0) pdf.addPage(pageSize as any, orientation as any);
+        if (i > 0) pdf.addPage('a4', 'portrait');
         const srcY = i * pageHeightPx;
         const srcH = Math.min(pageHeightPx, canvas.height - srcY);
         const sliceCanvas = document.createElement('canvas');
@@ -128,7 +125,7 @@ export default function WordToPDF() {
       setError('Failed to convert. Make sure it\'s a valid .docx file.');
     }
     setLoading(false);
-  }, [pageSize, orientation, pdfUrl]);
+  }, [pdfUrl]);
 
   const reset = () => {
     if (pdfUrl) URL.revokeObjectURL(pdfUrl);
@@ -139,10 +136,6 @@ export default function WordToPDF() {
     <div>
       {!pdfBlob && !loading && (
         <>
-          <div className="grid grid-cols-2 gap-2.5 mb-3.5">
-            <Select label="Page Size" value={pageSize} onChange={setPageSize} options={[{ value: 'a4', label: 'A4' }, { value: 'letter', label: 'Letter' }]} />
-            <Select label="Orientation" value={orientation} onChange={setOrientation} options={[{ value: 'portrait', label: 'Portrait' }, { value: 'landscape', label: 'Landscape' }]} />
-          </div>
 
           <FileUpload accept=".docx,.doc" onFiles={processFile} label="Drop a Word document here" icon="📝" />
           <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-brand-50 dark:bg-brand-900/20 text-[11px] text-surface-500 dark:text-surface-400 mb-3">
