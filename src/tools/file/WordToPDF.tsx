@@ -11,6 +11,7 @@ export default function WordToPDF() {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [pdfBlob, setPdfBlob] = useState<Blob | null>(null);
+  const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [method, setMethod] = useState<'server' | 'client' | null>(null);
   const [error, setError] = useState('');
   const [pageSize, setPageSize] = useState('a4');
@@ -100,7 +101,8 @@ export default function WordToPDF() {
 
   const processFile = useCallback(async (files: File[]) => {
     const f = files[0]; if (!f) return;
-    setFile(f); setPdfBlob(null); setLoading(true); setProgress(0); setError(''); setMethod(null); setHtmlContent('');
+    if (pdfUrl) URL.revokeObjectURL(pdfUrl);
+    setFile(f); setPdfBlob(null); setPdfUrl(null); setLoading(true); setProgress(0); setError(''); setMethod(null); setHtmlContent('');
 
     setProgress(10);
     const serverBlob = await convertWithServer(f);
@@ -109,6 +111,7 @@ export default function WordToPDF() {
       setMethod('server');
       setProgress(100);
       setPdfBlob(serverBlob);
+      setPdfUrl(URL.createObjectURL(serverBlob));
       setLoading(false);
       return;
     }
@@ -120,36 +123,43 @@ export default function WordToPDF() {
     if (clientBlob) {
       setProgress(100);
       setPdfBlob(clientBlob);
+      setPdfUrl(URL.createObjectURL(clientBlob));
     } else {
       setError('Failed to convert. Make sure it\'s a valid .docx file.');
     }
     setLoading(false);
-  }, [pageSize, orientation]);
+  }, [pageSize, orientation, pdfUrl]);
+
+  const reset = () => {
+    if (pdfUrl) URL.revokeObjectURL(pdfUrl);
+    setFile(null); setPdfBlob(null); setPdfUrl(null); setLoading(false); setProgress(0); setError(''); setMethod(null); setHtmlContent('');
+  };
 
   return (
     <div>
       {!pdfBlob && !loading && (
-        <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-brand-50 dark:bg-brand-900/20 text-xs text-surface-600 dark:text-surface-400 mb-4">
-          <ShieldIcon />
-          <span>
-            <strong className="text-surface-700 dark:text-surface-300">High-quality conversion:</strong> Server-powered via LibreOffice for near-perfect PDF output. Client-side fallback available.
-          </span>
-        </div>
+        <>
+          <div className="grid grid-cols-2 gap-2.5 mb-3.5">
+            <Select label="Page Size" value={pageSize} onChange={setPageSize} options={[{ value: 'a4', label: 'A4' }, { value: 'letter', label: 'Letter' }]} />
+            <Select label="Orientation" value={orientation} onChange={setOrientation} options={[{ value: 'portrait', label: 'Portrait' }, { value: 'landscape', label: 'Landscape' }]} />
+          </div>
+
+          <FileUpload accept=".docx,.doc" onFiles={processFile} label="Drop a Word document here" icon="📝" />
+          <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-brand-50 dark:bg-brand-900/20 text-[11px] text-surface-500 dark:text-surface-400 mb-3">
+            <ShieldIcon />
+            <span><strong className="text-surface-600 dark:text-surface-300">Secure:</strong> Files are processed and automatically deleted</span>
+          </div>
+        </>
       )}
-
-      <div className="grid grid-cols-2 gap-2.5 mb-3.5">
-        <Select label="Page Size" value={pageSize} onChange={setPageSize} options={[{ value: 'a4', label: 'A4' }, { value: 'letter', label: 'Letter' }]} />
-        <Select label="Orientation" value={orientation} onChange={setOrientation} options={[{ value: 'portrait', label: 'Portrait' }, { value: 'landscape', label: 'Landscape' }]} />
-      </div>
-
-      <FileUpload accept=".docx,.doc" onFiles={processFile} label="Drop a Word document here" icon="📝" />
 
       {loading && (
         <div className="mb-4">
+          <div className="flex items-center gap-2 mb-2 text-xs text-surface-600 dark:text-surface-400">
+            <span className="font-medium truncate">{file?.name}</span>
+            {file && <span className="text-surface-500 shrink-0">({(file.size / 1024).toFixed(0)} KB)</span>}
+          </div>
           <div className="flex justify-between mb-1">
-            <span className="text-xs font-semibold text-surface-600 dark:text-surface-500">
-              {method === 'server' ? 'Converting on server...' : method === 'client' ? 'Converting in browser...' : 'Connecting to server...'}
-            </span>
+            <span className="text-xs font-semibold text-surface-600 dark:text-surface-500">Converting…</span>
             <span className="text-xs font-bold text-brand-500">{progress}%</span>
           </div>
           <div className="h-1.5 rounded-full bg-surface-200 dark:bg-surface-800 overflow-hidden">
@@ -168,26 +178,48 @@ export default function WordToPDF() {
 
       {pdfBlob && (
         <div>
-          <div className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs mb-4 ${
-            method === 'server'
-              ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400'
-              : 'bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400'
-          }`}>
-            {method === 'server' ? '✅' : '⚠️'}
-            <span>
-              {method === 'server'
-                ? <><strong>Server conversion</strong> — Converted via LibreOffice. Fonts, tables, and formatting preserved.</>
-                : <><strong>Client-side conversion</strong> — Rendered from HTML. Some formatting may differ from the original.</>
-              }
-            </span>
+          <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs mb-4 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400">
+            ✅ <span><strong>Conversion complete</strong> — Your PDF is ready to download.</span>
           </div>
 
+          {pdfUrl && (
+            <div className="mb-4 rounded-xl overflow-hidden border border-surface-200 dark:border-surface-800 bg-white">
+              <iframe
+                src={pdfUrl}
+                title="PDF Preview"
+                className="w-full border-0"
+                style={{ height: '400px' }}
+              />
+            </div>
+          )}
+
           <ResultBox label="PDF Size" value={`${(pdfBlob.size / 1024).toFixed(0)}KB`} copyable={false} large={false} />
-          <DownloadButton blob={pdfBlob} filename={`${file!.name.replace(/\.(docx?|doc)$/i, '')}.pdf`} label="⬇ Download PDF" />
+          <DownloadButton blob={pdfBlob} filename={`${file!.name.replace(/\.(docx?|doc)$/i, '')}.pdf`} label="Download PDF" />
+
+          <button
+            onClick={reset}
+            className="w-full mt-2 py-2.5 px-4 rounded-xl text-sm font-semibold
+                       text-surface-600 dark:text-surface-400
+                       border border-surface-300 dark:border-surface-700
+                       hover:border-brand-400 hover:text-brand-500
+                       transition-colors duration-150"
+          >
+            Convert another file
+          </button>
         </div>
       )}
 
-      {error && <div className="text-center py-5 text-red-500 text-sm">{error}</div>}
+      {error && (
+        <div className="text-center py-5">
+          <p className="text-red-500 text-sm mb-3">{error}</p>
+          <button
+            onClick={reset}
+            className="text-sm font-semibold text-brand-500 hover:text-brand-600 transition-colors"
+          >
+            Try another file
+          </button>
+        </div>
+      )}
     </div>
   );
 }
