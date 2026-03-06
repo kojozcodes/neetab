@@ -1,6 +1,5 @@
 import { useState, useCallback } from 'react';
-import { FileUpload, DownloadButton } from '../../components/ui/FileComponents';
-import { ShieldIcon } from '../../components/ui/Icons';
+import { FileUpload, DownloadButton, PrivacyBadge } from '../../components/ui/FileComponents';
 import ResultBox from '../../components/ui/ResultBox';
 
 const API_URL = import.meta.env.PUBLIC_API_URL || '';
@@ -111,24 +110,38 @@ export default function PDFtoWord() {
     setLoading(false);
   }, []);
 
+  const reset = () => {
+    setFile(null);
+    setResult(null);
+    setLoading(false);
+    setProgress(0);
+    setMethod(null);
+    setError('');
+  };
+
   return (
     <div>
+      {!result && !loading && <PrivacyBadge />}
+
       {!result && !loading && (
-        <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-brand-50 dark:bg-brand-900/20 text-xs text-surface-600 dark:text-surface-400 mb-4">
-          <ShieldIcon />
-          <span>
-            <strong className="text-surface-700 dark:text-surface-300">High-quality conversion:</strong> Server-powered with layout, tables & images preserved. Client-side fallback available.
-          </span>
-        </div>
+        <FileUpload accept=".pdf" onFiles={processFile} label="Drop a PDF file here" icon="📄" />
       )}
 
-      <FileUpload accept=".pdf" onFiles={processFile} label="Drop a PDF file here" icon="📄" />
+      {file && (loading || result) && (
+        <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-surface-100 dark:bg-surface-800 border border-surface-200 dark:border-surface-700 mb-3">
+          <span className="text-lg">📄</span>
+          <div className="flex-1 min-w-0">
+            <div className="text-xs font-semibold text-surface-900 dark:text-surface-100 truncate">{file.name}</div>
+            <div className="text-[10px] text-surface-500">{(file.size / 1024).toFixed(0)}KB</div>
+          </div>
+        </div>
+      )}
 
       {loading && (
         <div className="mb-4">
           <div className="flex justify-between mb-1">
             <span className="text-xs font-semibold text-surface-600 dark:text-surface-500">
-              {method === 'server' ? 'Converting on server...' : method === 'client' ? 'Converting in browser...' : 'Connecting to server...'}
+              Converting...
             </span>
             <span className="text-xs font-bold text-brand-500">{progress}%</span>
           </div>
@@ -140,26 +153,30 @@ export default function PDFtoWord() {
 
       {result && (
         <div>
-          <div className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs mb-4 ${
-            method === 'server'
-              ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400'
-              : 'bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400'
-          }`}>
-            {method === 'server' ? '✅' : '⚠️'}
-            <span>
-              {method === 'server'
-                ? <><strong>Server conversion</strong> — Full layout, tables, and images preserved. Opens perfectly in Microsoft Word.</>
-                : <><strong>Client-side conversion</strong> — Text extracted successfully. Complex layouts may need adjustment in Word.</>
-              }
-            </span>
+          <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs mb-3 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400">
+            ✅ <span><strong>Conversion complete</strong> — Your Word document is ready to download.</span>
           </div>
 
           <ResultBox label="File Size" value={`${(result.size / 1024).toFixed(0)}KB`} copyable={false} large={false} />
-          <DownloadButton blob={result.blob} filename={`${file!.name.replace(/\.pdf$/i, '')}.docx`} label="⬇ Download Word Document" />
+
+          <DownloadButton blob={result.blob} filename={`${file!.name.replace(/\.pdf$/i, '')}.docx`} label="Download Word Document" />
+
+          <button onClick={reset}
+            className="w-full mt-2 py-2 text-xs font-semibold text-surface-400 hover:text-brand-500 transition-colors">
+            Convert another PDF
+          </button>
         </div>
       )}
 
-      {error && <div className="text-center py-5 text-red-500 text-sm">{error}</div>}
+      {error && (
+        <div className="text-center py-5">
+          <div className="text-red-500 text-sm mb-3">{error}</div>
+          <button onClick={reset}
+            className="text-xs font-semibold text-brand-500 hover:text-brand-600">
+            ← Try another file
+          </button>
+        </div>
+      )}
     </div>
   );
 }
