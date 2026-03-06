@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
-import { FileUpload, DownloadButton, PrivacyBadge } from '../../components/ui/FileComponents';
+import { FileUpload, DownloadButton } from '../../components/ui/FileComponents';
+import { ShieldIcon } from '../../components/ui/Icons';
 import ResultBox from '../../components/ui/ResultBox';
 
 const API_URL = import.meta.env.PUBLIC_API_URL || '';
@@ -121,7 +122,12 @@ export default function PDFtoWord() {
 
   return (
     <div>
-      {!result && !loading && <PrivacyBadge />}
+      {!result && !loading && (
+        <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-brand-50 dark:bg-brand-900/20 text-[11px] text-surface-500 dark:text-surface-400 mb-3">
+          <ShieldIcon />
+          <span><strong className="text-surface-600 dark:text-surface-300">Secure:</strong> Files are processed and automatically deleted</span>
+        </div>
+      )}
 
       {!result && !loading && (
         <FileUpload accept=".pdf" onFiles={processFile} label="Drop a PDF file here" icon="📄" />
