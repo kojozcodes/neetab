@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { Select, Slider } from '../../components/ui/FormControls';
-import { FileUpload, DownloadButton } from '../../components/ui/FileComponents';
-import ResultBox from '../../components/ui/ResultBox';
+import { FileUpload, DownloadButton, PrivacyBadge } from '../../components/ui/FileComponents';
 
 interface OrigImage { el: HTMLImageElement; src: string; w: number; h: number; name: string; }
 interface CompressResult { blob: Blob; url: string; w: number; h: number; size: number; }
@@ -10,7 +9,6 @@ export default function ImageCompressor() {
   const [origImg, setOrigImg] = useState<OrigImage | null>(null);
   const [origSize, setOrigSize] = useState(0);
   const [quality, setQuality] = useState(80);
-  const [maxWidth, setMaxWidth] = useState('1920');
   const [outputFormat, setOutputFormat] = useState('jpeg');
   const [result, setResult] = useState<CompressResult | null>(null);
 
@@ -29,9 +27,7 @@ export default function ImageCompressor() {
   const compress = useCallback(() => {
     if (!origImg) return;
     const canvas = document.createElement('canvas');
-    const mw = parseInt(maxWidth);
-    let w = origImg.w, h = origImg.h;
-    if (w > mw) { const r = mw / w; w = mw; h = Math.round(h * r); }
+    const w = origImg.w, h = origImg.h;
     canvas.width = w; canvas.height = h;
     canvas.getContext('2d')!.drawImage(origImg.el, 0, 0, w, h);
     canvas.toBlob(blob => {
@@ -40,7 +36,7 @@ export default function ImageCompressor() {
       if (result?.url) URL.revokeObjectURL(result.url);
       setResult({ blob, url: URL.createObjectURL(blob), w, h, size: blob.size });
     }, outputFormat === 'png' ? 'image/png' : 'image/jpeg', quality / 100);
-  }, [origImg, quality, maxWidth, outputFormat]);
+  }, [origImg, quality, outputFormat]);
 
   useEffect(() => { if (origImg) compress(); }, [compress, origImg]);
 
@@ -48,33 +44,37 @@ export default function ImageCompressor() {
 
   return (
     <div>
-      {!origImg && <FileUpload accept="image/*" onFiles={loadImage} label="Drop an image here" icon="🖼️" />}
+      {!origImg && (
+        <>
+          <FileUpload accept="image/*" onFiles={loadImage} label="Drop an image here" icon="🖼️" />
+          <PrivacyBadge />
+        </>
+      )}
 
       {origImg && (
         <div>
-          {/* Controls row */}
-          <div className="grid grid-cols-2 gap-2 mb-2.5">
-            <Select label="Format" value={outputFormat} onChange={setOutputFormat} options={[
-              { value: 'jpeg', label: 'JPEG' }, { value: 'png', label: 'PNG' },
-            ]} />
-            <Select label="Max Width" value={maxWidth} onChange={setMaxWidth} options={[
-              { value: '640', label: '640px' }, { value: '1024', label: '1024px' },
-              { value: '1920', label: '1920px' }, { value: '99999', label: 'Original' },
-            ]} />
-          </div>
+          {/* Controls */}
+          <Select label="Format" value={outputFormat} onChange={setOutputFormat} options={[
+            { value: 'jpeg', label: 'JPEG' }, { value: 'png', label: 'PNG' },
+          ]} />
           {outputFormat === 'jpeg' && <Slider label="Quality" value={quality} onChange={setQuality} min={10} max={100} suffix="%" />}
+          {outputFormat === 'png' && (
+            <div className="text-[11px] text-surface-500 dark:text-surface-400 mb-3 px-1">
+              PNG is lossless — file size won't shrink much. Switch to JPEG for smaller files.
+            </div>
+          )}
 
           {/* Compact before/after */}
           <div className="grid grid-cols-2 gap-2 mb-3">
             <div className="rounded-xl overflow-hidden border border-surface-200 dark:border-surface-700">
-              <img src={origImg.src} alt="Original" className="w-full block max-h-28 object-cover" />
+              <img src={origImg.src} alt="Original" className="w-full block max-h-48 object-cover" />
               <div className="py-1.5 px-2 text-[10px] text-surface-500 text-center bg-surface-100 dark:bg-surface-800">
                 {origImg.w}×{origImg.h} • {(origSize / 1024).toFixed(0)}KB
               </div>
             </div>
             {result && (
               <div className="rounded-xl overflow-hidden border border-surface-200 dark:border-surface-700">
-                <img src={result.url} alt="Compressed" className="w-full block max-h-28 object-cover" />
+                <img src={result.url} alt="Compressed" className="w-full block max-h-48 object-cover" />
                 <div className="py-1.5 px-2 text-[10px] text-surface-500 text-center bg-surface-100 dark:bg-surface-800">
                   {result.w}×{result.h} • {(result.size / 1024).toFixed(0)}KB
                 </div>
@@ -91,7 +91,7 @@ export default function ImageCompressor() {
                 </span>
                 <span className="text-xs text-surface-500">{(origSize / 1024).toFixed(0)}KB → {(result.size / 1024).toFixed(0)}KB</span>
               </div>
-              <DownloadButton blob={result.blob} filename={`compressed-${origImg.name.replace(/\.[^.]+$/, '')}.${outputFormat}`} label="⬇ Download Compressed Image" />
+              <DownloadButton blob={result.blob} filename={`compressed-${origImg.name.replace(/\.[^.]+$/, '')}.${outputFormat}`} label="Download Compressed Image" />
               <button onClick={() => { if (result?.url) URL.revokeObjectURL(result.url); setOrigImg(null); setResult(null); }}
                 className="w-full mt-1.5 py-1.5 text-[11px] font-semibold text-surface-400 hover:text-brand-500 transition-colors">
                 Compress another image
