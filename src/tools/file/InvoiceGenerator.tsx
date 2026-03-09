@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { Button } from '../../components/ui/FormControls';
-import { DownloadButton } from '../../components/ui/FileComponents';
+import { DownloadButton, PrivacyBadge } from '../../components/ui/FileComponents';
 import { XIcon } from '../../components/ui/Icons';
 
 interface LineItem {
@@ -11,6 +11,17 @@ interface LineItem {
 }
 
 let nextId = 1;
+
+const CURRENCIES = [
+  { symbol: '₦', label: 'NGN (₦)' },
+  { symbol: '$', label: 'USD ($)' },
+  { symbol: '€', label: 'EUR (€)' },
+  { symbol: '£', label: 'GBP (£)' },
+  { symbol: '¥', label: 'JPY (¥)' },
+  { symbol: '₹', label: 'INR (₹)' },
+  { symbol: 'C$', label: 'CAD (C$)' },
+  { symbol: 'A$', label: 'AUD (A$)' },
+];
 
 export default function InvoiceGenerator() {
   const [from, setFrom] = useState({ name: '', address: '', email: '' });
@@ -36,6 +47,19 @@ export default function InvoiceGenerator() {
   const total = subtotal + tax;
 
   const fmt = (n: number) => `${currency}${n.toFixed(2)}`;
+
+  const reset = () => {
+    setFrom({ name: '', address: '', email: '' });
+    setTo({ name: '', address: '', email: '' });
+    setInvoiceNo(`INV-${String(Date.now()).slice(-6)}`);
+    setDate(new Date().toISOString().split('T')[0]);
+    setDueDate('');
+    setItems([{ id: nextId++, description: '', qty: 1, price: 0 }]);
+    setTaxRate(0);
+    setCurrency('$');
+    setNotes('');
+    setPdfBlob(null);
+  };
 
   const generatePDF = useCallback(async () => {
     setLoading(true);
@@ -154,6 +178,7 @@ export default function InvoiceGenerator() {
 
   return (
     <div>
+      <PrivacyBadge />
       {/* Invoice meta */}
       <div className="grid grid-cols-3 gap-2 mb-3">
         <InputField label="Invoice #" value={invoiceNo} onChange={setInvoiceNo} />
@@ -195,7 +220,7 @@ export default function InvoiceGenerator() {
             <label className="text-[10px] text-surface-500">Currency</label>
             <select value={currency} onChange={e => setCurrency(e.target.value)}
               className="text-xs bg-surface-100 dark:bg-surface-800 border border-surface-300 dark:border-surface-700 rounded px-1.5 py-0.5">
-              {['$', '€', '£', '¥', '₹', '₦', 'C$', 'A$'].map(c => <option key={c} value={c}>{c}</option>)}
+              {CURRENCIES.map(c => <option key={c.symbol} value={c.symbol}>{c.label}</option>)}
             </select>
           </div>
         </div>
@@ -245,7 +270,19 @@ export default function InvoiceGenerator() {
       </Button>
 
       {pdfBlob && (
-        <DownloadButton blob={pdfBlob} filename={`${invoiceNo || 'invoice'}.pdf`} label="⬇ Download Invoice" />
+        <>
+          <DownloadButton blob={pdfBlob} filename={`${invoiceNo || 'invoice'}.pdf`} label="Download Invoice" />
+          <button
+            onClick={reset}
+            className="w-full mt-2 py-2.5 px-4 rounded-xl text-sm font-semibold
+                       text-surface-600 dark:text-surface-400
+                       border border-surface-300 dark:border-surface-700
+                       hover:border-brand-400 hover:text-brand-500
+                       transition-colors duration-150"
+          >
+            Create another invoice
+          </button>
+        </>
       )}
     </div>
   );

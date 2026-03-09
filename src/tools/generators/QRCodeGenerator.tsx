@@ -82,7 +82,7 @@ export default function QRCodeGenerator() {
         </div>
       </div>
 
-      {blob && <DownloadButton blob={blob} filename="qr-code.png" label="⬇ Download QR Code (PNG)" />}
+      {blob && <DownloadButton blob={blob} filename="qr-code.png" label="Download QR Code" />}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
-import { FileUpload, DownloadButton } from '../../components/ui/FileComponents';
+import { FileUpload } from '../../components/ui/FileComponents';
+import { DownloadIcon } from '../../components/ui/Icons';
 
 interface FaviconSize { size: number; label: string; use: string; }
 
@@ -142,8 +143,11 @@ export default function FaviconGenerator() {
           {/* Source info + reset */}
           <div className="flex items-center justify-between mb-3">
             <div className="text-xs text-surface-500 truncate">{sourceName}</div>
-            <button onClick={reset} className="text-[11px] text-brand-500 hover:text-brand-600 font-semibold">
-              ← New image
+            <button
+              onClick={reset}
+              className="text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-surface-300 dark:border-surface-700 text-surface-500 hover:border-brand-400 hover:text-brand-500 transition-colors"
+            >
+              New image
             </button>
           </div>
 
@@ -182,7 +186,7 @@ export default function FaviconGenerator() {
               onClick={downloadAll}
               className="w-full flex items-center justify-center gap-2 py-3 px-5 mt-1 rounded-xl font-bold text-sm text-white bg-brand-500 hover:bg-brand-600 active:bg-brand-700 shadow-[0_2px_10px_rgba(255,107,53,0.3)] transition-all duration-150"
             >
-              ⬇ Download All ({icons.length} icons)
+              <DownloadIcon /> Download All ({icons.length} icons)
             </button>
           )}
         </>
