@@ -2,12 +2,9 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import { Select } from '../../components/ui/FormControls';
 import { DownloadButton } from '../../components/ui/FileComponents';
 
-// Uses qrcode library (added to package.json)
-// Falls back to Google Charts API if library not available
-
 export default function QRCodeGenerator() {
   const [text, setText] = useState('https://neetab.com');
-  const [size, setSize] = useState('512');
+  const [downloadSize, setDownloadSize] = useState('512');
   const [fgColor, setFgColor] = useState('#000000');
   const [bgColor, setBgColor] = useState('#FFFFFF');
   const [blob, setBlob] = useState<Blob | null>(null);
@@ -21,24 +18,42 @@ export default function QRCodeGenerator() {
       const QRCode = await import('qrcode');
       const canvas = canvasRef.current;
       if (!canvas) return;
+
+      // Preview always at 256px for fast, consistent display
       await QRCode.toCanvas(canvas, text, {
-        width: parseInt(size),
+        width: 256,
         margin: 2,
         color: { dark: fgColor, light: bgColor },
         errorCorrectionLevel: 'M',
       });
-      canvas.toBlob(b => { if (b) { if (prevUrlRef.current) URL.revokeObjectURL(prevUrlRef.current); const url = URL.createObjectURL(b); prevUrlRef.current = url; setBlob(b); setImgUrl(url); } }, 'image/png');
+      setImgUrl('canvas');
+
+      // Download blob at selected size (separate off-screen canvas)
+      const dlCanvas = document.createElement('canvas');
+      await QRCode.toCanvas(dlCanvas, text, {
+        width: parseInt(downloadSize),
+        margin: 2,
+        color: { dark: fgColor, light: bgColor },
+        errorCorrectionLevel: 'M',
+      });
+      dlCanvas.toBlob(b => {
+        if (b) {
+          if (prevUrlRef.current && prevUrlRef.current !== 'canvas') URL.revokeObjectURL(prevUrlRef.current);
+          prevUrlRef.current = 'canvas';
+          setBlob(b);
+        }
+      }, 'image/png');
     } catch {
-      // Fallback: render via Google Charts (works without npm package)
-      const url = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}&color=${fgColor.slice(1)}&bgcolor=${bgColor.slice(1)}`;
+      // Fallback: render via external API
+      const url = `https://api.qrserver.com/v1/create-qr-code/?size=${downloadSize}x${downloadSize}&data=${encodeURIComponent(text)}&color=${fgColor.slice(1)}&bgcolor=${bgColor.slice(1)}`;
       setImgUrl(url);
       try {
         const res = await fetch(url);
         const b = await res.blob();
         setBlob(b);
-      } catch { /* offline fallback not available */ }
+      } catch { /* offline */ }
     }
-  }, [text, size, fgColor, bgColor]);
+  }, [text, downloadSize, fgColor, bgColor]);
 
   useEffect(() => { generate(); }, [generate]);
 
@@ -56,19 +71,19 @@ export default function QRCodeGenerator() {
         <div className="text-right text-[10px] text-surface-400 mt-0.5">{text.length}/500</div>
       </div>
 
-      {/* QR Preview */}
+      {/* QR Preview — always 256px canvas, displayed at 180px */}
       <div className="flex justify-center mb-4">
         <div className="rounded-2xl border border-surface-200 dark:border-surface-700 p-3 inline-block" style={{ background: bgColor }}>
-          <canvas ref={canvasRef} style={{ width: 180, height: 180, imageRendering: 'pixelated', display: imgUrl ? 'block' : 'none' }} />
-          {imgUrl && !canvasRef.current?.width && (
+          <canvas ref={canvasRef} style={{ width: 180, height: 180, imageRendering: 'pixelated', display: imgUrl === 'canvas' ? 'block' : 'none' }} />
+          {imgUrl && imgUrl !== 'canvas' && (
             <img src={imgUrl} alt="QR Code" style={{ width: 180, height: 180 }} />
           )}
         </div>
       </div>
 
-      {/* Compact options */}
+      {/* Options */}
       <div className="grid grid-cols-3 gap-2 mb-3">
-        <Select label="Size" value={size} onChange={setSize} options={[
+        <Select label="Download Size" value={downloadSize} onChange={setDownloadSize} options={[
           { value: '256', label: '256px' }, { value: '512', label: '512px' },
           { value: '1024', label: '1024px' }, { value: '2048', label: '2048px' },
         ]} />

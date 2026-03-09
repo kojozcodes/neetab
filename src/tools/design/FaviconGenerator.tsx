@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
-import { FileUpload } from '../../components/ui/FileComponents';
+import { FileUpload, PrivacyBadge } from '../../components/ui/FileComponents';
 import { DownloadIcon } from '../../components/ui/Icons';
 
 interface FaviconSize { size: number; label: string; use: string; }
@@ -133,6 +133,7 @@ export default function FaviconGenerator() {
               ))}
             </div>
           </div>
+          <PrivacyBadge />
           <FileUpload accept="image/*" onFiles={processFile} label="Drop an image or click to upload" icon="⭐" />
           <div className="text-center text-[10px] text-surface-400 mt-1">
             Upload a square PNG or SVG for best results
