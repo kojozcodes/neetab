@@ -11,7 +11,6 @@ export default function WordToPDF() {
   const [progress, setProgress] = useState(0);
   const [pdfBlob, setPdfBlob] = useState<Blob | null>(null);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
-  const [method, setMethod] = useState<'server' | 'client' | null>(null);
   const [error, setError] = useState('');
   const [htmlContent, setHtmlContent] = useState('');
   const renderRef = useRef<HTMLDivElement>(null);
@@ -99,13 +98,12 @@ export default function WordToPDF() {
   const processFile = useCallback(async (files: File[]) => {
     const f = files[0]; if (!f) return;
     if (pdfUrl) URL.revokeObjectURL(pdfUrl);
-    setFile(f); setPdfBlob(null); setPdfUrl(null); setLoading(true); setProgress(0); setError(''); setMethod(null); setHtmlContent('');
+    setFile(f); setPdfBlob(null); setPdfUrl(null); setLoading(true); setProgress(0); setError(''); setHtmlContent('');
 
     setProgress(10);
     const serverBlob = await convertWithServer(f);
 
     if (serverBlob) {
-      setMethod('server');
       setProgress(100);
       setPdfBlob(serverBlob);
       setPdfUrl(URL.createObjectURL(serverBlob));
@@ -113,7 +111,6 @@ export default function WordToPDF() {
       return;
     }
 
-    setMethod('client');
     setProgress(20);
     const clientBlob = await convertClientSide(f);
 
@@ -129,7 +126,7 @@ export default function WordToPDF() {
 
   const reset = () => {
     if (pdfUrl) URL.revokeObjectURL(pdfUrl);
-    setFile(null); setPdfBlob(null); setPdfUrl(null); setLoading(false); setProgress(0); setError(''); setMethod(null); setHtmlContent('');
+    setFile(null); setPdfBlob(null); setPdfUrl(null); setLoading(false); setProgress(0); setError(''); setHtmlContent('');
   };
 
   return (
@@ -140,7 +137,7 @@ export default function WordToPDF() {
           <FileUpload accept=".docx,.doc" onFiles={processFile} label="Drop a Word document here" icon="📝" />
           <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-brand-50 dark:bg-brand-900/20 text-[11px] text-surface-500 dark:text-surface-400 mb-3">
             <ShieldIcon />
-            <span><strong className="text-surface-600 dark:text-surface-300">Secure:</strong> Files are processed and automatically deleted</span>
+            <span><strong className="text-surface-600 dark:text-surface-300">Privacy:</strong> Files are uploaded for conversion and deleted immediately after</span>
           </div>
         </>
       )}

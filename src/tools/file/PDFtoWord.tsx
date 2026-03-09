@@ -125,7 +125,7 @@ export default function PDFtoWord() {
       {!result && !loading && (
         <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-brand-50 dark:bg-brand-900/20 text-[11px] text-surface-500 dark:text-surface-400 mb-3">
           <ShieldIcon />
-          <span><strong className="text-surface-600 dark:text-surface-300">Secure:</strong> Files are processed and automatically deleted</span>
+          <span><strong className="text-surface-600 dark:text-surface-300">Privacy:</strong> Files are uploaded for conversion and deleted immediately after</span>
         </div>
       )}
 
