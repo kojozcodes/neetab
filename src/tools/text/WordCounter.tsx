@@ -22,7 +22,7 @@ export default function WordCounter() {
         <ResultBox label="No Spaces" value={text.replace(/\s/g, '').length} copyable={false} large={false} />
         <ResultBox label="Sentences" value={text.trim() ? text.split(/[.!?]+/).filter(Boolean).length : 0} copyable={false} large={false} />
         <ResultBox label="Paragraphs" value={text.trim() ? text.split(/\n\n+/).filter(Boolean).length : 0} copyable={false} large={false} />
-        <ResultBox label="Read Time" value={`~${Math.max(1, Math.ceil(words / 200))}m`} copyable={false} large={false} />
+        <ResultBox label="Read Time" value={words ? `~${Math.max(1, Math.ceil(words / 200))}m` : '0m'} copyable={false} large={false} />
       </div>
     </div>
   );

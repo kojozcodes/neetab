@@ -34,6 +34,16 @@ export default function UnitConverter() {
       <Select label="Category" value={cat} onChange={v => { setCat(v); setFrom(0); setTo(1); }} options={Object.keys(cats).map(k => ({ value: k, label: k }))} />
       <Input label="Value" value={val} onChange={setVal} type="number" />
       <Select label="From" value={String(from)} onChange={v => setFrom(+v)} options={c.units.map((u, i) => ({ value: String(i), label: u }))} />
+      <div className="flex justify-center my-1">
+        <button
+          onClick={() => { setFrom(to); setTo(from); }}
+          className="text-surface-400 hover:text-brand-500 transition-colors text-lg leading-none"
+          title="Swap units"
+          aria-label="Swap units"
+        >
+          ⇄
+        </button>
+      </div>
       <Select label="To" value={String(to)} onChange={v => setTo(+v)} options={c.units.map((u, i) => ({ value: String(i), label: u }))} />
       <ResultBox label={c.units[to]} value={result.toFixed(6).replace(/\.?0+$/, '')} />
     </div>

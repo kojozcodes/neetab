@@ -118,7 +118,7 @@ export default function LoremIpsumGenerator() {
               {copied ? '✓ Copied' : 'Copy'}
             </button>
           </div>
-          <div className="bg-surface-100 dark:bg-surface-800 rounded-xl p-3 max-h-[200px] overflow-y-auto text-xs text-surface-700 dark:text-surface-300 leading-relaxed whitespace-pre-wrap">
+          <div className="bg-surface-100 dark:bg-surface-800 rounded-xl p-3 max-h-[360px] overflow-y-auto text-xs text-surface-700 dark:text-surface-300 leading-relaxed whitespace-pre-wrap">
             {output}
           </div>
         </div>
