@@ -28,11 +28,21 @@ function parseMarkdown(md: string): string {
     .replace(/^&gt; (.+)$/gm, '<blockquote class="border-l-3 border-brand-300 pl-3 italic text-surface-500 my-2">$1</blockquote>')
     // Horizontal rules
     .replace(/^---$/gm, '<hr class="border-surface-300 dark:border-surface-700 my-3" />')
-    // Unordered lists
-    .replace(/^[*-] (.+)$/gm, '<li class="ml-4 list-disc">$1</li>')
-    // Ordered lists
-    .replace(/^\d+\. (.+)$/gm, '<li class="ml-4 list-decimal">$1</li>')
-    // Line breaks → paragraphs
+    // Unordered lists (tagged for grouping)
+    .replace(/^[*-] (.+)$/gm, '<li class="ml-4 list-disc" data-li="ul">$1</li>')
+    // Ordered lists (tagged for grouping)
+    .replace(/^\d+\. (.+)$/gm, '<li class="ml-4 list-decimal" data-li="ol">$1</li>');
+
+  // Wrap consecutive same-type list items before converting newlines
+  html = html
+    .replace(/((?:<li[^>]*data-li="ul"[^>]*>.*<\/li>\n?)+)/g,
+      m => '<ul class="my-2 pl-2 space-y-0.5">' + m.replace(/\n/g, '') + '</ul>')
+    .replace(/((?:<li[^>]*data-li="ol"[^>]*>.*<\/li>\n?)+)/g,
+      m => '<ol class="my-2 pl-2 space-y-0.5 list-decimal">' + m.replace(/\n/g, '') + '</ol>')
+    .replace(/ data-li="ul"| data-li="ol"/g, '');
+
+  // Line breaks → paragraphs
+  html = html
     .replace(/\n\n/g, '</p><p class="my-1.5">')
     .replace(/\n/g, '<br />');
 

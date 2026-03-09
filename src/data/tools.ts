@@ -11,6 +11,7 @@ export interface ToolMeta {
   tags: string[];
   category: string;
   popular?: boolean;
+  wide?: boolean;
   componentPath: string; // maps to file under src/tools/, e.g. 'file/PDFtoWord'
   seo: {
     title: string;
@@ -380,7 +381,7 @@ const tools: ToolMeta[] = [
   },
   {
     id: 'textdiff', slug: 'text-diff', name: 'Text Diff', desc: 'Compare two texts side by side',
-    emoji: '📋', tags: ['diff', 'compare', 'text', 'merge', 'dev'], category: 'Dev Tools',
+    emoji: '📋', tags: ['diff', 'compare', 'text', 'merge', 'dev'], category: 'Dev Tools', wide: true,
     componentPath: 'devtools/TextDiff',
     seo: {
       title: 'Text Diff | Compare Text Online Free | Neetab',
@@ -473,7 +474,7 @@ const tools: ToolMeta[] = [
   },
   {
     id: 'markdown', slug: 'markdown-preview', name: 'Markdown Preview', desc: 'Write Markdown and preview it live',
-    emoji: '📝', tags: ['markdown', 'preview', 'editor', 'dev'], category: 'Dev Tools',
+    emoji: '📝', tags: ['markdown', 'preview', 'editor', 'dev'], category: 'Dev Tools', wide: true,
     componentPath: 'devtools/MarkdownPreview',
     seo: {
       title: 'Markdown Preview | Live Editor | Neetab',
@@ -487,7 +488,7 @@ const tools: ToolMeta[] = [
   },
   {
     id: 'cssminify', slug: 'css-minifier', name: 'CSS Minifier', desc: 'Minify or beautify CSS code',
-    emoji: '🎨', tags: ['css', 'minify', 'beautify', 'compress', 'dev'], category: 'Dev Tools',
+    emoji: '🎨', tags: ['css', 'minify', 'beautify', 'compress', 'dev'], category: 'Dev Tools', wide: true,
     componentPath: 'devtools/CSSMinifier',
     seo: {
       title: 'CSS Minifier & Beautifier | Free Online | Neetab',
