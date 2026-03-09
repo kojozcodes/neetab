@@ -4,9 +4,9 @@ import { Select } from '../../components/ui/FormControls';
 import ResultBox from '../../components/ui/ResultBox';
 
 export default function BMICalculator() {
-  const [sys, setSys] = useState('imperial');
-  const [h, setH] = useState('70');
-  const [w, setW] = useState('160');
+  const [sys, setSys] = useState('metric');
+  const [h, setH] = useState('178');
+  const [w, setW] = useState('73');
 
   let bmi = 0;
   if (sys === 'imperial') bmi = (parseFloat(w || '0') / (parseFloat(h || '1') ** 2)) * 703;

@@ -107,23 +107,25 @@ export default function CountdownTimer() {
       {startTotal === 0 && !isFinished ? (
         <>
           {/* Time input */}
-          <div className="flex items-center justify-center gap-2 mb-4">
+          <div className="flex items-end justify-center gap-2 mb-4">
             {[
               { label: 'Hours', value: hours, set: setHours, max: 23 },
               { label: 'Minutes', value: minutes, set: setMinutes, max: 59 },
               { label: 'Seconds', value: seconds, set: setSeconds, max: 59 },
             ].map((field, i) => (
-              <div key={field.label} className="flex flex-col items-center">
-                <label className="text-[10px] font-semibold text-surface-500 mb-1">{field.label}</label>
-                <input
-                  type="number"
-                  min={0}
-                  max={field.max}
-                  value={field.value}
-                  onChange={e => field.set(Math.min(field.max, Math.max(0, parseInt(e.target.value) || 0)))}
-                  className="input-field w-16 text-center text-xl font-mono font-bold !py-3"
-                />
-                {i < 2 && <span className="text-xl font-bold text-surface-400 mt-2">:</span>}
+              <div key={field.label} className="flex items-end gap-2">
+                <div className="flex flex-col items-center">
+                  <label className="text-[10px] font-semibold text-surface-500 mb-1">{field.label}</label>
+                  <input
+                    type="number"
+                    min={0}
+                    max={field.max}
+                    value={field.value}
+                    onChange={e => field.set(Math.min(field.max, Math.max(0, parseInt(e.target.value) || 0)))}
+                    className="input-field w-20 text-center text-xl font-mono font-bold !py-3"
+                  />
+                </div>
+                {i < 2 && <span className="text-xl font-bold text-surface-400 mb-3">:</span>}
               </div>
             ))}
           </div>

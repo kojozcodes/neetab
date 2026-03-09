@@ -10,7 +10,6 @@ export default function PDFtoWord() {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [result, setResult] = useState<{ blob: Blob; size: number } | null>(null);
-  const [method, setMethod] = useState<'server' | 'client' | null>(null);
   const [error, setError] = useState('');
 
   // Server-side conversion (real DOCX via pdf2docx + LibreOffice)
@@ -84,13 +83,12 @@ export default function PDFtoWord() {
   const processFile = useCallback(async (files: File[]) => {
     const f = files[0];
     if (!f?.type.includes('pdf')) return;
-    setFile(f); setResult(null); setLoading(true); setProgress(0); setError(''); setMethod(null);
+    setFile(f); setResult(null); setLoading(true); setProgress(0); setError('');
 
     setProgress(10);
     const serverBlob = await convertWithServer(f);
 
     if (serverBlob) {
-      setMethod('server');
       setProgress(100);
       setResult({ blob: serverBlob, size: serverBlob.size });
       setLoading(false);
@@ -98,7 +96,6 @@ export default function PDFtoWord() {
     }
 
     // Fallback to client-side
-    setMethod('client');
     setProgress(20);
     const clientBlob = await convertClientSide(f);
 
@@ -116,7 +113,6 @@ export default function PDFtoWord() {
     setResult(null);
     setLoading(false);
     setProgress(0);
-    setMethod(null);
     setError('');
   };
 

@@ -8,7 +8,7 @@ const cats: Record<string, { units: string[]; base: number[]; special?: boolean 
   Weight: { units: ['Kilograms', 'Grams', 'Pounds', 'Ounces', 'Tons'], base: [1, .001, .453592, .0283495, 907.185] },
   Temperature: { units: ['Celsius', 'Fahrenheit', 'Kelvin'], base: [], special: true },
   Volume: { units: ['Liters', 'Milliliters', 'Gallons (US)', 'Cups', 'Fluid Oz'], base: [1, .001, 3.78541, .236588, .0295735] },
-  Area: { units: ['Sq Meters', 'Sq Feet', 'Sq Km', 'Acres', 'Hectares'], base: [1, .0929, .000001, 4046.86, 10000] },
+  Area: { units: ['Sq Meters', 'Sq Feet', 'Sq Km', 'Acres', 'Hectares'], base: [1, .0929, 1000000, 4046.86, 10000] },
   Speed: { units: ['m/s', 'km/h', 'mph', 'knots'], base: [1, .277778, .44704, .514444] },
   Data: { units: ['Bytes', 'KB', 'MB', 'GB', 'TB'], base: [1, 1024, 1048576, 1073741824, 1099511627776] },
 };
