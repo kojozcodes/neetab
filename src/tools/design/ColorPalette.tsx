@@ -32,7 +32,7 @@ export default function ColorPalette() {
     setPalette(prev => nc.map((c, i) => (locked[i] && prev[i]) ? prev[i] : c));
   }, [mode, baseColor, locked]);
 
-  useEffect(() => { generate(); }, []);
+  useEffect(() => { generate(); }, [mode, baseColor]);
 
   const showBase = ['complementary', 'analogous', 'triadic', 'monochromatic'].includes(mode);
 
