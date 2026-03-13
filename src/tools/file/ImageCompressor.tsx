@@ -60,7 +60,7 @@ export default function ImageCompressor() {
           {outputFormat === 'jpeg' && <Slider label="Quality" value={quality} onChange={setQuality} min={10} max={100} suffix="%" />}
           {outputFormat === 'png' && (
             <div className="text-[11px] text-surface-500 dark:text-surface-400 mb-3 px-1">
-              PNG is lossless — file size won't shrink much. Switch to JPEG for smaller files.
+              PNG is lossless - file size won't shrink much. Switch to JPEG for smaller files.
             </div>
           )}
 

@@ -156,7 +156,7 @@ export default function PDFtoWord() {
       {result && (
         <div>
           <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs mb-3 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400">
-            ✅ <span><strong>Conversion complete</strong> — Your Word document is ready to download.</span>
+            ✅ <span><strong>Conversion complete</strong> - Your Word document is ready to download.</span>
           </div>
 
           <ResultBox label="File Size" value={`${(result.size / 1024).toFixed(0)}KB`} copyable={false} large={false} />

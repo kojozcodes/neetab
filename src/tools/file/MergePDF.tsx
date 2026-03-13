@@ -80,7 +80,7 @@ export default function MergePDF() {
     return (
       <div>
         <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs mb-4 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400">
-          ✅ <span><strong>Merge complete</strong> — {entries.length} PDFs combined into one.</span>
+          ✅ <span><strong>Merge complete</strong> - {entries.length} PDFs combined into one.</span>
         </div>
         <div className="grid grid-cols-2 gap-2 mb-3">
           <ResultBox label="Total Pages" value={totalPages} copyable={false} large={false} />

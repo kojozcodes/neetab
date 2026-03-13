@@ -74,7 +74,7 @@ export default function CurrencyConverter() {
         className="input-field cursor-pointer text-sm"
       >
         {POPULAR_CURRENCIES.map(c => (
-          <option key={c} value={c}>{c} — {CURRENCY_NAMES[c] || c}</option>
+          <option key={c} value={c}>{c} - {CURRENCY_NAMES[c] || c}</option>
         ))}
       </select>
     </div>

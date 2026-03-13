@@ -85,7 +85,7 @@ const jsonLd = [
       <p class="text-surface-500 text-xs">{tool.desc}</p>
     </div>
 
-    <!-- Tool body (React island — hydrates on load) -->
+    <!-- Tool body (React island - hydrates on load) -->
     <div class="card p-4 sm:p-5 animate-slide-up" style="animation-delay: 60ms">
       <ToolLoader client:load componentPath={tool.componentPath} />
     </div>
@@ -109,7 +109,7 @@ const jsonLd = [
       </div>
     )}
 
-    <!-- FAQ (real HTML, crawlable — this is the SEO gold) -->
+    <!-- FAQ (real HTML, crawlable - this is the SEO gold) -->
     {tool.faq && tool.faq.length > 0 && (
       <div class="mt-6 animate-fade-in" style="animation-delay: 150ms">
         <h2 class="text-[11px] font-bold uppercase tracking-wider text-surface-400 mb-2.5">

@@ -119,7 +119,7 @@ export default function InvoiceGenerator() {
       doc.setFontSize(9);
       items.forEach(item => {
         if (item.description || item.price > 0) {
-          doc.text(item.description || '—', 22, y);
+          doc.text(item.description || '-', 22, y);
           doc.text(String(item.qty), 120, y, { align: 'center' });
           doc.text(fmt(item.price), 145, y, { align: 'right' });
           doc.text(fmt(item.qty * item.price), pw - 22, y, { align: 'right' });

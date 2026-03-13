@@ -4,7 +4,7 @@ function escapeHtml(str: string): string {
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-// Simple markdown parser — no dependencies, HTML-safe
+// Simple markdown parser - no dependencies, HTML-safe
 function parseMarkdown(md: string): string {
   // First escape all HTML to prevent XSS
   let html = escapeHtml(md)

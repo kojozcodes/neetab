@@ -5,7 +5,7 @@ import ResultBox from '../../components/ui/ResultBox';
 export default function AgeCalculator() {
   const [dob, setDob] = useState('1995-06-15');
 
-  let years = 0, months = 0, days = 0, totalDays = 0, nextBday = '—';
+  let years = 0, months = 0, days = 0, totalDays = 0, nextBday = '-';
 
   if (dob) {
     const b = new Date(dob), n = new Date();

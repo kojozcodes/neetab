@@ -57,7 +57,7 @@ export default function ImageToPDF() {
         <div className="text-center py-4 mb-2">
           <div className="text-3xl mb-2">✅</div>
           <p className="text-sm font-semibold text-surface-900 dark:text-surface-100">
-            PDF ready — {images.length} page{images.length !== 1 ? 's' : ''}
+            PDF ready - {images.length} page{images.length !== 1 ? 's' : ''}
           </p>
         </div>
         <DownloadButton blob={pdfBlob} filename="images-combined.pdf" label="Download PDF" />

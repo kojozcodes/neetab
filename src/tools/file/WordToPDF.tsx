@@ -15,7 +15,7 @@ export default function WordToPDF() {
   const [htmlContent, setHtmlContent] = useState('');
   const renderRef = useRef<HTMLDivElement>(null);
 
-  // Server-side conversion (LibreOffice — near-perfect quality)
+  // Server-side conversion (LibreOffice - near-perfect quality)
   const convertWithServer = async (f: File): Promise<Blob | null> => {
     try {
       setProgress(30);
@@ -169,7 +169,7 @@ export default function WordToPDF() {
       {pdfBlob && (
         <div>
           <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs mb-4 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400">
-            ✅ <span><strong>Conversion complete</strong> — Your PDF is ready to download.</span>
+            ✅ <span><strong>Conversion complete</strong> - Your PDF is ready to download.</span>
           </div>
 
           {pdfUrl && (

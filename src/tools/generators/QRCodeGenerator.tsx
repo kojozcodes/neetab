@@ -71,7 +71,7 @@ export default function QRCodeGenerator() {
         <div className="text-right text-[10px] text-surface-400 mt-0.5">{text.length}/500</div>
       </div>
 
-      {/* QR Preview — always 256px canvas, displayed at 180px */}
+      {/* QR Preview - always 256px canvas, displayed at 180px */}
       <div className="flex justify-center mb-4">
         <div className="rounded-2xl border border-surface-200 dark:border-surface-700 p-3 inline-block" style={{ background: bgColor }}>
           <canvas ref={canvasRef} style={{ width: 180, height: 180, imageRendering: 'pixelated', display: imgUrl === 'canvas' ? 'block' : 'none' }} />

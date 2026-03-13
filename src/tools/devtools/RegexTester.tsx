@@ -32,7 +32,7 @@ export default function RegexTester() {
         if (m) matches.push({ match: m[0], index: m.index, groups: m.groups });
       }
 
-      // Build highlighted text — HTML-escape all user content
+      // Build highlighted text - HTML-escape all user content
       let highlighted = '';
       let lastIdx = 0;
       for (const m of matches) {

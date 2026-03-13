@@ -19,7 +19,7 @@ export default function URLEncoderDecoder() {
         setOutput(encodeType === 'component' ? decodeURIComponent(input.trim()) : decodeURI(input.trim()));
       }
     } catch {
-      setError('Invalid input — cannot ' + mode);
+      setError('Invalid input - cannot ' + mode);
       setOutput('');
     }
   };

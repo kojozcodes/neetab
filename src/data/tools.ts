@@ -72,7 +72,7 @@ const tools: ToolMeta[] = [
       { q: 'Can I convert .doc files or only .docx?', a: 'Both .doc (older Word format) and .docx (modern Word format) are fully supported for conversion to PDF.' },
       { q: 'Is there a file size limit?', a: 'You can convert Word documents up to 50MB. Most documents are well under this limit. Very long documents with many images may take a few extra seconds to process.' },
       { q: 'Is my document uploaded to a server?', a: 'When server conversion is used, your file is sent securely over HTTPS, processed immediately, and deleted right after conversion. It is never stored, read, or shared.' },
-      { q: 'Can I convert multiple documents at once?', a: 'Currently one document can be converted at a time. Simply upload another file after each conversion completes — there is no limit on how many you can convert in a session.' },
+      { q: 'Can I convert multiple documents at once?', a: 'Currently one document can be converted at a time. Simply upload another file after each conversion completes - there is no limit on how many you can convert in a session.' },
     ],
   },
   {
@@ -86,14 +86,14 @@ const tools: ToolMeta[] = [
     },
     howTo: [
       'Upload a PNG, JPG, or WebP image by clicking the upload area or dragging and dropping it.',
-      'Adjust the quality slider to your preference — 80% is recommended as a sweet spot between file size and visual quality.',
+      'Adjust the quality slider to your preference - 80% is recommended as a sweet spot between file size and visual quality.',
       'Compare the before and after file sizes in the preview, then click Download to save your compressed image.',
     ],
     faq: [
-      { q: 'Does compression reduce image quality?', a: 'You control the quality slider. At 80%, most images look identical to the original while being 60–80% smaller in file size. For photos shared on social media or websites, 70–85% quality is generally indistinguishable from the original.' },
+      { q: 'Does compression reduce image quality?', a: 'You control the quality slider. At 80%, most images look identical to the original while being 60-80% smaller in file size. For photos shared on social media or websites, 70-85% quality is generally indistinguishable from the original.' },
       { q: 'Is my image uploaded anywhere?', a: 'No. Compression runs entirely in your browser using the HTML Canvas API. Your images never leave your device and are never sent to any server.' },
-      { q: 'What image formats are supported?', a: 'You can compress PNG, JPG, and WebP images. You can also convert between these formats during compression — for example, converting a large PNG to a smaller WebP.' },
-      { q: 'How much can I reduce the file size?', a: 'Typical results are 50–80% file size reduction. A 5MB photo often compresses to under 1MB with no visible quality loss at 80% quality. PNGs with large areas of solid color compress especially well.' },
+      { q: 'What image formats are supported?', a: 'You can compress PNG, JPG, and WebP images. You can also convert between these formats during compression - for example, converting a large PNG to a smaller WebP.' },
+      { q: 'How much can I reduce the file size?', a: 'Typical results are 50-80% file size reduction. A 5MB photo often compresses to under 1MB with no visible quality loss at 80% quality. PNGs with large areas of solid color compress especially well.' },
     ],
   },
   {
@@ -107,14 +107,14 @@ const tools: ToolMeta[] = [
     },
     howTo: [
       'Upload a PDF file by clicking the upload area or dragging it in.',
-      'Select your preferred output format — PNG for lossless quality or JPG for smaller file sizes.',
+      'Select your preferred output format - PNG for lossless quality or JPG for smaller file sizes.',
       'Each page is converted and shown as a separate image. Click Download under any page to save it, or download all pages.',
     ],
     faq: [
       { q: 'What image formats can I export to?', a: 'You can export PDF pages as high-quality PNG or JPG images. PNG is best for preserving sharp text and graphics. JPG is better when you need smaller file sizes and the content is photographic.' },
       { q: 'Can I convert a multi-page PDF?', a: 'Yes. Each page is converted to a separate image that you can download individually. There is no practical limit on the number of pages, though very large PDFs may take more time to render.' },
       { q: 'Is my PDF uploaded to a server?', a: 'No. PDF to image conversion runs entirely in your browser using PDF.js, the same library used by Firefox and Chrome. Your files never leave your device.' },
-      { q: 'What resolution are the output images?', a: 'Images are rendered at the PDF native resolution, which is typically 72–150 DPI. The result is sharp for screen use. For high-resolution print output, a dedicated desktop tool may produce better results at 300+ DPI.' },
+      { q: 'What resolution are the output images?', a: 'Images are rendered at the PDF native resolution, which is typically 72-150 DPI. The result is sharp for screen use. For high-resolution print output, a dedicated desktop tool may produce better results at 300+ DPI.' },
     ],
   },
   {
@@ -135,7 +135,7 @@ const tools: ToolMeta[] = [
       { q: 'Can I combine multiple images into one PDF?', a: 'Yes. Upload as many images as you need and they will be combined into a single PDF document, with one image per page in the order you arrange them.' },
       { q: 'What image formats can I use?', a: 'PNG, JPG, JPEG, WebP, and other common browser-supported image formats are all accepted.' },
       { q: 'Can I reorder the pages?', a: 'Yes. After uploading, drag and rearrange the image thumbnails to set the exact page order before creating the PDF.' },
-      { q: 'Is my data private?', a: 'Yes. The entire conversion happens in your browser using jsPDF. No images are uploaded to any server — everything stays on your device.' },
+      { q: 'Is my data private?', a: 'Yes. The entire conversion happens in your browser using jsPDF. No images are uploaded to any server - everything stays on your device.' },
     ],
   },
   {
@@ -150,14 +150,95 @@ const tools: ToolMeta[] = [
     howTo: [
       'Fill in your business name and contact details in the "From" section, and your client\'s details in the "Bill To" section.',
       'Add line items with descriptions, quantities, and unit prices. Set a tax rate and any notes or payment terms at the bottom.',
-      'Click Download PDF to instantly save a professional, print-ready invoice to your device — no sign-up required.',
+      'Click Download PDF to instantly save a professional, print-ready invoice to your device - no sign-up required.',
     ],
     faq: [
       { q: 'Is this invoice generator really free?', a: 'Yes, completely free with no watermarks, no sign-up, and no limits on how many invoices you can create. Download as many PDFs as you need.' },
       { q: 'Are my invoices saved or stored?', a: 'No. Everything runs in your browser using jsPDF. Your business information and invoice data never leave your device and are never sent to any server.' },
       { q: 'Can I add tax to my invoices?', a: 'Yes. Set a tax percentage (e.g., 10% VAT or 8.5% sales tax) and it will be automatically calculated and shown as a separate line on the invoice.' },
       { q: 'What currencies are supported?', a: 'You can choose from common currency symbols including USD ($), EUR (€), GBP (£), JPY (¥), INR (₹), NGN (₦), CAD (C$), and AUD (A$).' },
-      { q: 'Can I customize the invoice number?', a: 'Yes. The invoice number is auto-generated but fully editable. Use any numbering scheme you prefer — sequential numbers, date-based codes, or client-specific prefixes.' },
+      { q: 'Can I customize the invoice number?', a: 'Yes. The invoice number is auto-generated but fully editable. Use any numbering scheme you prefer - sequential numbers, date-based codes, or client-specific prefixes.' },
+    ],
+  },
+
+  {
+    id: 'pdfcompress', slug: 'pdf-compressor', name: 'PDF Compressor', desc: 'Reduce PDF file size',
+    emoji: '📦', tags: ['pdf', 'compress', 'reduce', 'optimize'], category: 'File Tools',
+    componentPath: 'file/PDFCompressor',
+    seo: {
+      title: 'PDF Compressor | Reduce PDF File Size Free | Neetab',
+      description: 'Compress PDF files to reduce file size. Strip metadata and optimize streams. Free and private - runs in your browser.',
+      h1: 'PDF Compressor',
+    },
+    howTo: [
+      'Upload your PDF file by clicking the upload area or dragging it in.',
+      'Select a compression level: Screen (smallest size), eBook (balanced), or Printer (higher quality).',
+      'Click Compress and download the optimized PDF. Original and compressed sizes are shown.',
+    ],
+    faq: [
+      { q: 'How much can PDF compression reduce file size?', a: 'Results vary widely. PDFs with large embedded images can see significant reductions. PDFs that are already optimized may show minimal savings. The tool strips metadata and optimizes object streams.' },
+      { q: 'Is my PDF uploaded to a server?', a: 'No. Compression runs entirely in your browser using pdf-lib. Your file never leaves your device.' },
+      { q: 'Will compression affect PDF quality?', a: 'Metadata stripping has no visual impact. The compression mainly targets file structure efficiency. For aggressive image compression in PDFs, a server-side tool may produce better results.' },
+    ],
+  },
+  {
+    id: 'splitpdf', slug: 'split-pdf', name: 'Split PDF', desc: 'Split or extract pages from a PDF',
+    emoji: '✂️', tags: ['pdf', 'split', 'extract', 'pages'], category: 'File Tools',
+    componentPath: 'file/SplitPDF',
+    seo: {
+      title: 'Split PDF | Extract Pages from PDF Free | Neetab',
+      description: 'Split a PDF into individual pages or extract a specific page range. Free and private - runs in your browser.',
+      h1: 'Split PDF',
+    },
+    howTo: [
+      'Upload your PDF file.',
+      'Choose a mode: "Split All Pages" to save each page as a separate PDF, or "Extract Range" to specify pages like "1-3, 5, 7-9".',
+      'Click Split/Extract and each resulting PDF downloads automatically.',
+    ],
+    faq: [
+      { q: 'Can I extract specific pages?', a: 'Yes. Use the Extract Range mode and enter page numbers like "1-3, 5, 8-10". Each range or individual page is saved as a separate PDF file.' },
+      { q: 'Is there a page limit?', a: 'No hard limit. Very large PDFs may take longer to process in the browser. For extremely large files, processing is still fully client-side.' },
+      { q: 'Is my PDF uploaded anywhere?', a: 'No. Splitting uses pdf-lib entirely in your browser. Your file stays on your device.' },
+    ],
+  },
+  {
+    id: 'imgrotate', slug: 'image-rotate-flip', name: 'Image Rotate & Flip', desc: 'Rotate and flip images',
+    emoji: '🔄', tags: ['image', 'rotate', 'flip', 'mirror'], category: 'File Tools',
+    componentPath: 'file/ImageRotateFlip',
+    seo: {
+      title: 'Image Rotate & Flip | Free Online | Neetab',
+      description: 'Rotate images 90, 180, or 270 degrees. Flip horizontally or vertically. Free and private - runs in your browser.',
+      h1: 'Image Rotate & Flip',
+    },
+    howTo: [
+      'Upload a PNG, JPG, or WebP image.',
+      'Click Rotate 90 CW, Rotate 90 CCW, Rotate 180, Flip Horizontal, or Flip Vertical to transform the image.',
+      'Preview updates instantly. Click Download to save the result as PNG.',
+    ],
+    faq: [
+      { q: 'What transformations are supported?', a: 'Rotate 90 degrees clockwise, 90 degrees counter-clockwise, 180 degrees, flip horizontally (mirror), and flip vertically. Transformations can be combined.' },
+      { q: 'Does this work on mobile?', a: 'Yes. The tool uses the HTML Canvas API which works in all modern mobile browsers.' },
+      { q: 'Is my image uploaded to a server?', a: 'No. All transformations happen in your browser using Canvas. Your image never leaves your device.' },
+    ],
+  },
+  {
+    id: 'html2pdf', slug: 'html-to-pdf', name: 'HTML to PDF', desc: 'Convert HTML code to a PDF document',
+    emoji: '📄', tags: ['html', 'pdf', 'convert', 'dev'], category: 'File Tools',
+    componentPath: 'file/HTMLtoPDF',
+    seo: {
+      title: 'HTML to PDF Converter | Free Online | Neetab',
+      description: 'Convert HTML code to a PDF document. Paste HTML, preview it, and download as PDF. Free and private.',
+      h1: 'HTML to PDF Converter',
+    },
+    howTo: [
+      'Paste your HTML code into the editor.',
+      'Click Update Preview to render it in the preview pane.',
+      'Click Convert to PDF to generate and download the PDF. Choose A4 or Letter page size.',
+    ],
+    faq: [
+      { q: 'What HTML features are supported?', a: 'Standard HTML and inline CSS are supported. External stylesheets and web fonts may not load due to browser sandbox restrictions. Inline your styles for best results.' },
+      { q: 'Is my HTML code sent to a server?', a: 'No. The conversion uses html2canvas and jsPDF entirely in your browser. Your code never leaves your device.' },
+      { q: 'Can I convert multi-page content?', a: 'Yes. Long HTML content is automatically split across multiple PDF pages based on A4 or Letter page height.' },
     ],
   },
 
@@ -178,9 +259,9 @@ const tools: ToolMeta[] = [
     ],
     faq: [
       { q: 'How do I calculate a tip?', a: 'Enter your bill amount, select a tip percentage (15%, 18%, 20%, or custom), and optionally split between multiple people. The calculator shows the tip amount, total bill, and per-person cost instantly.' },
-      { q: 'What is the standard tip percentage?', a: 'In the US, 15–20% is standard for restaurant service. 18% is a common middle ground. For exceptional service, 25% or more is appreciated. For quick-service or counter service, 10–15% is typical.' },
+      { q: 'What is the standard tip percentage?', a: 'In the US, 15-20% is standard for restaurant service. 18% is a common middle ground. For exceptional service, 25% or more is appreciated. For quick-service or counter service, 10-15% is typical.' },
       { q: 'Can I split the bill between multiple people?', a: 'Yes. Enter the number of people and the calculator divides the total evenly, showing each person\'s exact share including tip. Ideal for group dinners where everyone wants to pay their fair share.' },
-      { q: 'Does this work for non-restaurant tips?', a: 'Absolutely. Use it for any tipping situation — delivery drivers, hairdressers, hotel staff, taxi rides, or any service where you want to calculate a percentage of a bill.' },
+      { q: 'Does this work for non-restaurant tips?', a: 'Absolutely. Use it for any tipping situation - delivery drivers, hairdressers, hotel staff, taxi rides, or any service where you want to calculate a percentage of a bill.' },
     ],
   },
   {
@@ -193,12 +274,12 @@ const tools: ToolMeta[] = [
       h1: 'BMI Calculator',
     },
     howTo: [
-      'Select your unit system — imperial (feet/inches and pounds) or metric (centimeters and kilograms).',
+      'Select your unit system - imperial (feet/inches and pounds) or metric (centimeters and kilograms).',
       'Enter your height and weight in the corresponding fields.',
       'Your BMI is calculated instantly and displayed alongside your weight category (underweight, normal, overweight, or obese).',
     ],
     faq: [
-      { q: 'What is a healthy BMI range?', a: 'A BMI between 18.5 and 24.9 is considered normal weight. Below 18.5 is underweight, 25–29.9 is overweight, and 30 or above is considered obese. These ranges apply to adults aged 18 and over and are the same for both men and women.' },
+      { q: 'What is a healthy BMI range?', a: 'A BMI between 18.5 and 24.9 is considered normal weight. Below 18.5 is underweight, 25-29.9 is overweight, and 30 or above is considered obese. These ranges apply to adults aged 18 and over and are the same for both men and women.' },
       { q: 'Does BMI apply to athletes?', a: 'BMI may overestimate body fat in athletes and muscular individuals because muscle weighs more than fat. A heavily muscled person may have a high BMI while being very lean. It is best used as a general population screening tool, not a definitive individual health measure.' },
       { q: 'Does BMI work the same for men and women?', a: 'The same BMI scale applies to adult men and women, though body composition naturally differs between sexes. Women typically carry a higher body fat percentage at the same BMI as men. For a fuller picture of health, consider waist circumference and body fat percentage alongside your BMI result.' },
     ],
@@ -234,12 +315,12 @@ const tools: ToolMeta[] = [
     },
     howTo: [
       'Enter the original price of the item in the Price field.',
-      'Enter the discount percentage — for example, 25 for a 25% off sale.',
+      'Enter the discount percentage - for example, 25 for a 25% off sale.',
       'The discount amount and the final sale price are shown instantly so you know exactly what you will pay.',
     ],
     faq: [
       { q: 'How do I calculate a sale price?', a: 'Enter the original price and the discount percentage. The calculator instantly shows the discount amount in dollars (or your currency) and the final price you will pay.' },
-      { q: 'Can I calculate double discounts?', a: 'Enter the combined effective discount percentage. Note that a 20% off sale followed by an additional 10% off is not 30% — it is approximately 28%, because the second discount applies to the already-reduced price, not the original.' },
+      { q: 'Can I calculate double discounts?', a: 'Enter the combined effective discount percentage. Note that a 20% off sale followed by an additional 10% off is not 30% - it is approximately 28%, because the second discount applies to the already-reduced price, not the original.' },
       { q: 'Does this include sales tax?', a: 'The calculator shows the discounted price before tax. Sales tax rates vary by location and are not included. Add your local tax percentage to the final discounted price for the actual total.' },
     ],
   },
@@ -260,7 +341,27 @@ const tools: ToolMeta[] = [
     faq: [
       { q: 'How accurate is the age calculation?', a: 'The calculator computes your exact age in years, months, and days from your date of birth to today, correctly accounting for leap years and varying month lengths.' },
       { q: 'Does it show days until my next birthday?', a: 'Yes. The calculator shows how many days remain until your next birthday, making it easy to plan ahead or simply satisfy your curiosity.' },
-      { q: 'Can I calculate age between two dates?', a: 'The calculator uses today as the end date. To find the age or duration between two custom dates, enter the earlier date as the birth date — the result will represent the elapsed time between the two dates.' },
+      { q: 'Can I calculate age between two dates?', a: 'The calculator uses today as the end date. To find the age or duration between two custom dates, enter the earlier date as the birth date - the result will represent the elapsed time between the two dates.' },
+    ],
+  },
+
+  {
+    id: 'aspectratio', slug: 'aspect-ratio-calculator', name: 'Aspect Ratio Calculator', desc: 'Calculate and convert aspect ratios',
+    emoji: '📐', tags: ['aspect', 'ratio', 'resolution', 'screen', 'dimensions'], category: 'Calculators',
+    componentPath: 'calculators/AspectRatioCalculator',
+    seo: {
+      title: 'Aspect Ratio Calculator | Screen & Image Ratios | Neetab',
+      description: 'Calculate aspect ratios from dimensions. Scale by ratio. Common presets for 16:9, 4:3, 1:1 and more. Free online tool.',
+      h1: 'Aspect Ratio Calculator',
+    },
+    howTo: [
+      'Enter a width and height to calculate the simplified aspect ratio (e.g. 1920x1080 = 16:9).',
+      'Or select a preset ratio (16:9, 4:3, 1:1) and enter one dimension to calculate the other.',
+      'Results show the ratio, decimal equivalent, and percentage width.',
+    ],
+    faq: [
+      { q: 'What is aspect ratio?', a: 'Aspect ratio is the proportional relationship between width and height, expressed as W:H. 16:9 is the standard widescreen ratio for HD video, monitors, and most modern phones in landscape.' },
+      { q: 'How do I maintain aspect ratio when resizing?', a: 'Use the Scale section: enter the known ratio and one target dimension, and the calculator gives you the other. For example, scale a 16:9 image to 800px wide and get the correct height of 450px.' },
     ],
   },
 
@@ -276,13 +377,13 @@ const tools: ToolMeta[] = [
     },
     howTo: [
       'Click Generate for a random palette, or enter a specific base hex color to start from a particular hue.',
-      'Choose a color harmony — complementary, analogous, triadic, split-complementary — to shape the mood of your palette.',
+      'Choose a color harmony - complementary, analogous, triadic, split-complementary - to shape the mood of your palette.',
       'Lock any colors you want to keep, then click Generate again to refresh only the unlocked swatches. Click any color to copy its hex code.',
     ],
     faq: [
       { q: 'How are the color palettes generated?', a: 'Palettes are generated using color theory algorithms including complementary (opposite hues), analogous (adjacent hues), triadic (three evenly spaced hues), and split-complementary harmonies based on your chosen base color.' },
       { q: 'Can I export the palette?', a: 'Yes. Click any color swatch to copy its HEX code to your clipboard. Use the Export button to copy the full palette as CSS custom properties or as a list of hex values.' },
-      { q: 'Can I lock a color and regenerate the rest?', a: 'Yes. Click the lock icon on any swatch to pin it, then click Generate. Locked colors stay fixed while the unlocked ones refresh — great for building around a brand color.' },
+      { q: 'Can I lock a color and regenerate the rest?', a: 'Yes. Click the lock icon on any swatch to pin it, then click Generate. Locked colors stay fixed while the unlocked ones refresh - great for building around a brand color.' },
       { q: 'Are the palettes free for commercial use?', a: 'Yes. All generated palettes are free to use in personal and commercial projects with no attribution required. Colors themselves are not copyrightable.' },
     ],
   },
@@ -296,7 +397,7 @@ const tools: ToolMeta[] = [
       h1: 'CSS Gradient Generator',
     },
     howTo: [
-      'Choose a gradient type — linear (directional), radial (circular), or conic (angular sweep).',
+      'Choose a gradient type - linear (directional), radial (circular), or conic (angular sweep).',
       'Click the color stops on the gradient bar to edit them. Add new stops by clicking on the bar; delete stops by dragging them off.',
       'Copy the generated CSS code with one click and paste it as a background property in your stylesheet.',
     ],
@@ -316,14 +417,14 @@ const tools: ToolMeta[] = [
       h1: 'Color Converter',
     },
     howTo: [
-      'Type a color value in any supported format — HEX (#ff5733), RGB (255, 87, 51), or HSL (11, 100%, 60%).',
+      'Type a color value in any supported format - HEX (#ff5733), RGB (255, 87, 51), or HSL (11, 100%, 60%).',
       'All other format representations update instantly as you type.',
       'Click the copy icon next to any format to copy it for use in CSS, design tools, or code.',
     ],
     faq: [
       { q: 'What color formats are supported?', a: 'Convert between HEX, RGB, and HSL formats instantly. Enter any format and see all the equivalent values in real time.' },
       { q: 'Can I use the visual color picker?', a: 'Yes. Click the color swatch or picker area to open a visual color chooser. Drag the picker to any hue and saturation, and all format values update automatically.' },
-      { q: 'How do I copy a color value?', a: 'Click the copy icon next to any color format — HEX, RGB, or HSL — to instantly copy it to your clipboard, ready to paste into your CSS, Figma, Sketch, or any other tool.' },
+      { q: 'How do I copy a color value?', a: 'Click the copy icon next to any color format - HEX, RGB, or HSL - to instantly copy it to your clipboard, ready to paste into your CSS, Figma, Sketch, or any other tool.' },
     ],
   },
   {
@@ -342,9 +443,89 @@ const tools: ToolMeta[] = [
     ],
     faq: [
       { q: 'What sizes do I need for a favicon?', a: 'At minimum: 16×16 and 32×32 for browser tabs, 180×180 for Apple Touch Icon (iOS home screen), and 192×192 and 512×512 for Android and PWA manifest icons. This tool generates all of them from a single upload.' },
-      { q: 'What image format should I upload?', a: 'PNG or SVG work best. Use a square image for optimal results — the tool will resize and center automatically. Avoid complex photographs; simple logos and icons look much cleaner at small sizes.' },
+      { q: 'What image format should I upload?', a: 'PNG or SVG work best. Use a square image for optimal results - the tool will resize and center automatically. Avoid complex photographs; simple logos and icons look much cleaner at small sizes.' },
       { q: 'Are the favicons generated locally?', a: 'Yes. All processing happens in your browser using the HTML Canvas API. No images are uploaded to any server.' },
       { q: 'How do I add favicons to my website?', a: 'Place the generated files in your site\'s root directory (or /public folder), then add the appropriate link tags in your HTML <head>: <link rel="icon" sizes="32x32" href="/favicon-32x32.png"> for each size, and <link rel="apple-touch-icon" href="/apple-touch-icon.png"> for iOS.' },
+    ],
+  },
+
+  {
+    id: 'colorcontrast', slug: 'color-contrast-checker', name: 'Color Contrast Checker', desc: 'Check WCAG color contrast ratios',
+    emoji: '👁️', tags: ['color', 'contrast', 'accessibility', 'wcag', 'a11y'], category: 'Design Tools',
+    componentPath: 'design/ColorContrastChecker',
+    seo: {
+      title: 'Color Contrast Checker | WCAG Accessibility | Neetab',
+      description: 'Check color contrast ratios for WCAG AA and AAA accessibility compliance. Instant results with text preview.',
+      h1: 'Color Contrast Checker',
+    },
+    howTo: [
+      'Choose a foreground (text) color and a background color using the color pickers or hex inputs.',
+      'The contrast ratio is calculated instantly using the WCAG 2.1 relative luminance formula.',
+      'Review the AA and AAA pass/fail results for normal text and large text. Preview how the colors look together.',
+    ],
+    faq: [
+      { q: 'What is WCAG contrast ratio?', a: 'WCAG (Web Content Accessibility Guidelines) defines minimum contrast ratios to ensure text is readable for people with visual impairments. AA requires 4.5:1 for normal text (3:1 for large text). AAA requires 7:1 (4.5:1 for large text).' },
+      { q: 'What counts as large text?', a: 'Large text is defined as 18pt (24px) or larger for regular weight, or 14pt (18.67px) or larger for bold weight. Large text has lower contrast requirements.' },
+      { q: 'How is the contrast ratio calculated?', a: 'The formula uses relative luminance: each color channel is linearized from sRGB, weighted (R: 21.26%, G: 71.52%, B: 7.22%), then contrast = (lighter + 0.05) / (darker + 0.05).' },
+    ],
+  },
+  {
+    id: 'boxshadow', slug: 'css-box-shadow-generator', name: 'Box Shadow Generator', desc: 'Generate CSS box-shadow visually',
+    emoji: '🌑', tags: ['css', 'shadow', 'design', 'generator'], category: 'Design Tools',
+    componentPath: 'design/CSSBoxShadowGenerator',
+    seo: {
+      title: 'CSS Box Shadow Generator | Visual Shadow Builder | Neetab',
+      description: 'Generate CSS box-shadow code visually. Multiple layers, custom colors, inset shadows. Copy CSS instantly.',
+      h1: 'CSS Box Shadow Generator',
+    },
+    howTo: [
+      'Use the sliders to adjust horizontal offset, vertical offset, blur radius, and spread radius.',
+      'Pick a shadow color and opacity. Toggle "Inset" for inner shadows. Add multiple shadow layers.',
+      'Copy the generated CSS box-shadow code and paste it into your stylesheet.',
+    ],
+    faq: [
+      { q: 'Can I add multiple shadow layers?', a: 'Yes. Click "Add Layer" to stack multiple shadows. Multi-layer shadows create depth effects and glows. Each layer can have different settings.' },
+      { q: 'What is the spread radius?', a: 'The spread radius expands or contracts the shadow beyond the blur. Positive values make the shadow larger than the element; negative values make it smaller.' },
+      { q: 'What is an inset shadow?', a: 'An inset shadow is cast inside the element rather than outside, creating a pressed-in or sunken appearance. Useful for input fields and buttons.' },
+    ],
+  },
+  {
+    id: 'borderradius', slug: 'css-border-radius-generator', name: 'Border Radius Generator', desc: 'Generate CSS border-radius visually',
+    emoji: '⬛', tags: ['css', 'border-radius', 'design', 'rounded'], category: 'Design Tools',
+    componentPath: 'design/CSSBorderRadiusGenerator',
+    seo: {
+      title: 'CSS Border Radius Generator | Visual Builder | Neetab',
+      description: 'Generate CSS border-radius code visually. Uniform or per-corner control. Live preview and one-click copy.',
+      h1: 'CSS Border Radius Generator',
+    },
+    howTo: [
+      'Use the uniform slider to round all corners equally, or toggle individual corners for asymmetric shapes.',
+      'See a live preview of the shape as you adjust the values.',
+      'Copy the generated CSS border-radius value and paste it into your stylesheet.',
+    ],
+    faq: [
+      { q: 'Can I set different radius for each corner?', a: 'Yes. Toggle individual corner mode to set top-left, top-right, bottom-right, and bottom-left independently.' },
+      { q: 'What units are supported?', a: 'The generator uses pixel values. You can also use percentage (50% creates a circle/ellipse) - the preview shows approximate results.' },
+    ],
+  },
+  {
+    id: 'colorblind', slug: 'color-blindness-simulator', name: 'Color Blindness Simulator', desc: 'Simulate how designs look to color-blind users',
+    emoji: '🎨', tags: ['color', 'accessibility', 'vision', 'design', 'a11y'], category: 'Design Tools',
+    componentPath: 'design/ColorBlindnessSimulator',
+    seo: {
+      title: 'Color Blindness Simulator | Accessibility Tool | Neetab',
+      description: 'Simulate how your designs appear to users with color blindness. Supports protanopia, deuteranopia, tritanopia, and more.',
+      h1: 'Color Blindness Simulator',
+    },
+    howTo: [
+      'Upload an image of your design, screenshot, or any visual.',
+      'Switch between simulation modes: Protanopia (red-blind), Deuteranopia (green-blind), Tritanopia (blue-blind), and Achromatopsia (total color blindness).',
+      'Compare the original and simulated views side by side to identify accessibility issues.',
+    ],
+    faq: [
+      { q: 'What types of color blindness are simulated?', a: 'Protanopia (reduced red sensitivity, affecting ~1% of males), Deuteranopia (reduced green sensitivity, ~1% of males), Tritanopia (reduced blue sensitivity, rare), and Achromatopsia (no color perception, very rare).' },
+      { q: 'Why does this matter for design?', a: 'About 8% of males and 0.5% of females have some form of color vision deficiency. Checking your designs ensures they are usable and readable for all users, which is also a WCAG accessibility requirement.' },
+      { q: 'Is my image uploaded to a server?', a: 'No. The simulation uses CSS filter matrices and Canvas API entirely in your browser.' },
     ],
   },
 
@@ -364,7 +545,7 @@ const tools: ToolMeta[] = [
       'Use the Minify button to compress JSON for production use, or adjust indentation (2 spaces, 4 spaces, tabs) using the format options.',
     ],
     faq: [
-      { q: 'Does this validate my JSON?', a: 'Yes. Invalid JSON is highlighted with an error message showing exactly where the problem is — missing commas, unquoted keys, trailing commas, and other common mistakes are all detected.' },
+      { q: 'Does this validate my JSON?', a: 'Yes. Invalid JSON is highlighted with an error message showing exactly where the problem is - missing commas, unquoted keys, trailing commas, and other common mistakes are all detected.' },
       { q: 'Can I minify JSON?', a: 'Yes. Use the Minify button to remove all whitespace and produce compact JSON, ideal for reducing payload size in API responses or configuration files.' },
       { q: 'Is my JSON data private?', a: 'Yes. All formatting and validation happens in your browser using JavaScript\'s JSON.parse. Your data is never sent to any server.' },
       { q: 'What indentation options are available?', a: 'You can format JSON with 2 spaces, 4 spaces, or tab indentation depending on your preference or the coding standards of your project.' },
@@ -382,7 +563,7 @@ const tools: ToolMeta[] = [
     howTo: [
       'Choose Camera to scan using your device\'s camera in real time, or Upload Image to decode a QR code from a saved photo or screenshot.',
       'Point your camera at the QR code and hold steady, or upload an image file containing the code.',
-      'The decoded content — URL, plain text, Wi-Fi credentials, or other data — appears below the scanner instantly.',
+      'The decoded content - URL, plain text, Wi-Fi credentials, or other data - appears below the scanner instantly.',
     ],
     faq: [
       { q: 'Can I scan a QR code without a camera?', a: 'Yes. Use the Upload Image tab to scan a QR code from any image file saved on your device, including screenshots and downloaded images.' },
@@ -401,7 +582,7 @@ const tools: ToolMeta[] = [
       h1: 'QR Code Generator',
     },
     howTo: [
-      'Type or paste the content you want to encode — a URL, plain text, phone number, email address, or any other data.',
+      'Type or paste the content you want to encode - a URL, plain text, phone number, email address, or any other data.',
       'Customize the QR code size, error correction level, and foreground/background colors if desired.',
       'Click Download to save the QR code as a PNG image ready for print, web, or digital use.',
     ],
@@ -422,7 +603,7 @@ const tools: ToolMeta[] = [
       h1: 'Barcode Generator',
     },
     howTo: [
-      'Select the barcode format you need — Code 128 for general-purpose alphanumeric content, EAN-13 or UPC-A for retail products.',
+      'Select the barcode format you need - Code 128 for general-purpose alphanumeric content, EAN-13 or UPC-A for retail products.',
       'Enter your barcode data in the input field. Note that EAN-13 requires exactly 12 digits (the 13th check digit is added automatically).',
       'Click Download PNG to save a high-quality barcode image ready for print labels, packaging, or digital use.',
     ],
@@ -431,7 +612,7 @@ const tools: ToolMeta[] = [
       { q: 'What format should I use for product barcodes?', a: 'Use EAN-13 for international retail products (found on most global consumer goods), UPC-A for US and Canada retail, and EAN-8 for smaller packages where space is limited. These formats require specific digit counts.' },
       { q: 'Can I download the barcode?', a: 'Yes. Click Download PNG to save a high-quality, scalable PNG image of your barcode suitable for both print and digital applications.' },
       { q: 'Is the barcode generated locally?', a: 'Yes. All barcode generation runs in your browser using the JsBarcode library. Nothing is sent to any server.' },
-      { q: 'Why does EAN-13 require exactly 12 digits?', a: 'EAN-13 has a 13th check digit that is automatically calculated from the first 12 digits using the Luhn-like algorithm. You only need to enter the first 12 digits — the tool adds the check digit for you.' },
+      { q: 'Why does EAN-13 require exactly 12 digits?', a: 'EAN-13 has a 13th check digit that is automatically calculated from the first 12 digits using the Luhn-like algorithm. You only need to enter the first 12 digits - the tool adds the check digit for you.' },
     ],
   },
   {
@@ -444,15 +625,15 @@ const tools: ToolMeta[] = [
       h1: 'Password Generator',
     },
     howTo: [
-      'Set your desired password length using the slider — 16 characters is recommended as a minimum for strong passwords.',
+      'Set your desired password length using the slider - 16 characters is recommended as a minimum for strong passwords.',
       'Toggle the character types you want included: uppercase letters, lowercase letters, numbers, and special symbols.',
       'Click Generate to create a new password, then click Copy to copy it to your clipboard. Store it in a password manager.',
     ],
     faq: [
       { q: 'How secure are the generated passwords?', a: 'Passwords are generated using your browser\'s cryptographic random number generator (crypto.getRandomValues), which is the same API used by security-critical applications. They are never sent to any server.' },
-      { q: 'What makes a strong password?', a: 'A strong password is at least 16 characters long and includes a mix of uppercase letters, lowercase letters, numbers, and special symbols. Length is the most important factor — a 20-character password is far stronger than a complex 8-character one.' },
+      { q: 'What makes a strong password?', a: 'A strong password is at least 16 characters long and includes a mix of uppercase letters, lowercase letters, numbers, and special symbols. Length is the most important factor - a 20-character password is far stronger than a complex 8-character one.' },
       { q: 'Can I generate multiple passwords at once?', a: 'You can generate new passwords by clicking the Generate button repeatedly. Each result is cryptographically random and statistically independent of the previous ones.' },
-      { q: 'Should I use a password manager?', a: 'Yes. Store generated passwords in a password manager like Bitwarden (free, open-source), 1Password, or KeePass. Never reuse passwords across different accounts — a data breach on one site should not compromise others.' },
+      { q: 'Should I use a password manager?', a: 'Yes. Store generated passwords in a password manager like Bitwarden (free, open-source), 1Password, or KeePass. Never reuse passwords across different accounts - a data breach on one site should not compromise others.' },
     ],
   },
   {
@@ -466,13 +647,13 @@ const tools: ToolMeta[] = [
     },
     howTo: [
       'Enter or paste the text you want to encode in the input box. The Base64-encoded output appears instantly.',
-      'To decode, switch to Decode mode and paste a Base64 string — the original text is revealed immediately.',
+      'To decode, switch to Decode mode and paste a Base64 string - the original text is revealed immediately.',
       'Use the Swap button to quickly reverse direction, or Copy to copy the output to your clipboard.',
     ],
     faq: [
       { q: 'What is Base64 encoding?', a: 'Base64 is a way of encoding binary data as ASCII text using 64 printable characters (A-Z, a-z, 0-9, +, /). It is widely used to safely transmit binary content through systems that only handle text.' },
       { q: 'When would I need Base64?', a: 'Common uses include embedding images in HTML/CSS as data URLs (data:image/png;base64,...), sending binary data in JSON API payloads, encoding email attachments in MIME format, and creating Basic Auth headers (username:password encoded as Base64).' },
-      { q: 'Is Base64 encryption?', a: 'No. Base64 is encoding, not encryption. It makes data safe to transport through text-based systems but provides zero security. Anyone can instantly decode a Base64 string. Never use it to protect sensitive data — use proper encryption instead.' },
+      { q: 'Is Base64 encryption?', a: 'No. Base64 is encoding, not encryption. It makes data safe to transport through text-based systems but provides zero security. Anyone can instantly decode a Base64 string. Never use it to protect sensitive data - use proper encryption instead.' },
     ],
   },
   {
@@ -486,12 +667,12 @@ const tools: ToolMeta[] = [
     },
     howTo: [
       'Type or paste the text you want to hash into the input field.',
-      'All hash formats — MD5, SHA-1, SHA-256, and SHA-512 — are generated simultaneously and update in real time as you type.',
+      'All hash formats - MD5, SHA-1, SHA-256, and SHA-512 - are generated simultaneously and update in real time as you type.',
       'Click the copy icon next to any hash to copy it to your clipboard.',
     ],
     faq: [
-      { q: 'What is the difference between MD5 and SHA-256?', a: 'MD5 produces a 128-bit hash and is fast but cryptographically broken — it should not be used for security purposes. SHA-256 produces a 256-bit hash and is the current standard for secure hashing, used in TLS certificates, code signing, and blockchain.' },
-      { q: 'What are hashes used for?', a: 'Hashes verify file integrity (checksums), store passwords securely, create digital signatures, and detect data tampering. A hash is a fixed-size fingerprint of any input — even a single character change produces a completely different hash.' },
+      { q: 'What is the difference between MD5 and SHA-256?', a: 'MD5 produces a 128-bit hash and is fast but cryptographically broken - it should not be used for security purposes. SHA-256 produces a 256-bit hash and is the current standard for secure hashing, used in TLS certificates, code signing, and blockchain.' },
+      { q: 'What are hashes used for?', a: 'Hashes verify file integrity (checksums), store passwords securely, create digital signatures, and detect data tampering. A hash is a fixed-size fingerprint of any input - even a single character change produces a completely different hash.' },
       { q: 'Is my data sent to a server?', a: 'No. All hashing runs in your browser using the Web Crypto API (for SHA family) and pure JavaScript (for MD5). Your input never leaves your device.' },
     ],
   },
@@ -510,9 +691,9 @@ const tools: ToolMeta[] = [
       'Use Bulk Generate to create multiple UUIDs at once and copy them all with a single click.',
     ],
     faq: [
-      { q: 'What is a UUID?', a: 'A UUID (Universally Unique Identifier) is a 128-bit identifier standardized in RFC 4122. UUID v4 uses random numbers and is the most commonly used version — it looks like: 550e8400-e29b-41d4-a716-446655440000.' },
+      { q: 'What is a UUID?', a: 'A UUID (Universally Unique Identifier) is a 128-bit identifier standardized in RFC 4122. UUID v4 uses random numbers and is the most commonly used version - it looks like: 550e8400-e29b-41d4-a716-446655440000.' },
       { q: 'Can I generate multiple UUIDs?', a: 'Yes. Use Bulk Generate to create a list of UUIDs at once. Options include uppercase, lowercase, and no-dash formats to match your system\'s requirements.' },
-      { q: 'Are UUIDs truly unique?', a: 'With 2^122 possible values (about 5.3 × 10^36), the probability of generating the same UUID v4 twice is astronomically small — effectively zero for any practical application, even at massive scale.' },
+      { q: 'Are UUIDs truly unique?', a: 'With 2^122 possible values (about 5.3 × 10^36), the probability of generating the same UUID v4 twice is astronomically small - effectively zero for any practical application, even at massive scale.' },
     ],
   },
   {
@@ -547,7 +728,7 @@ const tools: ToolMeta[] = [
     howTo: [
       'Paste the original text into the left panel.',
       'Paste the new or modified version into the right panel.',
-      'Differences are highlighted immediately — green for lines that were added and red for lines that were removed.',
+      'Differences are highlighted immediately - green for lines that were added and red for lines that were removed.',
     ],
     faq: [
       { q: 'How does the text comparison work?', a: 'The tool uses a longest common subsequence (LCS) algorithm to identify differences between two texts, highlighting added lines in green and removed lines in red, similar to how git diff works.' },
@@ -577,6 +758,65 @@ const tools: ToolMeta[] = [
     ],
   },
 
+  {
+    id: 'csv2json', slug: 'csv-to-json', name: 'CSV to JSON', desc: 'Convert CSV data to JSON format',
+    emoji: '📋', tags: ['csv', 'json', 'convert', 'data', 'dev'], category: 'Dev Tools',
+    componentPath: 'devtools/CSVtoJSON',
+    seo: {
+      title: 'CSV to JSON Converter | Free Online | Neetab',
+      description: 'Convert CSV files or pasted data to JSON format instantly. Supports headers, auto-detects delimiters. Free and private.',
+      h1: 'CSV to JSON Converter',
+    },
+    howTo: [
+      'Paste CSV data into the input box or upload a CSV file.',
+      'Toggle "Header row" if your CSV has column headers to use them as JSON keys.',
+      'The JSON output is generated instantly. Copy or download the result.',
+    ],
+    faq: [
+      { q: 'Does it handle CSV with headers?', a: 'Yes. When "Header row" is enabled, the first row becomes the key names in each JSON object. Without headers, rows are converted to arrays.' },
+      { q: 'What delimiters are supported?', a: 'Comma, semicolon, and tab delimiters are auto-detected. Most CSV files use commas, but European formats often use semicolons.' },
+      { q: 'Is my data sent to a server?', a: 'No. Conversion uses PapaParse in your browser. Your data never leaves your device.' },
+    ],
+  },
+  {
+    id: 'htmlformat', slug: 'html-formatter', name: 'HTML Formatter', desc: 'Beautify or minify HTML code',
+    emoji: '🏷️', tags: ['html', 'format', 'beautify', 'minify', 'dev'], category: 'Dev Tools', wide: true,
+    componentPath: 'devtools/HTMLFormatter',
+    seo: {
+      title: 'HTML Formatter & Minifier | Free Online | Neetab',
+      description: 'Beautify or minify HTML code online. Proper indentation, size savings shown. Free online HTML formatter.',
+      h1: 'HTML Formatter & Minifier',
+    },
+    howTo: [
+      'Paste your HTML code into the input box.',
+      'Click Beautify to add proper indentation and formatting, or Minify to collapse it into a single compact line.',
+      'Copy the output or see the size savings percentage.',
+    ],
+    faq: [
+      { q: 'Does beautifying affect how the HTML renders?', a: 'No. Adding whitespace between tags does not change how browsers render the HTML. The visual output remains identical.' },
+      { q: 'Is this safe for production HTML?', a: 'Minified HTML is safe for production and reduces page size. Always test in a browser after minifying to confirm nothing was accidentally altered.' },
+    ],
+  },
+  {
+    id: 'base64img', slug: 'base64-to-image', name: 'Base64 to Image', desc: 'Decode Base64 strings to images',
+    emoji: '🖼️', tags: ['base64', 'image', 'decode', 'data-url', 'dev'], category: 'Dev Tools',
+    componentPath: 'devtools/Base64toImage',
+    seo: {
+      title: 'Base64 to Image Decoder | Free Online | Neetab',
+      description: 'Decode Base64 strings or data URLs to images. Preview and download instantly. Free and private.',
+      h1: 'Base64 to Image Decoder',
+    },
+    howTo: [
+      'Paste a Base64 string or a full data URL (data:image/png;base64,...) into the input.',
+      'The image preview appears instantly.',
+      'Click Download to save the decoded image to your device.',
+    ],
+    faq: [
+      { q: 'What is the difference between a data URL and raw Base64?', a: 'A data URL includes a MIME type prefix: data:image/png;base64,... A raw Base64 string is just the encoded data without that prefix. This tool handles both automatically.' },
+      { q: 'Is my data sent to a server?', a: 'No. Decoding happens entirely in your browser using the built-in atob() function.' },
+    ],
+  },
+
   // ═══ CONVERTERS ═══
   {
     id: 'unit', slug: 'unit-converter', name: 'Unit Converter', desc: 'Length, weight, temp, volume & more',
@@ -588,7 +828,7 @@ const tools: ToolMeta[] = [
       h1: 'Unit Converter',
     },
     howTo: [
-      'Select the measurement category — length, weight, temperature, volume, speed, area, or data storage.',
+      'Select the measurement category - length, weight, temperature, volume, speed, area, or data storage.',
       'Enter a value and select the source unit from the dropdown.',
       'All equivalent values in other units are shown instantly. Select a different output unit to focus on a specific conversion.',
     ],
@@ -615,8 +855,48 @@ const tools: ToolMeta[] = [
     faq: [
       { q: 'Where do the exchange rates come from?', a: 'Rates are sourced from the European Central Bank (ECB) via the Frankfurter API, a free and open-source exchange rate service. ECB rates are published daily on business days and are widely used as a reliable reference rate.' },
       { q: 'How many currencies are supported?', a: 'Over 30 currencies including USD, EUR, GBP, JPY, CAD, AUD, CHF, INR, NGN, BRL, MXN, KRW, and many more.' },
-      { q: 'Are the rates real-time?', a: 'Rates are updated once per business day by the European Central Bank. For live intraday trading rates, use a dedicated forex platform — ECB rates are reference rates, not live market rates.' },
+      { q: 'Are the rates real-time?', a: 'Rates are updated once per business day by the European Central Bank. For live intraday trading rates, use a dedicated forex platform - ECB rates are reference rates, not live market rates.' },
       { q: 'Is my conversion data saved?', a: 'No. Conversions happen in real time in your browser. No amounts or currency selections are stored or tracked.' },
+    ],
+  },
+
+  {
+    id: 'excel2csv', slug: 'excel-to-csv', name: 'Excel to CSV', desc: 'Convert Excel files to CSV',
+    emoji: '📊', tags: ['excel', 'xlsx', 'csv', 'convert', 'spreadsheet'], category: 'Converters',
+    componentPath: 'converters/ExcelToCSV',
+    seo: {
+      title: 'Excel to CSV Converter | Free Online | Neetab',
+      description: 'Convert Excel (XLSX/XLS) files to CSV format. Supports multiple sheets. Free and private - runs in your browser.',
+      h1: 'Excel to CSV Converter',
+    },
+    howTo: [
+      'Upload an .xlsx or .xls Excel file.',
+      'If the file has multiple sheets, select the one you want to convert.',
+      'Preview the data and click Download CSV to save the file.',
+    ],
+    faq: [
+      { q: 'What Excel formats are supported?', a: 'Both .xlsx (Excel 2007 and later) and .xls (older Excel format) are supported.' },
+      { q: 'Can I convert multiple sheets?', a: 'You can select and convert one sheet at a time. Switch between sheets using the tab selector that appears for multi-sheet files.' },
+      { q: 'Is my file uploaded to a server?', a: 'No. Conversion uses the SheetJS library entirely in your browser. Your file never leaves your device.' },
+    ],
+  },
+  {
+    id: 'csv2excel', slug: 'csv-to-excel', name: 'CSV to Excel', desc: 'Convert CSV data to Excel XLSX',
+    emoji: '📗', tags: ['csv', 'excel', 'xlsx', 'convert', 'spreadsheet'], category: 'Converters',
+    componentPath: 'converters/CSVtoExcel',
+    seo: {
+      title: 'CSV to Excel Converter | Free Online | Neetab',
+      description: 'Convert CSV files or pasted data to Excel XLSX format. Free and private - runs in your browser with SheetJS.',
+      h1: 'CSV to Excel Converter',
+    },
+    howTo: [
+      'Paste CSV data or upload a .csv file.',
+      'Preview the data as a table. Set a sheet name if desired.',
+      'Click Download XLSX to save the Excel file.',
+    ],
+    faq: [
+      { q: 'Does the Excel file support formatting?', a: 'The generated XLSX file contains the data in a clean spreadsheet. Advanced formatting like merged cells or formulas are not added - just the raw data ready to open in Excel or Google Sheets.' },
+      { q: 'Is my data sent to a server?', a: 'No. The conversion uses SheetJS entirely in your browser.' },
     ],
   },
 
@@ -673,7 +953,7 @@ const tools: ToolMeta[] = [
     },
     howTo: [
       'Type Markdown syntax in the left editor panel.',
-      'The rendered HTML preview updates live in the right panel as you type — no button press needed.',
+      'The rendered HTML preview updates live in the right panel as you type - no button press needed.',
       'Your Markdown is processed entirely in your browser. Use the Copy button to copy either the source or the rendered content.',
     ],
     faq: [
@@ -694,12 +974,12 @@ const tools: ToolMeta[] = [
     },
     howTo: [
       'Paste your CSS code into the input box.',
-      'Click Minify to compress your CSS by removing whitespace, comments, and redundant characters — or click Beautify to expand minified CSS into readable, indented code.',
+      'Click Minify to compress your CSS by removing whitespace, comments, and redundant characters - or click Beautify to expand minified CSS into readable, indented code.',
       'The size savings or expansion are displayed above the output. Click Copy to copy the result.',
     ],
     faq: [
-      { q: 'How much can CSS minification save?', a: 'Typically 20–50% of file size by removing comments, whitespace between rules, and unnecessary characters. Highly commented or loosely formatted CSS can see even greater savings. Every kilobyte saved improves page load speed.' },
-      { q: 'Does minification change how my CSS works?', a: 'No. Minification only removes formatting and comments. The CSS selectors, properties, and values — and therefore the visual rendering — remain completely identical to the original.' },
+      { q: 'How much can CSS minification save?', a: 'Typically 20-50% of file size by removing comments, whitespace between rules, and unnecessary characters. Highly commented or loosely formatted CSS can see even greater savings. Every kilobyte saved improves page load speed.' },
+      { q: 'Does minification change how my CSS works?', a: 'No. Minification only removes formatting and comments. The CSS selectors, properties, and values - and therefore the visual rendering - remain completely identical to the original.' },
       { q: 'What is the difference between minification and compression?', a: 'Minification removes whitespace and comments from the source code itself, permanently reducing the file size. HTTP compression (gzip or brotli) is applied by the web server at transfer time, compressing the file for transmission without changing the stored file. Both techniques are complementary and can be used together.' },
     ],
   },
@@ -714,13 +994,13 @@ const tools: ToolMeta[] = [
     },
     howTo: [
       'Choose the type of output you need: paragraphs, sentences, or a specific word count.',
-      'Enter the desired count — for example, 3 paragraphs or 50 words.',
+      'Enter the desired count - for example, 3 paragraphs or 50 words.',
       'Click Generate and copy the Lorem Ipsum placeholder text for use in your designs, mockups, or prototypes.',
     ],
     faq: [
       { q: 'What is Lorem Ipsum?', a: 'Lorem Ipsum is dummy placeholder text derived from Cicero\'s "de Finibus Bonorum et Malorum" (45 BC). It has been the standard dummy text in the printing and typesetting industry since the 1500s and is used to fill layouts without distracting with real content.' },
       { q: 'Can I generate a specific number of words?', a: 'Yes. Switch to Words mode and enter any number from 1 upward to get an exact word count. Paragraphs and Sentences modes are also available for different layout needs.' },
-      { q: 'Does it always start with "Lorem ipsum"?', a: 'The traditional Lorem Ipsum always begins with "Lorem ipsum dolor sit amet, consectetur adipiscing elit..." — our generator uses this standard opening for the first paragraph to match the classic placeholder text everyone recognizes.' },
+      { q: 'Does it always start with "Lorem ipsum"?', a: 'The traditional Lorem Ipsum always begins with "Lorem ipsum dolor sit amet, consectetur adipiscing elit..." - our generator uses this standard opening for the first paragraph to match the classic placeholder text everyone recognizes.' },
     ],
   },
   {
@@ -738,12 +1018,127 @@ const tools: ToolMeta[] = [
       'Click Speak to start playback. Click Stop to pause, and Resume to continue from where you left off.',
     ],
     faq: [
-      { q: 'What voices are available?', a: 'The available voices depend on your browser and operating system. Most modern browsers offer dozens of voices in multiple languages — Chrome and Edge tend to have the widest selection, including high-quality neural voices on Windows.' },
+      { q: 'What voices are available?', a: 'The available voices depend on your browser and operating system. Most modern browsers offer dozens of voices in multiple languages - Chrome and Edge tend to have the widest selection, including high-quality neural voices on Windows.' },
       { q: 'Does this work offline?', a: 'Yes. Text-to-speech uses your browser\'s built-in Web Speech API speech synthesis engine, which runs locally. No internet connection is needed after the page loads.' },
       { q: 'Is there a text length limit?', a: 'The input is limited to 10,000 characters. For very long texts, split the content into sections for best results, as some browsers have limits on single synthesis utterances.' },
       { q: 'Can I adjust the reading speed?', a: 'Yes. The Speed slider goes from 0.25× (very slow, useful for language learning) up to 2× (double speed, useful for proofreading). The Pitch slider adjusts the voice tone from deep to high.' },
     ],
   },
+  {
+    id: 'textutils', slug: 'text-utilities', name: 'Text Utilities', desc: 'Sort, reverse, deduplicate and clean text',
+    emoji: '🔧', tags: ['text', 'sort', 'reverse', 'deduplicate', 'clean'], category: 'Text Tools',
+    componentPath: 'text/TextUtilities',
+    seo: {
+      title: 'Text Utilities | Sort, Reverse, Deduplicate Text | Neetab',
+      description: 'Sort lines, reverse text, remove duplicate lines, trim whitespace, and more. Free online text processing tools.',
+      h1: 'Text Utilities',
+    },
+    howTo: [
+      'Paste your text into the input box.',
+      'Click an operation: Sort Lines (A-Z or Z-A), Reverse Text, Reverse Lines, Remove Duplicates, Remove Empty Lines, or Trim Whitespace.',
+      'The result appears in the output box. Copy it with one click.',
+    ],
+    faq: [
+      { q: 'Can I sort lines alphabetically?', a: 'Yes. "Sort A-Z" sorts lines in ascending alphabetical order. "Sort Z-A" sorts in descending order. Sorting is case-insensitive by default.' },
+      { q: 'What does Remove Duplicates do?', a: 'It removes any line that appears more than once, keeping only the first occurrence. Useful for cleaning lists of emails, URLs, or other repeated entries.' },
+    ],
+  },
+  {
+    id: 'wordfreq', slug: 'word-frequency-counter', name: 'Word Frequency', desc: 'Count how often each word appears',
+    emoji: '📊', tags: ['text', 'frequency', 'word', 'count', 'analysis'], category: 'Text Tools',
+    componentPath: 'text/WordFrequencyCounter',
+    seo: {
+      title: 'Word Frequency Counter | Analyze Text | Neetab',
+      description: 'Count word frequency in any text. See the most common words with percentages and bar charts. Filter stop words.',
+      h1: 'Word Frequency Counter',
+    },
+    howTo: [
+      'Paste or type your text into the input box.',
+      'The most frequent words are ranked and displayed with counts, percentages, and visual bars.',
+      'Toggle "Filter common words" to exclude stop words like "the", "and", "is" for more meaningful results.',
+    ],
+    faq: [
+      { q: 'What are stop words?', a: 'Stop words are common function words like "the", "a", "is", "and" that appear frequently in most texts but carry little meaning. Filtering them reveals the content-bearing words.' },
+      { q: 'Is this useful for SEO?', a: 'Yes. Analyzing word frequency helps identify the most-used keywords in your content, which is useful for on-page SEO optimization.' },
+    ],
+  },
+  {
+    id: 'slug', slug: 'slug-generator', name: 'Slug Generator', desc: 'Generate URL-friendly slugs from text',
+    emoji: '🔗', tags: ['slug', 'url', 'seo', 'text', 'permalink'], category: 'Text Tools',
+    componentPath: 'text/SlugGenerator',
+    seo: {
+      title: 'Slug Generator | URL-Friendly Text Converter | Neetab',
+      description: 'Convert any text to a URL-friendly slug. Generates hyphen, underscore, and camelCase variants. Perfect for SEO and permalinks.',
+      h1: 'Slug Generator',
+    },
+    howTo: [
+      'Type or paste your text (e.g. a blog post title or page name).',
+      'The URL slug is generated instantly as you type.',
+      'Choose your preferred format: hyphen-separated, underscore_separated, or camelCase. Copy with one click.',
+    ],
+    faq: [
+      { q: 'What is a URL slug?', a: 'A URL slug is the human-readable part of a URL that identifies a specific page. For example, in neetab.com/tools/slug-generator, the slug is "slug-generator". Good slugs are lowercase, hyphen-separated, and free of special characters.' },
+      { q: 'Are accented characters handled?', a: 'Yes. Accented characters are transliterated to their ASCII equivalents (e.g. "cafe" becomes "cafe") before generating the slug.' },
+    ],
+  },
+  {
+    id: 'findreplace', slug: 'find-and-replace', name: 'Find & Replace', desc: 'Find and replace text with regex support',
+    emoji: '🔍', tags: ['find', 'replace', 'text', 'regex', 'search'], category: 'Text Tools',
+    componentPath: 'text/FindAndReplace',
+    seo: {
+      title: 'Find and Replace | Text Search & Replace Online | Neetab',
+      description: 'Find and replace text online. Supports regex, case-sensitive search, and whole word matching. Highlights matches.',
+      h1: 'Find and Replace',
+    },
+    howTo: [
+      'Paste your source text, then enter what you want to find and what to replace it with.',
+      'Matches are highlighted in real time. Toggle case-sensitive, whole word, or regex options as needed.',
+      'The result with all replacements applied appears in the output box. Copy it with one click.',
+    ],
+    faq: [
+      { q: 'Can I use regular expressions?', a: 'Yes. Toggle "Use regex" to use JavaScript regular expression syntax in the Find field. For example, \\d+ matches any number, and (\\w+)@(\\w+) captures email parts.' },
+      { q: 'Is this case-sensitive?', a: 'By default no. Toggle "Case sensitive" to make the search match the exact case of your search term.' },
+    ],
+  },
+  {
+    id: 'roman', slug: 'roman-numeral-converter', name: 'Roman Numeral Converter', desc: 'Convert between Arabic and Roman numerals',
+    emoji: 'X', tags: ['roman', 'numeral', 'convert', 'number'], category: 'Text Tools',
+    componentPath: 'text/RomanNumeralConverter',
+    seo: {
+      title: 'Roman Numeral Converter | Arabic to Roman | Neetab',
+      description: 'Convert numbers to Roman numerals or Roman numerals to numbers instantly. Shows step-by-step breakdown. Free online converter.',
+      h1: 'Roman Numeral Converter',
+    },
+    howTo: [
+      'Type a number (e.g. 2024) to convert it to Roman numerals, or type a Roman numeral (e.g. MMXXIV) to convert it to a number.',
+      'The converter auto-detects which direction to convert.',
+      'See the step-by-step breakdown showing how the value was assembled.',
+    ],
+    faq: [
+      { q: 'What range of numbers is supported?', a: 'Standard Roman numerals represent numbers from 1 to 3999. The number 0 and numbers above 3999 cannot be expressed in classic Roman numeral notation.' },
+      { q: 'Why is there no zero in Roman numerals?', a: 'Roman numerals were developed without a concept of zero. The numeral system is additive and subtractive, not positional, so zero was not needed.' },
+    ],
+  },
+  {
+    id: 'morse', slug: 'morse-code-converter', name: 'Morse Code', desc: 'Convert text to Morse code and play audio',
+    emoji: '📡', tags: ['morse', 'code', 'audio', 'convert', 'signal'], category: 'Text Tools',
+    componentPath: 'text/MorseCodeConverter',
+    seo: {
+      title: 'Morse Code Converter | Text to Morse with Audio | Neetab',
+      description: 'Convert text to Morse code and Morse code to text. Play audio beeps. Adjustable speed. Free online Morse code tool.',
+      h1: 'Morse Code Converter',
+    },
+    howTo: [
+      'Select Text to Morse or Morse to Text mode.',
+      'Type your text or Morse code (use spaces between symbols and / between words).',
+      'Click Play Audio to hear the Morse code as beeps. Adjust the playback speed with the WPM slider.',
+    ],
+    faq: [
+      { q: 'What is WPM in Morse code?', a: 'WPM (words per minute) in Morse code is based on the standard word "PARIS", which contains a representative mix of short and long signals. 15 WPM is a good learning speed; 25+ WPM is considered proficient.' },
+      { q: 'How do I enter Morse code manually?', a: 'Use dots (.) for dits, dashes (-) for dahs, spaces between letters, and / between words. For example: "... --- ..." is SOS.' },
+    ],
+  },
+
   {
     id: 'pomodoro', slug: 'pomodoro-timer', name: 'Pomodoro Timer', desc: '25-minute focus timer with breaks',
     emoji: '🍅', tags: ['timer', 'pomodoro', 'focus', 'productivity', 'time'], category: 'Productivity',
@@ -762,9 +1157,33 @@ const tools: ToolMeta[] = [
       { q: 'What is the Pomodoro Technique?', a: 'A time management method created by Francesco Cirillo in the late 1980s, using 25-minute focused work sessions followed by 5-minute breaks. After 4 sessions, take a longer 15-minute break. The technique helps maintain focus and reduces mental fatigue.' },
       { q: 'Will I hear a sound when the timer ends?', a: 'Yes. A short notification sound plays when each session ends, alerting you to take a break or start the next focus session even if you are looking at a different tab.' },
       { q: 'Does the timer work in the background?', a: 'Yes. The timer continues running even if you switch tabs or minimize your browser. The page title updates with the remaining time so you can glance at your tab bar without switching back.' },
-      { q: 'Can I customize the Pomodoro interval?', a: 'The standard Pomodoro Technique uses fixed 25-minute work sessions and 5-minute breaks — this timer follows that original specification. The fixed intervals are intentional to the technique\'s effectiveness.' },
+      { q: 'Can I customize the Pomodoro interval?', a: 'The standard Pomodoro Technique uses fixed 25-minute work sessions and 5-minute breaks - this timer follows that original specification. The fixed intervals are intentional to the technique\'s effectiveness.' },
     ],
   },
+  // ═══ DESIGN TOOLS (new) ═══
+  {
+    id: 'colorfrompic', slug: 'color-palette-from-image', name: 'Color Palette from Image', desc: 'Extract colors from any image or PDF',
+    emoji: '🖼️', tags: ['color', 'palette', 'extract', 'image', 'pdf', 'design'], category: 'Design Tools', popular: true,
+    componentPath: 'design/ColorPickerFromImage',
+    seo: {
+      title: 'Color Palette from Image | Extract Colors Free | Neetab',
+      description: 'Extract dominant color palettes from images and PDFs. Get HEX, RGB, and HSL values instantly. Free and private.',
+      h1: 'Color Palette from Image',
+    },
+    howTo: [
+      'Upload an image (PNG, JPG, WebP) or a PDF file by clicking the upload area or dragging it in.',
+      'The dominant colors are extracted automatically using k-means clustering and shown as a palette.',
+      'Click any color swatch or value to copy it. Adjust the number of colors (4-12) using the count buttons. Use "Copy all HEX codes" to export the full palette.',
+    ],
+    faq: [
+      { q: 'How does color extraction work?', a: 'The tool uses k-means clustering on pixel samples from your image. It groups similar colors together and calculates the average of each cluster, producing the most representative dominant colors in the image.' },
+      { q: 'How many colors can I extract?', a: 'You can extract 4, 6, 8, 10, or 12 dominant colors. More colors gives a more detailed palette; fewer gives the most essential hues. You can switch between counts after uploading without re-uploading.' },
+      { q: 'Does this work with PDFs?', a: 'Yes. For PDFs, the first page is rendered and colors are extracted from it. This is useful for extracting brand colors from a PDF presentation, brochure, or document.' },
+      { q: 'Is my file uploaded to a server?', a: 'No. All processing runs entirely in your browser - images use the Canvas API and PDFs use PDF.js. Your files never leave your device.' },
+      { q: 'Can I use the extracted colors in my designs?', a: 'Yes. Copy individual colors in HEX, RGB, or HSL format for use in CSS, Figma, Sketch, or any other design tool. Use "Copy all HEX codes" to export the full palette at once.' },
+    ],
+  },
+
   // ═══ FILE TOOLS (new) ═══
   {
     id: 'imgresizer', slug: 'image-resizer', name: 'Image Resizer', desc: 'Resize images to exact dimensions',
@@ -782,9 +1201,9 @@ const tools: ToolMeta[] = [
     ],
     faq: [
       { q: 'Does the aspect ratio lock work automatically?', a: 'Yes. When the lock is enabled, changing the width automatically recalculates the height to maintain the original proportions, and vice versa. Toggle the lock icon to resize freely without constraints.' },
-      { q: 'What formats can I export to?', a: 'JPEG (best for photos), PNG (best for transparency and graphics), and WebP (best for web — smaller files with great quality). WebP is supported in all modern browsers.' },
+      { q: 'What formats can I export to?', a: 'JPEG (best for photos), PNG (best for transparency and graphics), and WebP (best for web - smaller files with great quality). WebP is supported in all modern browsers.' },
       { q: 'Is my image uploaded to a server?', a: 'No. Resizing runs entirely in your browser using the HTML Canvas API. Your images never leave your device.' },
-      { q: 'Can I upscale an image?', a: 'Yes, you can enter dimensions larger than the original. Note that upscaling increases file size and does not add detail — the result may appear soft or pixelated. For best quality, resize down rather than up.' },
+      { q: 'Can I upscale an image?', a: 'Yes, you can enter dimensions larger than the original. Note that upscaling increases file size and does not add detail - the result may appear soft or pixelated. For best quality, resize down rather than up.' },
     ],
   },
   {
@@ -797,7 +1216,7 @@ const tools: ToolMeta[] = [
       h1: 'HEIC to JPG Converter',
     },
     howTo: [
-      'Upload your HEIC or HEIF photo files — drag and drop or click to select. Multiple files are supported.',
+      'Upload your HEIC or HEIF photo files - drag and drop or click to select. Multiple files are supported.',
       'Conversion happens automatically in your browser. A preview of each converted file is shown with its file size.',
       'Click Download on any individual file or Download All to save all converted JPEGs at once.',
     ],
@@ -814,19 +1233,19 @@ const tools: ToolMeta[] = [
     componentPath: 'file/SVGtoPNG',
     seo: {
       title: 'SVG to PNG Converter | Free Online | Neetab',
-      description: 'Convert SVG vector files to PNG images at any scale. Free and private — runs entirely in your browser.',
+      description: 'Convert SVG vector files to PNG images at any scale. Free and private - runs entirely in your browser.',
       h1: 'SVG to PNG Converter',
     },
     howTo: [
       'Upload an SVG file by clicking the upload area or dragging it in.',
-      'Use the scale slider to set your desired output resolution — 2× gives double the source dimensions, great for retina displays.',
+      'Use the scale slider to set your desired output resolution - 2× gives double the source dimensions, great for retina displays.',
       'Click Export as PNG to download the rasterized image at your chosen resolution.',
     ],
     faq: [
       { q: 'What does scale mean for SVG to PNG?', a: 'SVG files are resolution-independent vectors. The scale multiplier determines the output PNG dimensions. At 2×, a 512×512 SVG produces a 1024×1024 PNG. Higher scales produce larger, sharper images suitable for print or retina displays.' },
       { q: 'Will the PNG have a transparent background?', a: 'Yes, if your SVG has a transparent background, the exported PNG will preserve that transparency. PNG natively supports alpha channel transparency.' },
       { q: 'Is my SVG file uploaded to a server?', a: 'No. The conversion runs entirely in your browser using the HTML Canvas API. Your SVG file never leaves your device.' },
-      { q: 'Why would I convert SVG to PNG?', a: 'SVG is not supported everywhere — some apps, word processors, and email clients cannot display SVG. PNG is universally supported and is the best format when you need a raster version of a vector graphic.' },
+      { q: 'Why would I convert SVG to PNG?', a: 'SVG is not supported everywhere - some apps, word processors, and email clients cannot display SVG. PNG is universally supported and is the best format when you need a raster version of a vector graphic.' },
     ],
   },
   {
@@ -835,12 +1254,12 @@ const tools: ToolMeta[] = [
     componentPath: 'file/MergePDF',
     seo: {
       title: 'Merge PDF | Combine PDF Files Online Free | Neetab',
-      description: 'Merge multiple PDF files into one. Reorder pages, drag and drop. Free and private — runs in your browser with pdf-lib.',
+      description: 'Merge multiple PDF files into one. Reorder pages, drag and drop. Free and private - runs in your browser with pdf-lib.',
       h1: 'Merge PDF Files',
     },
     howTo: [
       'Upload two or more PDF files by clicking the upload area or dragging them in.',
-      'Reorder the files by dragging them into your preferred sequence — the merged PDF will follow this order.',
+      'Reorder the files by dragging them into your preferred sequence - the merged PDF will follow this order.',
       'Click Merge & Download to combine all PDFs into a single file and save it to your device.',
     ],
     faq: [
@@ -863,11 +1282,11 @@ const tools: ToolMeta[] = [
     },
     howTo: [
       'Type or paste your text into the input box.',
-      'All case conversions are shown simultaneously — UPPER CASE, lower case, Title Case, camelCase, PascalCase, snake_case, kebab-case, and more.',
+      'All case conversions are shown simultaneously - UPPER CASE, lower case, Title Case, camelCase, PascalCase, snake_case, kebab-case, and more.',
       'Click Copy next to any variant to copy it to your clipboard.',
     ],
     faq: [
-      { q: 'What case formats are supported?', a: 'UPPER CASE, lower case, Title Case, Sentence case, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, and aLtErNaTiNg case — all generated simultaneously from a single input.' },
+      { q: 'What case formats are supported?', a: 'UPPER CASE, lower case, Title Case, Sentence case, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, and aLtErNaTiNg case - all generated simultaneously from a single input.' },
       { q: 'What is camelCase?', a: 'camelCase joins words with no separators, where the first word is lowercase and each subsequent word starts with a capital letter. Example: "myVariableName". Used widely in JavaScript, Java, and Swift.' },
       { q: 'What is snake_case?', a: 'snake_case uses underscores between words with all letters in lowercase. Example: "my_variable_name". Common in Python, Ruby, and database column names.' },
       { q: 'What is kebab-case?', a: 'kebab-case uses hyphens between words with all lowercase letters. Example: "my-component-name". Standard for HTML attributes, CSS class names, and URL slugs.' },
@@ -879,7 +1298,7 @@ const tools: ToolMeta[] = [
     componentPath: 'devtools/JWTDecoder',
     seo: {
       title: 'JWT Decoder | Decode JSON Web Tokens Online | Neetab',
-      description: 'Decode and inspect JWT tokens instantly. View header, payload, and expiry. Free and private — runs in your browser.',
+      description: 'Decode and inspect JWT tokens instantly. View header, payload, and expiry. Free and private - runs in your browser.',
       h1: 'JWT Decoder',
     },
     howTo: [
@@ -890,7 +1309,7 @@ const tools: ToolMeta[] = [
     faq: [
       { q: 'What is a JWT?', a: 'A JSON Web Token (JWT) is a compact, URL-safe token format used to represent claims between parties. It consists of three Base64Url-encoded parts separated by dots: a header, a payload, and a signature.' },
       { q: 'Can this verify the JWT signature?', a: 'No. Signature verification requires the secret key or public key, which this tool does not have access to. The decoder shows the header and payload contents but cannot confirm whether the token was issued by a trusted source.' },
-      { q: 'Is it safe to paste a JWT here?', a: 'This tool runs entirely in your browser — your token is never sent to any server. However, never share JWTs that grant access to sensitive systems in any external tool if you are unsure. Inspect tokens in development environments only.' },
+      { q: 'Is it safe to paste a JWT here?', a: 'This tool runs entirely in your browser - your token is never sent to any server. However, never share JWTs that grant access to sensitive systems in any external tool if you are unsure. Inspect tokens in development environments only.' },
       { q: 'What claims does the payload typically contain?', a: 'Common JWT claims include: sub (subject/user ID), iat (issued at timestamp), exp (expiration timestamp), aud (audience), iss (issuer), and custom application-specific claims.' },
     ],
   },
@@ -904,14 +1323,14 @@ const tools: ToolMeta[] = [
       h1: 'Number Base Converter',
     },
     howTo: [
-      'Type a number in any of the four fields — binary (base 2), octal (base 8), decimal (base 10), or hexadecimal (base 16).',
+      'Type a number in any of the four fields - binary (base 2), octal (base 8), decimal (base 10), or hexadecimal (base 16).',
       'All other bases update instantly as you type.',
       'Click Copy next to any field to copy that representation to your clipboard.',
     ],
     faq: [
       { q: 'What is binary?', a: 'Binary is base 2, using only digits 0 and 1. It is the fundamental language of computers, where every bit is either off (0) or on (1). The decimal number 10 is 1010 in binary.' },
-      { q: 'What is hexadecimal used for?', a: 'Hexadecimal (base 16) uses digits 0–9 and letters A–F. It is widely used in programming for memory addresses, color codes (#FF5733), byte values, and representing binary data compactly — 1 hex digit = 4 binary bits.' },
-      { q: 'What is octal?', a: 'Octal (base 8) uses digits 0–7. It appears in Unix file permissions (e.g., chmod 755) and was historically used in early computing as a compact representation of binary groups of 3 bits.' },
+      { q: 'What is hexadecimal used for?', a: 'Hexadecimal (base 16) uses digits 0-9 and letters A-F. It is widely used in programming for memory addresses, color codes (#FF5733), byte values, and representing binary data compactly - 1 hex digit = 4 binary bits.' },
+      { q: 'What is octal?', a: 'Octal (base 8) uses digits 0-7. It appears in Unix file permissions (e.g., chmod 755) and was historically used in early computing as a compact representation of binary groups of 3 bits.' },
     ],
   },
   {
@@ -949,9 +1368,9 @@ const tools: ToolMeta[] = [
       'Click Copy next to either output to copy it for use in your code.',
     ],
     faq: [
-      { q: 'What is a Base64 data URL?', a: 'A data URL embeds the image directly into HTML or CSS as a Base64-encoded string instead of referencing an external file. Format: data:image/png;base64,iVBORw0KGgo... — the browser renders it without a network request.' },
+      { q: 'What is a Base64 data URL?', a: 'A data URL embeds the image directly into HTML or CSS as a Base64-encoded string instead of referencing an external file. Format: data:image/png;base64,iVBORw0KGgo... - the browser renders it without a network request.' },
       { q: 'When should I use Base64 images?', a: 'Base64 images are useful for small icons and logos that should be bundled with HTML/CSS, email templates (which cannot use external images reliably), and offline-first web apps that need to embed assets.' },
-      { q: 'Does Base64 increase file size?', a: 'Yes. Base64 encoding increases the data size by approximately 33% compared to the binary image file. Use it selectively for small images — large images are better served as external files.' },
+      { q: 'Does Base64 increase file size?', a: 'Yes. Base64 encoding increases the data size by approximately 33% compared to the binary image file. Use it selectively for small images - large images are better served as external files.' },
       { q: 'Is my image uploaded to a server?', a: 'No. The encoding uses the browser\'s built-in FileReader API. Your image never leaves your device.' },
     ],
   },
@@ -975,6 +1394,25 @@ const tools: ToolMeta[] = [
       { q: 'Will I hear an alarm when it finishes?', a: 'Yes. Three short beeps play when the countdown reaches zero. Make sure your device volume is not muted. Some browsers require a user interaction on the page before audio can play.' },
       { q: 'What are the quick presets?', a: 'One-click buttons for 1, 5, 10, 15, and 30 minutes, plus 1 hour. Tap any preset to instantly set that duration, then click Start.' },
       { q: 'Can I pause and resume?', a: 'Yes. Click Pause to freeze the countdown, then Resume to continue from exactly where it stopped. The progress ring and tab title remain accurate throughout.' },
+    ],
+  },
+  {
+    id: 'stopwatch', slug: 'stopwatch', name: 'Stopwatch', desc: 'Stopwatch with lap times',
+    emoji: '⏱️', tags: ['stopwatch', 'timer', 'lap', 'time', 'measure'], category: 'Productivity',
+    componentPath: 'generators/Stopwatch',
+    seo: {
+      title: 'Stopwatch Online | Free with Lap Times | Neetab',
+      description: 'Free online stopwatch with lap time tracking. Start, pause, and record lap splits. Works in background - tab title updates.',
+      h1: 'Stopwatch',
+    },
+    howTo: [
+      'Click Start to begin timing.',
+      'Click Lap to record a split time without stopping the stopwatch.',
+      'Click Pause to freeze the time. Click Reset to clear everything and start over.',
+    ],
+    faq: [
+      { q: 'Does the stopwatch work in the background?', a: 'Yes. The stopwatch continues running if you switch tabs. The page title updates with the current time so you can monitor it from the tab bar.' },
+      { q: 'How accurate is the timing?', a: 'The stopwatch uses JavaScript setInterval with 10ms updates, providing centisecond precision. It is accurate enough for most practical timing purposes.' },
     ],
   },
 ];
