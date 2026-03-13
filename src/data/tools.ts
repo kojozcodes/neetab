@@ -33,70 +33,6 @@ export interface Category {
 const tools: ToolMeta[] = [
   // ═══ FILE TOOLS ═══
   {
-    id: 'pdf2word', slug: 'pdf-to-word', name: 'PDF to Word', desc: 'Convert PDF to editable DOCX',
-    emoji: '📝', tags: ['pdf', 'word', 'docx', 'convert'], category: 'File Tools', popular: true,
-    componentPath: 'file/PDFtoWord',
-    seo: {
-      title: 'PDF to Word Converter - Free and Instant | Neetab',
-      description: 'Convert PDF to editable Word documents free - no sign-up. Preserves formatting, tables, and images. Server-side conversion with browser fallback.',
-      h1: 'Free PDF to Word Converter',
-    },
-    howTo: [
-      'Upload your PDF by clicking the upload area or dragging and dropping the file onto it.',
-      'Click Convert. The tool attempts server-side conversion first for best quality, then falls back to browser-based extraction if the server is unavailable.',
-      'Once conversion is complete, click Download to save your editable .docx file. Open it in Microsoft Word, Google Docs, or LibreOffice.',
-    ],
-    faq: [
-      { q: 'Is my PDF file uploaded to a server?', a: 'When server conversion is available, your file is sent securely over HTTPS, processed immediately, and deleted right after conversion. It is never stored, read by humans, or shared with any third party.' },
-      { q: 'What quality can I expect from the conversion?', a: 'Server-side conversion uses pdf2docx and LibreOffice, which preserve layout, tables, images, headers, footers, and text formatting with high accuracy. Complex PDFs with unusual fonts or heavy graphics may require minor manual cleanup after conversion.' },
-      { q: 'Is there a file size limit?', a: 'You can convert PDFs up to 50MB. For best results, keep files under 20MB. Very large PDFs with many pages can take longer to process.' },
-      { q: 'What if the server is not available?', a: 'If the conversion server is offline, the tool automatically falls back to browser-side text extraction using PDF.js, which produces a plain-text DOCX. For complex layouts, wait and try again when the server is back online.' },
-    ],
-  },
-  {
-    id: 'word2pdf', slug: 'word-to-pdf', name: 'Word to PDF', desc: 'Convert DOCX to PDF',
-    emoji: '📃', tags: ['word', 'pdf', 'docx', 'convert'], category: 'File Tools', popular: true,
-    componentPath: 'file/WordToPDF',
-    seo: {
-      title: 'Word to PDF Converter - Free Online | Neetab',
-      description: 'Convert Word documents to PDF free online. Preserves fonts, tables, images, and page layout perfectly. Works with .doc and .docx files instantly.',
-      h1: 'Free Word to PDF Converter',
-    },
-    howTo: [
-      'Upload your .docx or .doc Word file by clicking the upload area or dragging it in.',
-      'Click Convert to PDF. Server-side conversion via LibreOffice preserves your fonts, tables, images, headers, footers, and page layout.',
-      'Download the resulting PDF when conversion is complete. The PDF is universally readable on any device without needing Microsoft Word.',
-    ],
-    faq: [
-      { q: 'Will my Word document formatting be preserved?', a: 'Yes. Server conversion uses LibreOffice, which preserves fonts, tables, images, headers, footers, and page layout with near-perfect accuracy. Complex documents with embedded objects may occasionally need minor formatting adjustments.' },
-      { q: 'Can I convert .doc files or only .docx?', a: 'Both .doc (older Word format) and .docx (modern Word format) are fully supported for conversion to PDF.' },
-      { q: 'Is there a file size limit?', a: 'You can convert Word documents up to 50MB. Most documents are well under this limit. Very long documents with many images may take a few extra seconds to process.' },
-      { q: 'Is my document uploaded to a server?', a: 'When server conversion is used, your file is sent securely over HTTPS, processed immediately, and deleted right after conversion. It is never stored, read, or shared.' },
-      { q: 'Can I convert multiple documents at once?', a: 'Currently one document can be converted at a time. Simply upload another file after each conversion completes - there is no limit on how many you can convert in a session.' },
-    ],
-  },
-  {
-    id: 'imgcompress', slug: 'image-compressor', name: 'Image Compressor', desc: 'Reduce image file size instantly',
-    emoji: '🗜️', tags: ['image', 'compress', 'resize', 'optimize'], category: 'File Tools', popular: true,
-    componentPath: 'file/ImageCompressor',
-    seo: {
-      title: 'Image Compressor - Reduce Image Size Free | Neetab',
-      description: 'Compress JPEG, PNG, and WebP images free online. Reduce file size by up to 80% without visible quality loss. No upload, runs in your browser.',
-      h1: 'Free Online Image Compressor',
-    },
-    howTo: [
-      'Upload a PNG, JPG, or WebP image by clicking the upload area or dragging and dropping it.',
-      'Adjust the quality slider to your preference - 80% is recommended as a sweet spot between file size and visual quality.',
-      'Compare the before and after file sizes in the preview, then click Download to save your compressed image.',
-    ],
-    faq: [
-      { q: 'Does compression reduce image quality?', a: 'You control the quality slider. At 80%, most images look identical to the original while being 60-80% smaller in file size. For photos shared on social media or websites, 70-85% quality is generally indistinguishable from the original.' },
-      { q: 'Is my image uploaded anywhere?', a: 'No. Compression runs entirely in your browser using the HTML Canvas API. Your images never leave your device and are never sent to any server.' },
-      { q: 'What image formats are supported?', a: 'You can compress PNG, JPG, and WebP images. You can also convert between these formats during compression - for example, converting a large PNG to a smaller WebP.' },
-      { q: 'How much can I reduce the file size?', a: 'Typical results are 50-80% file size reduction. A 5MB photo often compresses to under 1MB with no visible quality loss at 80% quality. PNGs with large areas of solid color compress especially well.' },
-    ],
-  },
-  {
     id: 'heic2jpg', slug: 'heic-to-jpg', name: 'HEIC to JPG', desc: 'Convert iPhone HEIC photos to JPEG',
     emoji: '📸', tags: ['heic', 'heif', 'jpg', 'jpeg', 'iphone', 'convert'], category: 'File Tools',
     componentPath: 'file/HEICtoJPG',
@@ -135,6 +71,27 @@ const tools: ToolMeta[] = [
       { q: 'What HTML features are supported?', a: 'Standard HTML and inline CSS are supported. External stylesheets and web fonts may not load due to browser sandbox restrictions. Inline your styles for best results.' },
       { q: 'Is my HTML code sent to a server?', a: 'No. The conversion uses html2canvas and jsPDF entirely in your browser. Your code never leaves your device.' },
       { q: 'Can I convert multi-page content?', a: 'Yes. Long HTML content is automatically split across multiple PDF pages based on A4 or Letter page height.' },
+    ],
+  },
+  {
+    id: 'imgcompress', slug: 'image-compressor', name: 'Image Compressor', desc: 'Reduce image file size instantly',
+    emoji: '🗜️', tags: ['image', 'compress', 'resize', 'optimize'], category: 'File Tools', popular: true,
+    componentPath: 'file/ImageCompressor',
+    seo: {
+      title: 'Image Compressor - Reduce Image Size Free | Neetab',
+      description: 'Compress JPEG, PNG, and WebP images free online. Reduce file size by up to 80% without visible quality loss. No upload, runs in your browser.',
+      h1: 'Free Online Image Compressor',
+    },
+    howTo: [
+      'Upload a PNG, JPG, or WebP image by clicking the upload area or dragging and dropping it.',
+      'Adjust the quality slider to your preference - 80% is recommended as a sweet spot between file size and visual quality.',
+      'Compare the before and after file sizes in the preview, then click Download to save your compressed image.',
+    ],
+    faq: [
+      { q: 'Does compression reduce image quality?', a: 'You control the quality slider. At 80%, most images look identical to the original while being 60-80% smaller in file size. For photos shared on social media or websites, 70-85% quality is generally indistinguishable from the original.' },
+      { q: 'Is my image uploaded anywhere?', a: 'No. Compression runs entirely in your browser using the HTML Canvas API. Your images never leave your device and are never sent to any server.' },
+      { q: 'What image formats are supported?', a: 'You can compress PNG, JPG, and WebP images. You can also convert between these formats during compression - for example, converting a large PNG to a smaller WebP.' },
+      { q: 'How much can I reduce the file size?', a: 'Typical results are 50-80% file size reduction. A 5MB photo often compresses to under 1MB with no visible quality loss at 80% quality. PNGs with large areas of solid color compress especially well.' },
     ],
   },
   {
@@ -284,6 +241,27 @@ const tools: ToolMeta[] = [
     ],
   },
   {
+    id: 'pdf2word', slug: 'pdf-to-word', name: 'PDF to Word', desc: 'Convert PDF to editable DOCX',
+    emoji: '📝', tags: ['pdf', 'word', 'docx', 'convert'], category: 'File Tools', popular: true,
+    componentPath: 'file/PDFtoWord',
+    seo: {
+      title: 'PDF to Word Converter - Free and Instant | Neetab',
+      description: 'Convert PDF to editable Word documents free - no sign-up. Preserves formatting, tables, and images. Server-side conversion with browser fallback.',
+      h1: 'Free PDF to Word Converter',
+    },
+    howTo: [
+      'Upload your PDF by clicking the upload area or dragging and dropping the file onto it.',
+      'Click Convert. The tool attempts server-side conversion first for best quality, then falls back to browser-based extraction if the server is unavailable.',
+      'Once conversion is complete, click Download to save your editable .docx file. Open it in Microsoft Word, Google Docs, or LibreOffice.',
+    ],
+    faq: [
+      { q: 'Is my PDF file uploaded to a server?', a: 'When server conversion is available, your file is sent securely over HTTPS, processed immediately, and deleted right after conversion. It is never stored, read by humans, or shared with any third party.' },
+      { q: 'What quality can I expect from the conversion?', a: 'Server-side conversion uses pdf2docx and LibreOffice, which preserve layout, tables, images, headers, footers, and text formatting with high accuracy. Complex PDFs with unusual fonts or heavy graphics may require minor manual cleanup after conversion.' },
+      { q: 'Is there a file size limit?', a: 'You can convert PDFs up to 50MB. For best results, keep files under 20MB. Very large PDFs with many pages can take longer to process.' },
+      { q: 'What if the server is not available?', a: 'If the conversion server is offline, the tool automatically falls back to browser-side text extraction using PDF.js, which produces a plain-text DOCX. For complex layouts, wait and try again when the server is back online.' },
+    ],
+  },
+  {
     id: 'splitpdf', slug: 'split-pdf', name: 'Split PDF', desc: 'Split or extract pages from a PDF',
     emoji: '✂️', tags: ['pdf', 'split', 'extract', 'pages'], category: 'File Tools',
     componentPath: 'file/SplitPDF',
@@ -324,28 +302,29 @@ const tools: ToolMeta[] = [
       { q: 'Why would I convert SVG to PNG?', a: 'SVG is not supported everywhere - some apps, word processors, and email clients cannot display SVG. PNG is universally supported and is the best format when you need a raster version of a vector graphic.' },
     ],
   },
-  // ═══ CALCULATORS ═══
   {
-    id: 'tip', slug: 'tip-calculator', name: 'Tip Calculator', desc: 'Split bills & calculate tips',
-    emoji: '💰', tags: ['money', 'restaurant', 'bill', 'split'], category: 'Calculators', popular: true,
-    componentPath: 'calculators/TipCalculator',
+    id: 'word2pdf', slug: 'word-to-pdf', name: 'Word to PDF', desc: 'Convert DOCX to PDF',
+    emoji: '📃', tags: ['word', 'pdf', 'docx', 'convert'], category: 'File Tools', popular: true,
+    componentPath: 'file/WordToPDF',
     seo: {
-      title: 'Tip Calculator - Split Bills Easily | Neetab',
-      description: 'Calculate tips and split restaurant bills free online. Enter the bill amount, tip percentage, and number of people to get the amount per person instantly.',
-      h1: 'Tip Calculator - Split Bills',
+      title: 'Word to PDF Converter - Free Online | Neetab',
+      description: 'Convert Word documents to PDF free online. Preserves fonts, tables, images, and page layout perfectly. Works with .doc and .docx files instantly.',
+      h1: 'Free Word to PDF Converter',
     },
     howTo: [
-      'Enter your total bill amount in the Bill field.',
-      'Select a tip percentage from the preset buttons (15%, 18%, 20%) or type a custom percentage.',
-      'Enter the number of people splitting the bill to see each person\'s share, including their portion of the tip.',
+      'Upload your .docx or .doc Word file by clicking the upload area or dragging it in.',
+      'Click Convert to PDF. Server-side conversion via LibreOffice preserves your fonts, tables, images, headers, footers, and page layout.',
+      'Download the resulting PDF when conversion is complete. The PDF is universally readable on any device without needing Microsoft Word.',
     ],
     faq: [
-      { q: 'How do I calculate a tip?', a: 'Enter your bill amount, select a tip percentage (15%, 18%, 20%, or custom), and optionally split between multiple people. The calculator shows the tip amount, total bill, and per-person cost instantly.' },
-      { q: 'What is the standard tip percentage?', a: 'In the US, 15-20% is standard for restaurant service. 18% is a common middle ground. For exceptional service, 25% or more is appreciated. For quick-service or counter service, 10-15% is typical.' },
-      { q: 'Can I split the bill between multiple people?', a: 'Yes. Enter the number of people and the calculator divides the total evenly, showing each person\'s exact share including tip. Ideal for group dinners where everyone wants to pay their fair share.' },
-      { q: 'Does this work for non-restaurant tips?', a: 'Absolutely. Use it for any tipping situation - delivery drivers, hairdressers, hotel staff, taxi rides, or any service where you want to calculate a percentage of a bill.' },
+      { q: 'Will my Word document formatting be preserved?', a: 'Yes. Server conversion uses LibreOffice, which preserves fonts, tables, images, headers, footers, and page layout with near-perfect accuracy. Complex documents with embedded objects may occasionally need minor formatting adjustments.' },
+      { q: 'Can I convert .doc files or only .docx?', a: 'Both .doc (older Word format) and .docx (modern Word format) are fully supported for conversion to PDF.' },
+      { q: 'Is there a file size limit?', a: 'You can convert Word documents up to 50MB. Most documents are well under this limit. Very long documents with many images may take a few extra seconds to process.' },
+      { q: 'Is my document uploaded to a server?', a: 'When server conversion is used, your file is sent securely over HTTPS, processed immediately, and deleted right after conversion. It is never stored, read, or shared.' },
+      { q: 'Can I convert multiple documents at once?', a: 'Currently one document can be converted at a time. Simply upload another file after each conversion completes - there is no limit on how many you can convert in a session.' },
     ],
   },
+  // ═══ CALCULATORS ═══
   {
     id: 'age', slug: 'age-calculator', name: 'Age Calculator', desc: 'Exact age from birthdate',
     emoji: '🎂', tags: ['date', 'birthday', 'days'], category: 'Calculators',
@@ -445,50 +424,28 @@ const tools: ToolMeta[] = [
       { q: 'How do I find what number is X% of Y?', a: 'Select "What is X% of Y" mode. Enter the percentage and the base number, and the result appears instantly. For example, 20% of 150 is 30.' },
     ],
   },
+  {
+    id: 'tip', slug: 'tip-calculator', name: 'Tip Calculator', desc: 'Split bills & calculate tips',
+    emoji: '💰', tags: ['money', 'restaurant', 'bill', 'split'], category: 'Calculators', popular: true,
+    componentPath: 'calculators/TipCalculator',
+    seo: {
+      title: 'Tip Calculator - Split Bills Easily | Neetab',
+      description: 'Calculate tips and split restaurant bills free online. Enter the bill amount, tip percentage, and number of people to get the amount per person instantly.',
+      h1: 'Tip Calculator - Split Bills',
+    },
+    howTo: [
+      'Enter your total bill amount in the Bill field.',
+      'Select a tip percentage from the preset buttons (15%, 18%, 20%) or type a custom percentage.',
+      'Enter the number of people splitting the bill to see each person\'s share, including their portion of the tip.',
+    ],
+    faq: [
+      { q: 'How do I calculate a tip?', a: 'Enter your bill amount, select a tip percentage (15%, 18%, 20%, or custom), and optionally split between multiple people. The calculator shows the tip amount, total bill, and per-person cost instantly.' },
+      { q: 'What is the standard tip percentage?', a: 'In the US, 15-20% is standard for restaurant service. 18% is a common middle ground. For exceptional service, 25% or more is appreciated. For quick-service or counter service, 10-15% is typical.' },
+      { q: 'Can I split the bill between multiple people?', a: 'Yes. Enter the number of people and the calculator divides the total evenly, showing each person\'s exact share including tip. Ideal for group dinners where everyone wants to pay their fair share.' },
+      { q: 'Does this work for non-restaurant tips?', a: 'Absolutely. Use it for any tipping situation - delivery drivers, hairdressers, hotel staff, taxi rides, or any service where you want to calculate a percentage of a bill.' },
+    ],
+  },
   // ═══ DESIGN TOOLS ═══
-  {
-    id: 'palette', slug: 'color-palette-generator', name: 'Color Palette', desc: 'Generate beautiful color schemes',
-    emoji: '🎨', tags: ['design', 'color', 'css', 'palette'], category: 'Design Tools', popular: true,
-    componentPath: 'design/ColorPalette',
-    seo: {
-      title: 'Color Palette Generator - Free CSS Colors | Neetab',
-      description: 'Generate beautiful color palettes free online. Create harmonious color schemes - complementary, triadic, analogous. Copy HEX, RGB, or HSL values.',
-      h1: 'Free Color Palette Generator',
-    },
-    howTo: [
-      'Click Generate for a random palette, or enter a specific base hex color to start from a particular hue.',
-      'Choose a color harmony - complementary, analogous, triadic, split-complementary - to shape the mood of your palette.',
-      'Lock any colors you want to keep, then click Generate again to refresh only the unlocked swatches. Click any color to copy its hex code.',
-    ],
-    faq: [
-      { q: 'How are the color palettes generated?', a: 'Palettes are generated using color theory algorithms including complementary (opposite hues), analogous (adjacent hues), triadic (three evenly spaced hues), and split-complementary harmonies based on your chosen base color.' },
-      { q: 'Can I export the palette?', a: 'Yes. Click any color swatch to copy its HEX code to your clipboard. Use the Export button to copy the full palette as CSS custom properties or as a list of hex values.' },
-      { q: 'Can I lock a color and regenerate the rest?', a: 'Yes. Click the lock icon on any swatch to pin it, then click Generate. Locked colors stay fixed while the unlocked ones refresh - great for building around a brand color.' },
-      { q: 'Are the palettes free for commercial use?', a: 'Yes. All generated palettes are free to use in personal and commercial projects with no attribution required. Colors themselves are not copyrightable.' },
-    ],
-  },
-  {
-    id: 'colorfrompic', slug: 'color-palette-from-image', name: 'Color Palette from Image', desc: 'Extract colors from any image or PDF',
-    emoji: '🖼️', tags: ['color', 'palette', 'extract', 'image', 'pdf', 'design'], category: 'Design Tools', popular: true,
-    componentPath: 'design/ColorPickerFromImage',
-    seo: {
-      title: 'Color Palette from Image - Extract Colors Free | Neetab',
-      description: 'Extract dominant colors from any image or PDF free online. Uses K-means clustering to find the most prominent colors. Copy HEX, RGB, or HSL codes.',
-      h1: 'Color Palette Extractor from Image',
-    },
-    howTo: [
-      'Upload an image (PNG, JPG, WebP) or a PDF file by clicking the upload area or dragging it in.',
-      'The dominant colors are extracted automatically using k-means clustering and shown as a palette.',
-      'Click any color swatch or value to copy it. Adjust the number of colors (4-12) using the count buttons. Use "Copy all HEX codes" to export the full palette.',
-    ],
-    faq: [
-      { q: 'How does color extraction work?', a: 'The tool uses k-means clustering on pixel samples from your image. It groups similar colors together and calculates the average of each cluster, producing the most representative dominant colors in the image.' },
-      { q: 'How many colors can I extract?', a: 'You can extract 4, 6, 8, 10, or 12 dominant colors. More colors gives a more detailed palette; fewer gives the most essential hues. You can switch between counts after uploading without re-uploading.' },
-      { q: 'Does this work with PDFs?', a: 'Yes. For PDFs, the first page is rendered and colors are extracted from it. This is useful for extracting brand colors from a PDF presentation, brochure, or document.' },
-      { q: 'Is my file uploaded to a server?', a: 'No. All processing runs entirely in your browser - images use the Canvas API and PDFs use PDF.js. Your files never leave your device.' },
-      { q: 'Can I use the extracted colors in my designs?', a: 'Yes. Copy individual colors in HEX, RGB, or HSL format for use in CSS, Figma, Sketch, or any other design tool. Use "Copy all HEX codes" to export the full palette at once.' },
-    ],
-  },
   {
     id: 'borderradius', slug: 'css-border-radius-generator', name: 'Border Radius Generator', desc: 'Generate CSS border-radius visually',
     emoji: '⬛', tags: ['css', 'border-radius', 'design', 'rounded'], category: 'Design Tools',
@@ -589,6 +546,49 @@ const tools: ToolMeta[] = [
     ],
   },
   {
+    id: 'palette', slug: 'color-palette-generator', name: 'Color Palette', desc: 'Generate beautiful color schemes',
+    emoji: '🎨', tags: ['design', 'color', 'css', 'palette'], category: 'Design Tools', popular: true,
+    componentPath: 'design/ColorPalette',
+    seo: {
+      title: 'Color Palette Generator - Free CSS Colors | Neetab',
+      description: 'Generate beautiful color palettes free online. Create harmonious color schemes - complementary, triadic, analogous. Copy HEX, RGB, or HSL values.',
+      h1: 'Free Color Palette Generator',
+    },
+    howTo: [
+      'Click Generate for a random palette, or enter a specific base hex color to start from a particular hue.',
+      'Choose a color harmony - complementary, analogous, triadic, split-complementary - to shape the mood of your palette.',
+      'Lock any colors you want to keep, then click Generate again to refresh only the unlocked swatches. Click any color to copy its hex code.',
+    ],
+    faq: [
+      { q: 'How are the color palettes generated?', a: 'Palettes are generated using color theory algorithms including complementary (opposite hues), analogous (adjacent hues), triadic (three evenly spaced hues), and split-complementary harmonies based on your chosen base color.' },
+      { q: 'Can I export the palette?', a: 'Yes. Click any color swatch to copy its HEX code to your clipboard. Use the Export button to copy the full palette as CSS custom properties or as a list of hex values.' },
+      { q: 'Can I lock a color and regenerate the rest?', a: 'Yes. Click the lock icon on any swatch to pin it, then click Generate. Locked colors stay fixed while the unlocked ones refresh - great for building around a brand color.' },
+      { q: 'Are the palettes free for commercial use?', a: 'Yes. All generated palettes are free to use in personal and commercial projects with no attribution required. Colors themselves are not copyrightable.' },
+    ],
+  },
+  {
+    id: 'colorfrompic', slug: 'color-palette-from-image', name: 'Color Palette from Image', desc: 'Extract colors from any image or PDF',
+    emoji: '🖼️', tags: ['color', 'palette', 'extract', 'image', 'pdf', 'design'], category: 'Design Tools', popular: true,
+    componentPath: 'design/ColorPickerFromImage',
+    seo: {
+      title: 'Color Palette from Image - Extract Colors Free | Neetab',
+      description: 'Extract dominant colors from any image or PDF free online. Uses K-means clustering to find the most prominent colors. Copy HEX, RGB, or HSL codes.',
+      h1: 'Color Palette Extractor from Image',
+    },
+    howTo: [
+      'Upload an image (PNG, JPG, WebP) or a PDF file by clicking the upload area or dragging it in.',
+      'The dominant colors are extracted automatically using k-means clustering and shown as a palette.',
+      'Click any color swatch or value to copy it. Adjust the number of colors (4-12) using the count buttons. Use "Copy all HEX codes" to export the full palette.',
+    ],
+    faq: [
+      { q: 'How does color extraction work?', a: 'The tool uses k-means clustering on pixel samples from your image. It groups similar colors together and calculates the average of each cluster, producing the most representative dominant colors in the image.' },
+      { q: 'How many colors can I extract?', a: 'You can extract 4, 6, 8, 10, or 12 dominant colors. More colors gives a more detailed palette; fewer gives the most essential hues. You can switch between counts after uploading without re-uploading.' },
+      { q: 'Does this work with PDFs?', a: 'Yes. For PDFs, the first page is rendered and colors are extracted from it. This is useful for extracting brand colors from a PDF presentation, brochure, or document.' },
+      { q: 'Is my file uploaded to a server?', a: 'No. All processing runs entirely in your browser - images use the Canvas API and PDFs use PDF.js. Your files never leave your device.' },
+      { q: 'Can I use the extracted colors in my designs?', a: 'Yes. Copy individual colors in HEX, RGB, or HSL format for use in CSS, Figma, Sketch, or any other design tool. Use "Copy all HEX codes" to export the full palette at once.' },
+    ],
+  },
+  {
     id: 'favicon', slug: 'favicon-generator', name: 'Favicon Generator', desc: 'Generate all favicon sizes from one image',
     emoji: '⭐', tags: ['favicon', 'icon', 'website', 'pwa', 'apple-touch'], category: 'Design Tools',
     componentPath: 'design/FaviconGenerator',
@@ -630,69 +630,6 @@ const tools: ToolMeta[] = [
     ],
   },
   // ═══ DEV TOOLS ═══
-  {
-    id: 'json', slug: 'json-formatter', name: 'JSON Formatter', desc: 'Format, validate & minify JSON',
-    emoji: '{ }', tags: ['json', 'format', 'validate', 'minify', 'dev'], category: 'Dev Tools', popular: true,
-    componentPath: 'generators/JSONFormatter',
-    seo: {
-      title: 'JSON Formatter and Validator - Free Online | Neetab',
-      description: 'Format, validate, and minify JSON free online. Instantly beautify minified JSON or compress formatted JSON. Highlights syntax errors in real time.',
-      h1: 'JSON Formatter and Validator',
-    },
-    howTo: [
-      'Paste your JSON into the input box. It is validated and formatted automatically with syntax highlighting.',
-      'If your JSON has errors, they are highlighted with a message showing the exact location of the problem.',
-      'Use the Minify button to compress JSON for production use, or adjust indentation (2 spaces, 4 spaces, tabs) using the format options.',
-    ],
-    faq: [
-      { q: 'Does this validate my JSON?', a: 'Yes. Invalid JSON is highlighted with an error message showing exactly where the problem is - missing commas, unquoted keys, trailing commas, and other common mistakes are all detected.' },
-      { q: 'Can I minify JSON?', a: 'Yes. Use the Minify button to remove all whitespace and produce compact JSON, ideal for reducing payload size in API responses or configuration files.' },
-      { q: 'Is my JSON data private?', a: 'Yes. All formatting and validation happens in your browser using JavaScript\'s JSON.parse. Your data is never sent to any server.' },
-      { q: 'What indentation options are available?', a: 'You can format JSON with 2 spaces, 4 spaces, or tab indentation depending on your preference or the coding standards of your project.' },
-    ],
-  },
-  {
-    id: 'qr', slug: 'qr-code-generator', name: 'QR Code Generator', desc: 'Generate QR codes for any text or URL',
-    emoji: '📱', tags: ['qr', 'barcode', 'link', 'generator'], category: 'Dev Tools', popular: true,
-    componentPath: 'generators/QRCodeGenerator',
-    seo: {
-      title: 'QR Code Generator - Free Custom QR Codes | Neetab',
-      description: 'Generate custom QR codes for URLs, text, and more free online. Download as PNG instantly. No sign-up, no watermark, fully private.',
-      h1: 'Free QR Code Generator',
-    },
-    howTo: [
-      'Type or paste the content you want to encode - a URL, plain text, phone number, email address, or any other data.',
-      'Customize the QR code size, error correction level, and foreground/background colors if desired.',
-      'Click Download to save the QR code as a PNG image ready for print, web, or digital use.',
-    ],
-    faq: [
-      { q: 'Can I customize the QR code?', a: 'Yes. You can adjust the size, error correction level (Low, Medium, Quartile, High), and foreground and background colors to match your brand or design.' },
-      { q: 'What can I encode in a QR code?', a: 'Any text, URL, phone number, email, or Wi-Fi credentials. The QR code is generated instantly as you type. For URLs, higher error correction is recommended so the code still scans even if slightly damaged.' },
-      { q: 'What format is the downloaded QR code?', a: 'QR codes are downloaded as PNG images. PNG is the most universally compatible format for print, web, and digital presentations.' },
-      { q: 'Is the QR code generated locally?', a: 'Yes. QR codes are generated entirely in your browser. Your input data is not sent to any server unless the browser library fails to load, in which case a fallback API may be used as a last resort.' },
-    ],
-  },
-  {
-    id: 'password', slug: 'password-generator', name: 'Password Generator', desc: 'Secure random passwords',
-    emoji: '🔐', tags: ['security', 'random', 'strong', 'password'], category: 'Dev Tools', popular: true,
-    componentPath: 'generators/PasswordGenerator',
-    seo: {
-      title: 'Password Generator - Strong Random Passwords | Neetab',
-      description: 'Generate strong, random passwords free online. Customize length, include uppercase, lowercase, numbers, and symbols. Copy to clipboard instantly.',
-      h1: 'Strong Password Generator',
-    },
-    howTo: [
-      'Set your desired password length using the slider - 16 characters is recommended as a minimum for strong passwords.',
-      'Toggle the character types you want included: uppercase letters, lowercase letters, numbers, and special symbols.',
-      'Click Generate to create a new password, then click Copy to copy it to your clipboard. Store it in a password manager.',
-    ],
-    faq: [
-      { q: 'How secure are the generated passwords?', a: 'Passwords are generated using your browser\'s cryptographic random number generator (crypto.getRandomValues), which is the same API used by security-critical applications. They are never sent to any server.' },
-      { q: 'What makes a strong password?', a: 'A strong password is at least 16 characters long and includes a mix of uppercase letters, lowercase letters, numbers, and special symbols. Length is the most important factor - a 20-character password is far stronger than a complex 8-character one.' },
-      { q: 'Can I generate multiple passwords at once?', a: 'You can generate new passwords by clicking the Generate button repeatedly. Each result is cryptographically random and statistically independent of the previous ones.' },
-      { q: 'Should I use a password manager?', a: 'Yes. Store generated passwords in a password manager like Bitwarden (free, open-source), 1Password, or KeePass. Never reuse passwords across different accounts - a data breach on one site should not compromise others.' },
-    ],
-  },
   {
     id: 'barcode', slug: 'barcode-generator', name: 'Barcode Generator', desc: 'Create barcodes in multiple formats',
     emoji: '|||', tags: ['barcode', 'code128', 'ean', 'upc', 'generator'], category: 'Dev Tools',
@@ -855,6 +792,27 @@ const tools: ToolMeta[] = [
     ],
   },
   {
+    id: 'json', slug: 'json-formatter', name: 'JSON Formatter', desc: 'Format, validate & minify JSON',
+    emoji: '{ }', tags: ['json', 'format', 'validate', 'minify', 'dev'], category: 'Dev Tools', popular: true,
+    componentPath: 'generators/JSONFormatter',
+    seo: {
+      title: 'JSON Formatter and Validator - Free Online | Neetab',
+      description: 'Format, validate, and minify JSON free online. Instantly beautify minified JSON or compress formatted JSON. Highlights syntax errors in real time.',
+      h1: 'JSON Formatter and Validator',
+    },
+    howTo: [
+      'Paste your JSON into the input box. It is validated and formatted automatically with syntax highlighting.',
+      'If your JSON has errors, they are highlighted with a message showing the exact location of the problem.',
+      'Use the Minify button to compress JSON for production use, or adjust indentation (2 spaces, 4 spaces, tabs) using the format options.',
+    ],
+    faq: [
+      { q: 'Does this validate my JSON?', a: 'Yes. Invalid JSON is highlighted with an error message showing exactly where the problem is - missing commas, unquoted keys, trailing commas, and other common mistakes are all detected.' },
+      { q: 'Can I minify JSON?', a: 'Yes. Use the Minify button to remove all whitespace and produce compact JSON, ideal for reducing payload size in API responses or configuration files.' },
+      { q: 'Is my JSON data private?', a: 'Yes. All formatting and validation happens in your browser using JavaScript\'s JSON.parse. Your data is never sent to any server.' },
+      { q: 'What indentation options are available?', a: 'You can format JSON with 2 spaces, 4 spaces, or tab indentation depending on your preference or the coding standards of your project.' },
+    ],
+  },
+  {
     id: 'json2csv', slug: 'json-to-csv', name: 'JSON to CSV', desc: 'Convert JSON arrays to CSV files',
     emoji: '📊', tags: ['json', 'csv', 'convert', 'data', 'export'], category: 'Dev Tools',
     componentPath: 'devtools/JSONtoCSV',
@@ -934,6 +892,48 @@ const tools: ToolMeta[] = [
       { q: 'What is binary?', a: 'Binary is base 2, using only digits 0 and 1. It is the fundamental language of computers, where every bit is either off (0) or on (1). The decimal number 10 is 1010 in binary.' },
       { q: 'What is hexadecimal used for?', a: 'Hexadecimal (base 16) uses digits 0-9 and letters A-F. It is widely used in programming for memory addresses, color codes (#FF5733), byte values, and representing binary data compactly - 1 hex digit = 4 binary bits.' },
       { q: 'What is octal?', a: 'Octal (base 8) uses digits 0-7. It appears in Unix file permissions (e.g., chmod 755) and was historically used in early computing as a compact representation of binary groups of 3 bits.' },
+    ],
+  },
+  {
+    id: 'password', slug: 'password-generator', name: 'Password Generator', desc: 'Secure random passwords',
+    emoji: '🔐', tags: ['security', 'random', 'strong', 'password'], category: 'Dev Tools', popular: true,
+    componentPath: 'generators/PasswordGenerator',
+    seo: {
+      title: 'Password Generator - Strong Random Passwords | Neetab',
+      description: 'Generate strong, random passwords free online. Customize length, include uppercase, lowercase, numbers, and symbols. Copy to clipboard instantly.',
+      h1: 'Strong Password Generator',
+    },
+    howTo: [
+      'Set your desired password length using the slider - 16 characters is recommended as a minimum for strong passwords.',
+      'Toggle the character types you want included: uppercase letters, lowercase letters, numbers, and special symbols.',
+      'Click Generate to create a new password, then click Copy to copy it to your clipboard. Store it in a password manager.',
+    ],
+    faq: [
+      { q: 'How secure are the generated passwords?', a: 'Passwords are generated using your browser\'s cryptographic random number generator (crypto.getRandomValues), which is the same API used by security-critical applications. They are never sent to any server.' },
+      { q: 'What makes a strong password?', a: 'A strong password is at least 16 characters long and includes a mix of uppercase letters, lowercase letters, numbers, and special symbols. Length is the most important factor - a 20-character password is far stronger than a complex 8-character one.' },
+      { q: 'Can I generate multiple passwords at once?', a: 'You can generate new passwords by clicking the Generate button repeatedly. Each result is cryptographically random and statistically independent of the previous ones.' },
+      { q: 'Should I use a password manager?', a: 'Yes. Store generated passwords in a password manager like Bitwarden (free, open-source), 1Password, or KeePass. Never reuse passwords across different accounts - a data breach on one site should not compromise others.' },
+    ],
+  },
+  {
+    id: 'qr', slug: 'qr-code-generator', name: 'QR Code Generator', desc: 'Generate QR codes for any text or URL',
+    emoji: '📱', tags: ['qr', 'barcode', 'link', 'generator'], category: 'Dev Tools', popular: true,
+    componentPath: 'generators/QRCodeGenerator',
+    seo: {
+      title: 'QR Code Generator - Free Custom QR Codes | Neetab',
+      description: 'Generate custom QR codes for URLs, text, and more free online. Download as PNG instantly. No sign-up, no watermark, fully private.',
+      h1: 'Free QR Code Generator',
+    },
+    howTo: [
+      'Type or paste the content you want to encode - a URL, plain text, phone number, email address, or any other data.',
+      'Customize the QR code size, error correction level, and foreground/background colors if desired.',
+      'Click Download to save the QR code as a PNG image ready for print, web, or digital use.',
+    ],
+    faq: [
+      { q: 'Can I customize the QR code?', a: 'Yes. You can adjust the size, error correction level (Low, Medium, Quartile, High), and foreground and background colors to match your brand or design.' },
+      { q: 'What can I encode in a QR code?', a: 'Any text, URL, phone number, email, or Wi-Fi credentials. The QR code is generated instantly as you type. For URLs, higher error correction is recommended so the code still scans even if slightly damaged.' },
+      { q: 'What format is the downloaded QR code?', a: 'QR codes are downloaded as PNG images. PNG is the most universally compatible format for print, web, and digital presentations.' },
+      { q: 'Is the QR code generated locally?', a: 'Yes. QR codes are generated entirely in your browser. Your input data is not sent to any server unless the browser library fails to load, in which case a fallback API may be used as a last resort.' },
     ],
   },
   {
@@ -1082,23 +1082,22 @@ const tools: ToolMeta[] = [
   },
   // ═══ CONVERTERS ═══
   {
-    id: 'unit', slug: 'unit-converter', name: 'Unit Converter', desc: 'Length, weight, temp, volume & more',
-    emoji: '📏', tags: ['measurement', 'science', 'length', 'weight', 'temperature'], category: 'Converters', popular: true,
-    componentPath: 'converters/UnitConverter',
+    id: 'csv2excel', slug: 'csv-to-excel', name: 'CSV to Excel', desc: 'Convert CSV data to Excel XLSX',
+    emoji: '📗', tags: ['csv', 'excel', 'xlsx', 'convert', 'spreadsheet'], category: 'Converters',
+    componentPath: 'converters/CSVtoExcel',
     seo: {
-      title: 'Unit Converter - Length Weight Temp and More | Neetab',
-      description: 'Convert units of length, weight, temperature, volume, area, and speed free online. Fast, accurate, and easy to use. No sign-up required.',
-      h1: 'Free Unit Converter',
+      title: 'CSV to Excel Converter - Free Online | Neetab',
+      description: 'Convert CSV files to Excel XLSX format free online. Paste CSV or upload a file, preview the data, and download the spreadsheet instantly.',
+      h1: 'Free CSV to Excel Converter',
     },
     howTo: [
-      'Select the measurement category - length, weight, temperature, volume, speed, area, or data storage.',
-      'Enter a value and select the source unit from the dropdown.',
-      'All equivalent values in other units are shown instantly. Select a different output unit to focus on a specific conversion.',
+      'Paste CSV data or upload a .csv file.',
+      'Preview the data as a table. Set a sheet name if desired.',
+      'Click Download XLSX to save the Excel file.',
     ],
     faq: [
-      { q: 'What units can I convert?', a: 'Length (meters, feet, inches, miles, km), weight (kg, lbs, oz, grams), temperature (Celsius, Fahrenheit, Kelvin), volume (liters, gallons, ml, cups), speed (km/h, mph, m/s), area (m², ft², acres), and data storage (bytes, KB, MB, GB, TB).' },
-      { q: 'Is the conversion accurate?', a: 'Yes. All conversions use precise mathematical formulas and standard conversion factors. Results are accurate to multiple decimal places.' },
-      { q: 'Can I convert temperature?', a: 'Yes. Convert between Celsius, Fahrenheit, and Kelvin. The tool correctly handles the non-linear formulas: °F = (°C × 9/5) + 32 and K = °C + 273.15.' },
+      { q: 'Does the Excel file support formatting?', a: 'The generated XLSX file contains the data in a clean spreadsheet. Advanced formatting like merged cells or formulas are not added - just the raw data ready to open in Excel or Google Sheets.' },
+      { q: 'Is my data sent to a server?', a: 'No. The conversion uses SheetJS entirely in your browser.' },
     ],
   },
   {
@@ -1123,25 +1122,6 @@ const tools: ToolMeta[] = [
     ],
   },
   {
-    id: 'csv2excel', slug: 'csv-to-excel', name: 'CSV to Excel', desc: 'Convert CSV data to Excel XLSX',
-    emoji: '📗', tags: ['csv', 'excel', 'xlsx', 'convert', 'spreadsheet'], category: 'Converters',
-    componentPath: 'converters/CSVtoExcel',
-    seo: {
-      title: 'CSV to Excel Converter - Free Online | Neetab',
-      description: 'Convert CSV files to Excel XLSX format free online. Paste CSV or upload a file, preview the data, and download the spreadsheet instantly.',
-      h1: 'Free CSV to Excel Converter',
-    },
-    howTo: [
-      'Paste CSV data or upload a .csv file.',
-      'Preview the data as a table. Set a sheet name if desired.',
-      'Click Download XLSX to save the Excel file.',
-    ],
-    faq: [
-      { q: 'Does the Excel file support formatting?', a: 'The generated XLSX file contains the data in a clean spreadsheet. Advanced formatting like merged cells or formulas are not added - just the raw data ready to open in Excel or Google Sheets.' },
-      { q: 'Is my data sent to a server?', a: 'No. The conversion uses SheetJS entirely in your browser.' },
-    ],
-  },
-  {
     id: 'excel2csv', slug: 'excel-to-csv', name: 'Excel to CSV', desc: 'Convert Excel files to CSV',
     emoji: '📊', tags: ['excel', 'xlsx', 'csv', 'convert', 'spreadsheet'], category: 'Converters',
     componentPath: 'converters/ExcelToCSV',
@@ -1161,27 +1141,27 @@ const tools: ToolMeta[] = [
       { q: 'Is my file uploaded to a server?', a: 'No. Conversion uses the SheetJS library entirely in your browser. Your file never leaves your device.' },
     ],
   },
-  // ═══ TEXT TOOLS ═══
   {
-    id: 'wordcount', slug: 'word-counter', name: 'Word Counter', desc: 'Characters, words, sentences & read time',
-    emoji: '🔤', tags: ['writing', 'content', 'characters', 'count'], category: 'Text Tools', popular: true,
-    componentPath: 'text/WordCounter',
+    id: 'unit', slug: 'unit-converter', name: 'Unit Converter', desc: 'Length, weight, temp, volume & more',
+    emoji: '📏', tags: ['measurement', 'science', 'length', 'weight', 'temperature'], category: 'Converters', popular: true,
+    componentPath: 'converters/UnitConverter',
     seo: {
-      title: 'Word Counter - Count Words and Characters | Neetab',
-      description: 'Count words, characters, sentences, and estimated reading time free online. Paste any text for instant analysis. No sign-up, no data stored.',
-      h1: 'Word and Character Counter',
+      title: 'Unit Converter - Length Weight Temp and More | Neetab',
+      description: 'Convert units of length, weight, temperature, volume, area, and speed free online. Fast, accurate, and easy to use. No sign-up required.',
+      h1: 'Free Unit Converter',
     },
     howTo: [
-      'Type or paste your text into the input box.',
-      'Word count, character count (with and without spaces), sentence count, and estimated reading time all update live as you type.',
-      'Use the stats panel for additional details including paragraph count and average word length.',
+      'Select the measurement category - length, weight, temperature, volume, speed, area, or data storage.',
+      'Enter a value and select the source unit from the dropdown.',
+      'All equivalent values in other units are shown instantly. Select a different output unit to focus on a specific conversion.',
     ],
     faq: [
-      { q: 'What does this tool count?', a: 'Characters (with and without spaces), words, sentences, paragraphs, and estimated reading time. All counts update in real time as you type or paste.' },
-      { q: 'How is reading time calculated?', a: 'Reading time is estimated at 200 words per minute, which is the average reading speed for an adult. The result gives a practical estimate for articles, essays, and blog posts.' },
-      { q: 'Is this useful for SEO and content writing?', a: 'Yes. Knowing your word count helps meet content length guidelines for SEO and publishing platforms. Most SEO experts recommend 300+ words for basic pages and 1,500+ for in-depth articles to rank well in search results.' },
+      { q: 'What units can I convert?', a: 'Length (meters, feet, inches, miles, km), weight (kg, lbs, oz, grams), temperature (Celsius, Fahrenheit, Kelvin), volume (liters, gallons, ml, cups), speed (km/h, mph, m/s), area (m², ft², acres), and data storage (bytes, KB, MB, GB, TB).' },
+      { q: 'Is the conversion accurate?', a: 'Yes. All conversions use precise mathematical formulas and standard conversion factors. Results are accurate to multiple decimal places.' },
+      { q: 'Can I convert temperature?', a: 'Yes. Convert between Celsius, Fahrenheit, and Kelvin. The tool correctly handles the non-linear formulas: °F = (°C × 9/5) + 32 and K = °C + 273.15.' },
     ],
   },
+  // ═══ TEXT TOOLS ═══
   {
     id: 'findreplace', slug: 'find-and-replace', name: 'Find & Replace', desc: 'Find and replace text with regex support',
     emoji: '🔍', tags: ['find', 'replace', 'text', 'regex', 'search'], category: 'Text Tools',
@@ -1316,6 +1296,26 @@ const tools: ToolMeta[] = [
     faq: [
       { q: 'Can I sort lines alphabetically?', a: 'Yes. "Sort A-Z" sorts lines in ascending alphabetical order. "Sort Z-A" sorts in descending order. Sorting is case-insensitive by default.' },
       { q: 'What does Remove Duplicates do?', a: 'It removes any line that appears more than once, keeping only the first occurrence. Useful for cleaning lists of emails, URLs, or other repeated entries.' },
+    ],
+  },
+  {
+    id: 'wordcount', slug: 'word-counter', name: 'Word Counter', desc: 'Characters, words, sentences & read time',
+    emoji: '🔤', tags: ['writing', 'content', 'characters', 'count'], category: 'Text Tools', popular: true,
+    componentPath: 'text/WordCounter',
+    seo: {
+      title: 'Word Counter - Count Words and Characters | Neetab',
+      description: 'Count words, characters, sentences, and estimated reading time free online. Paste any text for instant analysis. No sign-up, no data stored.',
+      h1: 'Word and Character Counter',
+    },
+    howTo: [
+      'Type or paste your text into the input box.',
+      'Word count, character count (with and without spaces), sentence count, and estimated reading time all update live as you type.',
+      'Use the stats panel for additional details including paragraph count and average word length.',
+    ],
+    faq: [
+      { q: 'What does this tool count?', a: 'Characters (with and without spaces), words, sentences, paragraphs, and estimated reading time. All counts update in real time as you type or paste.' },
+      { q: 'How is reading time calculated?', a: 'Reading time is estimated at 200 words per minute, which is the average reading speed for an adult. The result gives a practical estimate for articles, essays, and blog posts.' },
+      { q: 'Is this useful for SEO and content writing?', a: 'Yes. Knowing your word count helps meet content length guidelines for SEO and publishing platforms. Most SEO experts recommend 300+ words for basic pages and 1,500+ for in-depth articles to rank well in search results.' },
     ],
   },
   {
