@@ -92,6 +92,23 @@ const jsonLd = [
 
     <AdSlot client:visible slot="tool-bottom" format="rectangle" />
 
+    <!-- How to Use (real HTML, crawlable) -->
+    {tool.howTo && tool.howTo.length > 0 && (
+      <div class="mt-6 animate-fade-in" style="animation-delay: 120ms">
+        <h2 class="text-[11px] font-bold uppercase tracking-wider text-surface-400 mb-2.5">
+          How to Use
+        </h2>
+        <ol class="card divide-y divide-surface-100 dark:divide-surface-800">
+          {tool.howTo.map((step, i) => (
+            <li class="flex gap-3 p-3">
+              <span class="flex-shrink-0 w-5 h-5 rounded-full bg-brand-500/10 text-brand-500 text-[10px] font-bold flex items-center justify-center mt-0.5">{i + 1}</span>
+              <p class="text-xs text-surface-600 dark:text-surface-400 leading-relaxed">{step}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    )}
+
     <!-- FAQ (real HTML, crawlable — this is the SEO gold) -->
     {tool.faq && tool.faq.length > 0 && (
       <div class="mt-6 animate-fade-in" style="animation-delay: 150ms">

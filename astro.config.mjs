@@ -19,7 +19,11 @@ export default defineConfig({
       rollupOptions: {
         output: {
           manualChunks: {
-            'pdf-tools': ['pdfjs-dist', 'jspdf', 'html2canvas', 'mammoth'],
+            'pdf-tools': ['pdfjs-dist', 'jspdf', 'html2canvas', 'mammoth', 'pdf-lib'],
+            'image-tools': ['heic2any'],
+            'scanner-tools': ['@zxing/browser'],
+            'barcode-tools': ['jsbarcode'],
+            'data-tools': ['papaparse'],
           },
         },
       },

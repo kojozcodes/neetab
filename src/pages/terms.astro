@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Terms of Service | Neetab"
+  description="Neetab terms of service. Read the terms governing your use of neetab.com and its free online tools."
+  path="/terms"
+>
+  <Header slot="header" />
+
+  <div class="max-w-2xl mx-auto px-5 py-10 animate-fade-in">
+    <h1 class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-surface-900 dark:text-surface-100 mb-2">
+      Terms of Service
+    </h1>
+    <p class="text-xs text-surface-400 mb-8">Last updated: March 1, 2026</p>
+
+    <div class="space-y-6 text-sm text-surface-700 dark:text-surface-300 leading-relaxed">
+      <section>
+        <h2 class="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">Acceptance of Terms</h2>
+        <p>By accessing and using Neetab ("the Site", "we", "us") at neetab.com, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the Site.</p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">Use of the Service</h2>
+        <p>Neetab provides free online utility tools for personal and commercial use. You agree to use the Site only for lawful purposes and in a way that does not infringe the rights of others or restrict their use of the Site.</p>
+        <p class="mt-2">You must not:</p>
+        <ul class="mt-2 space-y-1 list-disc list-inside text-surface-600 dark:text-surface-400">
+          <li>Use the Site for any unlawful or fraudulent purpose</li>
+          <li>Attempt to gain unauthorized access to any part of the Site or its infrastructure</li>
+          <li>Use automated scripts to scrape or overload the Site's servers</li>
+          <li>Upload or transmit malware, viruses, or any other malicious code</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">Intellectual Property</h2>
+        <p>The Neetab name, logo, and overall site design are the property of Neetab. The underlying source code is proprietary. Generated outputs — such as color palettes, QR codes, barcodes, formatted JSON, and downloaded files — are yours to use freely in personal and commercial projects.</p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">File Processing and Privacy</h2>
+        <p>The majority of Neetab tools run entirely in your browser. Files you upload or text you enter are processed locally on your device and are never sent to our servers unless the tool explicitly requires server-side processing (such as PDF to Word conversion).</p>
+        <p class="mt-2">When files are sent to our conversion server, they are processed immediately and deleted after the operation is complete. We do not store, read, or share your files. See our <a href="/privacy" class="text-brand-500 hover:underline">Privacy Policy</a> for full details.</p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">Disclaimers</h2>
+        <p>Neetab is provided "as is" and "as available" without warranties of any kind, either express or implied. We do not warrant that the Site will be uninterrupted, error-free, or completely secure.</p>
+        <p class="mt-2">Tool outputs — including file conversions, calculations, and generated content — are provided for convenience. Always verify critical results independently. We are not responsible for decisions made based on tool outputs.</p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">Limitation of Liability</h2>
+        <p>To the fullest extent permitted by law, Neetab shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of, or inability to use, the Site or its tools.</p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">Third-Party Services</h2>
+        <p>The Site uses third-party services including Google Analytics, Google AdSense, the Frankfurter API for currency exchange rates, and Vercel for hosting. Your interactions with these services are governed by their respective terms and privacy policies.</p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">Advertising</h2>
+        <p>Neetab displays advertisements served by Google AdSense to support the free availability of all tools. Ad content is controlled by Google and may be personalized based on your browsing history. You can manage ad preferences at <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" class="text-brand-500 hover:underline">Google Ads Settings</a>.</p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">Changes to Terms</h2>
+        <p>We may update these Terms of Service from time to time. Continued use of the Site after changes are posted constitutes acceptance of the updated terms. The date at the top of this page reflects when the terms were last revised.</p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">Governing Law</h2>
+        <p>These terms are governed by applicable law. Any disputes arising from your use of the Site will be resolved in accordance with that law.</p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-surface-900 dark:text-surface-100 mb-2">Contact</h2>
+        <p>If you have questions about these Terms of Service, contact us at <a href="mailto:hello@neetab.com" class="text-brand-500 font-medium hover:underline">hello@neetab.com</a>.</p>
+      </section>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</Layout>
