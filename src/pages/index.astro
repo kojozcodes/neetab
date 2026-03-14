@@ -3,19 +3,30 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SearchBox from '../components/SearchBox';
+import RecentTools from '../components/RecentTools';
 import AdSlot from '../components/AdSlot';
 import { categories, allTools, popularTools, totalToolCount } from '../data/tools';
 
-const jsonLd = [{
-  '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: 'Neetab',
-  url: 'https://neetab.com',
-  description: 'Free online calculators, converters, design tools & file converters.',
-  applicationCategory: 'UtilityApplication',
-  operatingSystem: 'Web',
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-}];
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Neetab',
+    url: 'https://neetab.com',
+    description: `Free online PDF converter, image compressor, calculators, design tools & ${totalToolCount - 4} more. Fast, private, no sign-up.`,
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Web',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Neetab',
+    url: 'https://neetab.com',
+    logo: 'https://neetab.com/icon-512.png',
+    description: 'Free online utility tools - PDF converters, calculators, image tools, dev utilities and more.',
+  },
+];
 ---
 
 <Layout
@@ -45,6 +56,9 @@ const jsonLd = [{
       <SearchBox client:load tools={allTools} totalCount={totalToolCount} />
     </div>
 
+    <!-- Recently Used (React island, renders only when localStorage has history) -->
+    <RecentTools client:load tools={allTools} />
+
     <!-- Popular Tools -->
     <section class="mb-8 animate-slide-up" style="animation-delay: 120ms">
       <h2 class="text-sm font-bold text-surface-600 dark:text-surface-400 mb-3 flex items-center gap-2">
@@ -66,7 +80,7 @@ const jsonLd = [{
     <!-- Category Sections -->
     {categories.map((cat, catIdx) => (
       <>
-        <section class="mb-7">
+        <section id={cat.name.toLowerCase().replace(/\s+/g, '-')} class="mb-7">
           <h2 class="text-sm font-bold text-surface-600 dark:text-surface-400 mb-2.5 flex items-center gap-2">
             <span class="text-lg">{cat.emoji}</span>
             {cat.name}
