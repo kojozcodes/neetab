@@ -95,6 +95,25 @@ const tools: ToolMeta[] = [
     ],
   },
   {
+    id: 'imgformat', slug: 'image-format-converter', name: 'Image Format Converter', desc: 'Convert images between JPG, PNG, and WebP',
+    emoji: '🖼️', tags: ['image', 'jpg', 'png', 'webp', 'convert', 'format'], category: 'File Tools',
+    componentPath: 'file/ImageFormatConverter',
+    seo: {
+      title: 'Image Format Converter - JPG PNG WebP Free | Neetab',
+      description: 'Convert images between JPG, PNG, and WebP free online. Batch convert multiple files, set quality for JPG/WebP. Runs in your browser, no upload needed.',
+      h1: 'Free Image Format Converter',
+    },
+    howTo: [
+      'Select your output format (JPG, PNG, or WebP) and set the quality if applicable.',
+      'Drop your image files onto the upload area or click to select them. Multiple files are supported.',
+      'Download individual converted files or click Download All for batch download.',
+    ],
+    faq: [
+      { q: 'When should I use JPG vs PNG vs WebP?', a: 'JPG is best for photos and complex images where small file size matters. PNG is ideal for graphics, logos, and images needing transparency. WebP offers better compression than both JPG and PNG and is supported by all modern browsers.' },
+      { q: 'Does converting to JPG lose quality?', a: 'JPG uses lossy compression, so some quality is lost. At 90%+ quality the difference is usually imperceptible. If lossless conversion is needed, use PNG output instead.' },
+    ],
+  },
+  {
     id: 'imgresizer', slug: 'image-resizer', name: 'Image Resizer', desc: 'Resize images to exact dimensions',
     emoji: '📐', tags: ['image', 'resize', 'dimensions', 'scale'], category: 'File Tools',
     componentPath: 'file/ImageResizer',
@@ -692,6 +711,25 @@ const tools: ToolMeta[] = [
     ],
   },
   {
+    id: 'cronparser', slug: 'cron-expression-parser', name: 'Cron Expression Parser', desc: 'Parse and explain cron expressions with next run times',
+    emoji: '⏰', tags: ['cron', 'schedule', 'linux', 'devops', 'dev'], category: 'Dev Tools',
+    componentPath: 'devtools/CronParser',
+    seo: {
+      title: 'Cron Expression Parser - Explain Cron Jobs Free | Neetab',
+      description: 'Parse and explain cron expressions free online. See a human-readable description and the next 5 scheduled run times. Includes 12 common presets.',
+      h1: 'Cron Expression Parser and Explainer',
+    },
+    howTo: [
+      'Type or paste a cron expression in the input field (5 fields: minute hour day month weekday).',
+      'Read the plain-English explanation for each field below the input.',
+      'Check the "Next 5 executions" section to see exactly when the job will run.',
+    ],
+    faq: [
+      { q: 'What is a cron expression?', a: 'A cron expression is a string of 5 space-separated fields that defines a schedule for automated tasks on Unix-like systems. The fields are: minute (0-59), hour (0-23), day of month (1-31), month (1-12), and day of week (0-6, where 0 is Sunday).' },
+      { q: 'What does */15 mean?', a: '*/15 means "every 15 units". In the minute field, */15 runs the job at 0, 15, 30, and 45 minutes past the hour. The asterisk means "starting from the minimum value", and the number after the slash is the step.' },
+    ],
+  },
+  {
     id: 'cssminify', slug: 'css-minifier', name: 'CSS Minifier', desc: 'Minify or beautify CSS code',
     emoji: '🎨', tags: ['css', 'minify', 'beautify', 'compress', 'dev'], category: 'Dev Tools', wide: true,
     componentPath: 'devtools/CSSMinifier',
@@ -1032,6 +1070,25 @@ const tools: ToolMeta[] = [
       { q: 'Does this tool support named capture groups?', a: 'Yes. JavaScript named capture groups using the (?<name>...) syntax are fully supported and their values are displayed in the match details panel.' },
       { q: 'How do I match across multiple lines?', a: 'Use the multiline flag (m) to make ^ and $ match the start and end of each line instead of the entire string. Use the dotall flag (s) to make the . character match newline characters as well as everything else.' },
       { q: 'What is a capture group?', a: 'Capture groups let you extract specific parts of a match. Use parentheses: (\\d+) captures one or more digits. Named groups use (?<name>\\d+) syntax for clearer references. Non-capturing groups use (?:...) when you want to group without capturing.' },
+    ],
+  },
+  {
+    id: 'sqlfmt', slug: 'sql-formatter', name: 'SQL Formatter', desc: 'Beautify or minify SQL queries',
+    emoji: '🗄️', tags: ['sql', 'format', 'beautify', 'minify', 'query', 'dev'], category: 'Dev Tools',
+    componentPath: 'devtools/SQLFormatter',
+    seo: {
+      title: 'SQL Formatter and Beautifier - Free Online | Neetab',
+      description: 'Format, beautify, or minify SQL queries free online. Supports SELECT, INSERT, UPDATE, DELETE, JOIN, and more. Adjustable indentation, copy or download.',
+      h1: 'Free SQL Formatter and Beautifier',
+    },
+    howTo: [
+      'Paste your SQL query into the input area.',
+      'Choose Beautify to format with proper indentation, or Minify to compress it.',
+      'Copy the result or download it as a .sql file.',
+    ],
+    faq: [
+      { q: 'Which SQL dialects are supported?', a: 'The formatter works with standard SQL keywords used across MySQL, PostgreSQL, SQLite, SQL Server, and Oracle. Dialect-specific syntax is preserved as-is while standard keywords are formatted.' },
+      { q: 'Why minify SQL?', a: 'Minifying SQL removes unnecessary whitespace and comments, which reduces the size of SQL files and can slightly improve query parsing speed in automated scripts or API calls.' },
     ],
   },
   {

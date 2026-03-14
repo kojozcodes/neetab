@@ -17,6 +17,7 @@ const componentMap: Record<string, React.LazyExoticComponent<React.ComponentType
   'file/SplitPDF': lazy(() => import('../tools/file/SplitPDF')),
   'file/ImageRotateFlip': lazy(() => import('../tools/file/ImageRotateFlip')),
   'file/HTMLtoPDF': lazy(() => import('../tools/file/HTMLtoPDF')),
+  'file/ImageFormatConverter': lazy(() => import('../tools/file/ImageFormatConverter')),
   // ── Calculators ──
   'calculators/TipCalculator': lazy(() => import('../tools/calculators/TipCalculator')),
   'calculators/BMICalculator': lazy(() => import('../tools/calculators/BMICalculator')),
@@ -65,6 +66,8 @@ const componentMap: Record<string, React.LazyExoticComponent<React.ComponentType
   'devtools/JSONtoYAML': lazy(() => import('../tools/devtools/JSONtoYAML')),
   'devtools/XMLtoJSON': lazy(() => import('../tools/devtools/XMLtoJSON')),
   'devtools/YAMLtoJSON': lazy(() => import('../tools/devtools/YAMLtoJSON')),
+  'devtools/CronParser': lazy(() => import('../tools/devtools/CronParser')),
+  'devtools/SQLFormatter': lazy(() => import('../tools/devtools/SQLFormatter')),
   // ── Converters ──
   'converters/UnitConverter': lazy(() => import('../tools/converters/UnitConverter')),
   'converters/CurrencyConverter': lazy(() => import('../tools/converters/CurrencyConverter')),

@@ -141,7 +141,7 @@ export default function CSSBorderRadiusGenerator() {
       <div className="flex items-center gap-3">
         <button
           onClick={() => setIsElliptic(!isElliptic)}
-          className={`relative w-10 h-5 rounded-full transition-colors ${
+          className={`relative flex-shrink-0 w-10 h-5 rounded-full overflow-hidden transition-colors ${
             isElliptic ? 'bg-brand-500' : 'bg-surface-300 dark:bg-surface-600'
           }`}
         >
