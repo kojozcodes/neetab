@@ -1566,6 +1566,166 @@ const tools: ToolMeta[] = [
       { q: 'Is this useful for SEO?', a: 'Yes. Analyzing word frequency helps identify the most-used keywords in your content, which is useful for on-page SEO optimization.' },
     ],
   },
+  {
+    id: 'aihumanizer', slug: 'ai-humanizer', name: 'AI Humanizer', desc: 'Rewrite AI-generated text to sound natural and human',
+    emoji: '🤖', tags: ['ai', 'humanize', 'rewrite', 'chatgpt', 'text', 'writing'], category: 'Text Tools',
+    componentPath: 'text/AIHumanizer',
+    seo: {
+      title: 'AI Humanizer - Make AI Text Sound Human | Neetab',
+      description: 'Free AI humanizer tool. Paste ChatGPT or AI-generated text and rewrite it to sound natural, human, and bypass AI detection.',
+      h1: 'AI Text Humanizer',
+    },
+    howTo: [
+      'Paste your AI-generated text (from ChatGPT, Gemini, etc.) into the input box.',
+      'Select your preferred output tone: Conversational, Professional, Friendly, or Academic.',
+      'Click "Humanize Text". The tool rewrites the text with natural phrasing, varied sentence length, and authentic tone.',
+    ],
+    faq: [
+      { q: 'Will this bypass AI detection tools?', a: 'The tool rewrites text with natural phrasing and sentence variety, which significantly reduces AI-like patterns. Results vary by detection tool, but most rewritten outputs score much lower on AI detectors.' },
+      { q: 'What types of AI text work best?', a: 'It works on any AI-generated content: essays, blog posts, emails, product descriptions, and social media content. Longer, structured passages tend to produce the best humanization results.' },
+      { q: 'Is my text stored or shared?', a: 'No. Your text is sent to the AI model for processing and is never stored on our servers.' },
+    ],
+  },
+  {
+    id: 'aiemailwriter', slug: 'ai-email-writer', name: 'AI Email Writer', desc: 'Write professional emails instantly with AI',
+    emoji: '✉️', tags: ['email', 'ai', 'write', 'professional', 'business', 'writing'], category: 'Text Tools',
+    componentPath: 'text/AIEmailWriter',
+    seo: {
+      title: 'AI Email Writer - Write Professional Emails Free | Neetab',
+      description: 'Free AI email writer. Describe your email purpose and context, and AI instantly writes a professional, polished email for you.',
+      h1: 'AI Email Writer',
+    },
+    howTo: [
+      'Choose the tone: Professional, Friendly, Formal, Persuasive, or Concise.',
+      'Optionally enter the email purpose (e.g. "Follow up on job application").',
+      'Describe the context and key points in the text area, then click "Write Email".',
+    ],
+    faq: [
+      { q: 'What kinds of emails can I write?', a: 'Any type: job application follow-ups, cold outreach, meeting requests, client updates, apology emails, sales pitches, and more. The more context you provide, the better the result.' },
+      { q: 'Does the AI include a subject line?', a: 'Yes. The output starts with "Subject: ..." on the first line, followed by the full email body.' },
+      { q: 'Can I edit the result?', a: 'Absolutely. The generated email is a starting point. Copy it and make any personalization tweaks before sending.' },
+    ],
+  },
+  {
+    id: 'bulletpoints', slug: 'bullet-point-generator', name: 'Bullet Point Generator', desc: 'Convert any text into clean bullet points with AI',
+    emoji: '•', tags: ['bullet', 'points', 'ai', 'text', 'summary', 'writing', 'notes'], category: 'Text Tools',
+    componentPath: 'text/BulletPointGenerator',
+    seo: {
+      title: 'Bullet Point Generator - Convert Text to Bullets Free | Neetab',
+      description: 'Free AI bullet point generator. Paste any article, paragraph, or document and instantly convert it into clear, concise bullet points.',
+      h1: 'AI Bullet Point Generator',
+    },
+    howTo: [
+      'Paste your text (article, document, meeting notes, etc.) into the input box.',
+      'Click "Generate Bullet Points". The AI extracts and condenses the key ideas.',
+      'Copy individual bullets or copy all at once for use in presentations, notes, or summaries.',
+    ],
+    faq: [
+      { q: 'What types of content work best?', a: 'Articles, blog posts, research papers, meeting notes, product descriptions, and any dense paragraph-style text. The AI identifies the core ideas and presents them concisely.' },
+      { q: 'How many bullet points will I get?', a: 'The number scales with the length and complexity of your input. Short paragraphs typically yield 3-5 bullets; long articles may produce 8-12.' },
+      { q: 'Can I use this for slide presentations?', a: 'Yes. The bullet format is perfect for PowerPoint or Google Slides. Copy the points directly into your slide deck.' },
+    ],
+  },
+  {
+    id: 'coverletter', slug: 'cover-letter-generator', name: 'Cover Letter Generator', desc: 'Generate a tailored professional cover letter with AI',
+    emoji: '📝', tags: ['cover letter', 'ai', 'job', 'resume', 'career', 'writing'], category: 'Text Tools',
+    componentPath: 'text/CoverLetterGenerator',
+    seo: {
+      title: 'Cover Letter Generator - Free AI Cover Letter Writer | Neetab',
+      description: 'Free AI cover letter generator. Enter the job title, company, and your background. Get a tailored, professional cover letter in seconds.',
+      h1: 'AI Cover Letter Generator',
+    },
+    howTo: [
+      'Enter the job title and company name you are applying to.',
+      'Write a brief summary of your relevant experience, skills, and why you are a good fit.',
+      'Click "Generate Cover Letter". AI writes a 3-4 paragraph professional cover letter tailored to the role.',
+    ],
+    faq: [
+      { q: 'Do I need to provide my full resume?', a: 'No. Just a brief summary of your relevant experience and skills. A few sentences describing your background is enough for the AI to write a strong letter.' },
+      { q: 'Is the letter ATS-friendly?', a: 'Yes. The generated letters use clean, professional language with relevant keywords for the job title, which helps pass Applicant Tracking System filters.' },
+      { q: 'Can I use this for multiple applications?', a: 'Absolutely. Change the job title, company, and background details to generate a unique cover letter for each application.' },
+    ],
+  },
+  {
+    id: 'emailsubject', slug: 'email-subject-line-generator', name: 'Email Subject Line Generator', desc: 'Generate high-open-rate email subject lines with AI',
+    emoji: '📧', tags: ['email', 'subject', 'ai', 'marketing', 'open rate', 'writing'], category: 'Text Tools',
+    componentPath: 'text/EmailSubjectGenerator',
+    seo: {
+      title: 'Email Subject Line Generator - Free AI Tool | Neetab',
+      description: 'Free AI email subject line generator. Paste your email body and get 8 compelling subject lines optimized for high open rates.',
+      h1: 'Email Subject Line Generator',
+    },
+    howTo: [
+      'Paste your email body into the input box.',
+      'Click "Generate Subject Lines". AI analyzes the email content and generates 8 compelling subject line options.',
+      'Click any subject line to copy it instantly to your clipboard.',
+    ],
+    faq: [
+      { q: 'How many subject lines will I get?', a: 'You will get 8 subject line options per generation, ranging from direct and informational to curiosity-driven and benefit-focused styles.' },
+      { q: 'Does this work for cold email and newsletters?', a: 'Yes. The AI adapts to the tone and purpose of your email, whether it is a cold outreach, newsletter, sales email, or transactional message.' },
+      { q: 'What makes a good subject line?', a: 'The best subject lines are under 60 characters, create curiosity or convey clear value, avoid spam trigger words, and match the email content. The AI is trained on these principles.' },
+    ],
+  },
+  {
+    id: 'metadesc', slug: 'meta-description-generator', name: 'Meta Description Generator', desc: 'Generate SEO meta descriptions for any page with AI',
+    emoji: '🔍', tags: ['seo', 'meta', 'description', 'ai', 'google', 'search', 'marketing'], category: 'Text Tools',
+    componentPath: 'text/MetaDescriptionGenerator',
+    seo: {
+      title: 'Meta Description Generator - Free SEO Tool | Neetab',
+      description: 'Free AI meta description generator. Enter your page topic and target keyword to get 3 SEO-optimized meta descriptions under 160 characters.',
+      h1: 'AI Meta Description Generator',
+    },
+    howTo: [
+      'Describe your page content or paste a summary into the input box.',
+      'Optionally add your target keyword for better SEO alignment.',
+      'Click "Generate Meta Descriptions". Get 3 options, each with a character count indicator. Green = 150-160 chars (ideal).',
+    ],
+    faq: [
+      { q: 'What is the ideal meta description length?', a: 'Google typically displays 150-160 characters in search results. Descriptions in this range are unlikely to be cut off. The tool color-codes each option: green (ideal), yellow (acceptable), red (too short or long).' },
+      { q: 'Does the meta description directly affect rankings?', a: 'Meta descriptions are not a direct Google ranking factor, but they significantly impact click-through rate (CTR). A compelling meta description gets more clicks, which can indirectly improve rankings.' },
+      { q: 'Should I include my keyword in the meta description?', a: 'Yes. Google bolds matching keywords in search snippets, making your listing more visible. Always include your primary keyword naturally in the description.' },
+    ],
+  },
+  {
+    id: 'paraphrase', slug: 'paraphrasing-tool', name: 'Paraphrasing Tool', desc: 'Rewrite text in a different style with AI',
+    emoji: '✏️', tags: ['paraphrase', 'rewrite', 'ai', 'text', 'writing', 'style'], category: 'Text Tools',
+    componentPath: 'text/ParaphrasingTool',
+    seo: {
+      title: 'Paraphrasing Tool - Free AI Text Rewriter | Neetab',
+      description: 'Free AI paraphrasing tool. Paste any text and rewrite it in formal, casual, creative, concise, or academic style instantly.',
+      h1: 'Free AI Paraphrasing Tool',
+    },
+    howTo: [
+      'Paste the text you want to paraphrase into the input box.',
+      'Select a style: Formal, Casual, Creative, Concise, or Academic.',
+      'Click "Paraphrase". The AI rewrites the text while preserving the original meaning.',
+    ],
+    faq: [
+      { q: 'What is paraphrasing?', a: 'Paraphrasing means restating someone\'s ideas in your own words with a different structure and vocabulary, while keeping the same meaning. It is commonly used in academic writing, content creation, and avoiding plagiarism.' },
+      { q: 'Will this make my content unique?', a: 'Yes. The AI rewrites text with different word choices and sentence structures, producing unique content that conveys the same ideas. Always review and personalize the output.' },
+      { q: 'What styles are available?', a: 'Formal (professional and polished), Casual (relaxed and conversational), Creative (expressive and vivid), Concise (shorter and to the point), and Academic (scholarly and structured).' },
+    ],
+  },
+  {
+    id: 'summarizer', slug: 'text-summarizer', name: 'Text Summarizer', desc: 'Summarize long text into key points with AI',
+    emoji: '📋', tags: ['summarize', 'ai', 'text', 'summary', 'reading', 'tldr'], category: 'Text Tools',
+    componentPath: 'text/Summarizer',
+    seo: {
+      title: 'Text Summarizer - Free AI Summarizer Online | Neetab',
+      description: 'Free AI text summarizer. Paste any article or document and get a summary in one sentence, a short paragraph, or a detailed overview.',
+      h1: 'AI Text Summarizer',
+    },
+    howTo: [
+      'Paste the article, document, or text you want to summarize.',
+      'Choose a summary length: 1 Sentence (ultra-brief), Short (2-3 sentences), Paragraph, or Detailed (3-4 paragraphs).',
+      'Click "Summarize". The AI extracts and condenses the key information.',
+    ],
+    faq: [
+      { q: 'What types of text can I summarize?', a: 'Articles, research papers, blog posts, news stories, reports, emails, and any long-form text. The AI works best on well-structured written content.' },
+      { q: 'How long can the input text be?', a: 'Up to 8,000 characters (roughly 1,200-1,500 words). This covers most articles and short documents.' },
+      { q: 'What is the difference between the summary lengths?', a: '1 Sentence gives the single most important point. Short gives a 2-3 sentence overview. Paragraph provides a concise single paragraph. Detailed gives a thorough 3-4 paragraph breakdown of the main sections.' },
+    ],
+  },
   // ═══ PRODUCTIVITY ═══
   {
     id: 'countdown', slug: 'countdown-timer', name: 'Countdown Timer', desc: 'Set a timer for any duration',

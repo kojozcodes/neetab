@@ -87,6 +87,14 @@ const componentMap: Record<string, React.LazyExoticComponent<React.ComponentType
   'text/SpeechToText': lazy(() => import('../tools/text/SpeechToText')),
   'text/CharacterCounter': lazy(() => import('../tools/text/CharacterCounter')),
   'text/ReadabilityChecker': lazy(() => import('../tools/text/ReadabilityChecker')),
+  'text/ParaphrasingTool': lazy(() => import('../tools/text/ParaphrasingTool')),
+  'text/Summarizer': lazy(() => import('../tools/text/Summarizer')),
+  'text/AIHumanizer': lazy(() => import('../tools/text/AIHumanizer')),
+  'text/CoverLetterGenerator': lazy(() => import('../tools/text/CoverLetterGenerator')),
+  'text/AIEmailWriter': lazy(() => import('../tools/text/AIEmailWriter')),
+  'text/EmailSubjectGenerator': lazy(() => import('../tools/text/EmailSubjectGenerator')),
+  'text/BulletPointGenerator': lazy(() => import('../tools/text/BulletPointGenerator')),
+  'text/MetaDescriptionGenerator': lazy(() => import('../tools/text/MetaDescriptionGenerator')),
 };
 
 function ToolSkeleton() {
