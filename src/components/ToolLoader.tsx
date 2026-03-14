@@ -60,6 +60,11 @@ const componentMap: Record<string, React.LazyExoticComponent<React.ComponentType
   'devtools/CSVtoJSON': lazy(() => import('../tools/devtools/CSVtoJSON')),
   'devtools/HTMLFormatter': lazy(() => import('../tools/devtools/HTMLFormatter')),
   'devtools/Base64toImage': lazy(() => import('../tools/devtools/Base64toImage')),
+  'devtools/HTMLtoMarkdown': lazy(() => import('../tools/devtools/HTMLtoMarkdown')),
+  'devtools/JSONtoXML': lazy(() => import('../tools/devtools/JSONtoXML')),
+  'devtools/JSONtoYAML': lazy(() => import('../tools/devtools/JSONtoYAML')),
+  'devtools/XMLtoJSON': lazy(() => import('../tools/devtools/XMLtoJSON')),
+  'devtools/YAMLtoJSON': lazy(() => import('../tools/devtools/YAMLtoJSON')),
   // ── Converters ──
   'converters/UnitConverter': lazy(() => import('../tools/converters/UnitConverter')),
   'converters/CurrencyConverter': lazy(() => import('../tools/converters/CurrencyConverter')),
@@ -75,6 +80,7 @@ const componentMap: Record<string, React.LazyExoticComponent<React.ComponentType
   'text/FindAndReplace': lazy(() => import('../tools/text/FindAndReplace')),
   'text/RomanNumeralConverter': lazy(() => import('../tools/text/RomanNumeralConverter')),
   'text/MorseCodeConverter': lazy(() => import('../tools/text/MorseCodeConverter')),
+  'text/SpeechToText': lazy(() => import('../tools/text/SpeechToText')),
 };
 
 function ToolSkeleton() {

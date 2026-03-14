@@ -771,6 +771,25 @@ const tools: ToolMeta[] = [
     ],
   },
   {
+    id: 'html2md', slug: 'html-to-markdown', name: 'HTML to Markdown', desc: 'Convert HTML code to clean Markdown',
+    emoji: '⬇️', tags: ['html', 'markdown', 'convert', 'dev'], category: 'Dev Tools',
+    componentPath: 'devtools/HTMLtoMarkdown',
+    seo: {
+      title: 'HTML to Markdown Converter - Free Online | Neetab',
+      description: 'Convert HTML to Markdown free online. Paste any HTML and get clean Markdown instantly. Choose heading and code block styles. No sign-up required.',
+      h1: 'Free HTML to Markdown Converter',
+    },
+    howTo: [
+      'Paste your HTML code into the input box.',
+      'Choose your preferred heading style (ATX # or Setext underline) and code block style.',
+      'The Markdown output updates instantly - copy it or download as a .md file.',
+    ],
+    faq: [
+      { q: 'What is HTML to Markdown conversion used for?', a: 'Developers use it to migrate content from HTML-based CMS platforms to Markdown-based static site generators like Jekyll, Hugo, or Astro. It also helps when writing README files or documentation from existing HTML content.' },
+      { q: 'Does it handle complex HTML like tables?', a: 'Yes, the converter handles headings, paragraphs, bold, italic, links, images, ordered and unordered lists, code blocks, blockquotes, and basic tables.' },
+    ],
+  },
+  {
     id: 'img2base64', slug: 'image-to-base64', name: 'Image to Base64', desc: 'Encode images as Base64 data URLs',
     emoji: '🖼️', tags: ['base64', 'image', 'encode', 'data-url', 'dev'], category: 'Dev Tools',
     componentPath: 'devtools/ImageToBase64',
@@ -830,6 +849,43 @@ const tools: ToolMeta[] = [
       { q: 'What JSON structure does this accept?', a: 'The converter expects a JSON array of objects: [{"key": "value"}, ...]. Each object becomes a row, and each unique key across all objects becomes a column header. Single objects are also supported.' },
       { q: 'How are nested objects handled?', a: 'Nested objects are serialized as a JSON string within the CSV cell. For example, a nested object like {"address": {"city": "Lagos"}} will appear as the string {"city":"Lagos"} in the CSV.' },
       { q: 'Are special characters escaped?', a: 'Yes. Values containing commas, double quotes, or newlines are automatically wrapped in double quotes and internal quotes are escaped as double double-quotes, following the RFC 4180 CSV standard.' },
+    ],
+  },
+  {
+    id: 'json2xml', slug: 'json-to-xml', name: 'JSON to XML', desc: 'Convert JSON data to XML format',
+    emoji: '🔄', tags: ['json', 'xml', 'convert', 'dev'], category: 'Dev Tools',
+    componentPath: 'devtools/JSONtoXML',
+    seo: {
+      title: 'JSON to XML Converter - Free Online | Neetab',
+      description: 'Convert JSON to XML free online. Paste any JSON object or array and download the formatted XML output instantly. No sign-up, fully private.',
+      h1: 'Free JSON to XML Converter',
+    },
+    howTo: [
+      'Paste your JSON data into the input area.',
+      'Optionally set a custom root element tag name.',
+      'Copy or download the generated XML output.',
+    ],
+    faq: [
+      { q: 'When would I need JSON to XML conversion?', a: 'JSON to XML conversion is common when integrating with legacy systems, SOAP APIs, or enterprise software that requires XML input. It is also used in data transformation pipelines.' },
+      { q: 'How are JSON arrays handled?', a: 'Each array item is wrapped in a repeated element using the parent key as the tag name. Nested objects become nested XML elements.' },
+    ],
+  },
+  {
+    id: 'json2yaml', slug: 'json-to-yaml', name: 'JSON to YAML', desc: 'Convert JSON data to YAML format',
+    emoji: '🔄', tags: ['json', 'yaml', 'convert', 'dev', 'config'], category: 'Dev Tools',
+    componentPath: 'devtools/JSONtoYAML',
+    seo: {
+      title: 'JSON to YAML Converter - Free Online | Neetab',
+      description: 'Convert JSON to YAML free online. Paste any JSON object and get clean YAML output instantly. Adjustable indentation, copy or download. No sign-up.',
+      h1: 'Free JSON to YAML Converter',
+    },
+    howTo: [
+      'Paste your JSON into the input area.',
+      'Choose 2 or 4 space indentation for the YAML output.',
+      'Copy the YAML or download it as a .yaml file.',
+    ],
+    faq: [
+      { q: 'Why convert JSON to YAML?', a: 'YAML is more human-readable than JSON and is widely used for configuration files in tools like Docker Compose, Kubernetes, GitHub Actions, and Ansible. Converting from JSON to YAML makes configs easier to read and edit.' },
     ],
   },
   {
@@ -1080,6 +1136,43 @@ const tools: ToolMeta[] = [
       { q: 'Are UUIDs truly unique?', a: 'With 2^122 possible values (about 5.3 × 10^36), the probability of generating the same UUID v4 twice is astronomically small - effectively zero for any practical application, even at massive scale.' },
     ],
   },
+  {
+    id: 'xml2json', slug: 'xml-to-json', name: 'XML to JSON', desc: 'Convert XML data to JSON format',
+    emoji: '🔄', tags: ['xml', 'json', 'convert', 'dev'], category: 'Dev Tools',
+    componentPath: 'devtools/XMLtoJSON',
+    seo: {
+      title: 'XML to JSON Converter - Free Online | Neetab',
+      description: 'Convert XML to JSON free online. Paste any XML document and get a formatted JSON object instantly. Adjustable indentation, copy or download. No sign-up.',
+      h1: 'Free XML to JSON Converter',
+    },
+    howTo: [
+      'Paste your XML into the input area.',
+      'Choose your preferred indentation (2 or 4 spaces).',
+      'Copy the JSON output or download it as a .json file.',
+    ],
+    faq: [
+      { q: 'When would I need XML to JSON conversion?', a: 'XML to JSON is common when working with REST APIs that need JSON, processing RSS/Atom feeds, migrating data from legacy SOAP services to modern APIs, or simplifying XML data structures for JavaScript apps.' },
+      { q: 'How are XML attributes handled?', a: 'XML attributes are prefixed with @ in the JSON output (e.g., @id, @class). Text content of elements is stored under the #text key when the element also has attributes or child elements.' },
+    ],
+  },
+  {
+    id: 'yaml2json', slug: 'yaml-to-json', name: 'YAML to JSON', desc: 'Convert YAML data to JSON format',
+    emoji: '🔄', tags: ['yaml', 'json', 'convert', 'dev', 'config'], category: 'Dev Tools',
+    componentPath: 'devtools/YAMLtoJSON',
+    seo: {
+      title: 'YAML to JSON Converter - Free Online | Neetab',
+      description: 'Convert YAML to JSON free online. Paste any YAML config or data file and get formatted JSON output instantly. Adjustable indentation. No sign-up required.',
+      h1: 'Free YAML to JSON Converter',
+    },
+    howTo: [
+      'Paste your YAML content into the input area.',
+      'Choose 2 or 4 space indentation for the JSON output.',
+      'Copy the JSON or download it as a .json file.',
+    ],
+    faq: [
+      { q: 'What YAML formats are supported?', a: 'All standard YAML 1.2 features are supported - scalars, sequences, mappings, anchors, aliases, multi-line strings, and comments (comments are stripped in output). YAML used in Docker Compose, Kubernetes, and GitHub Actions files all convert correctly.' },
+    ],
+  },
   // ═══ CONVERTERS ═══
   {
     id: 'csv2excel', slug: 'csv-to-excel', name: 'CSV to Excel', desc: 'Convert CSV data to Excel XLSX',
@@ -1259,6 +1352,26 @@ const tools: ToolMeta[] = [
     ],
   },
   {
+    id: 'stt', slug: 'speech-to-text', name: 'Speech to Text', desc: 'Convert spoken words to text using your microphone',
+    emoji: '🎤', tags: ['speech', 'voice', 'transcribe', 'microphone', 'stt', 'accessibility'], category: 'Text Tools',
+    componentPath: 'text/SpeechToText',
+    seo: {
+      title: 'Speech to Text - Free Online Voice Transcription | Neetab',
+      description: 'Convert speech to text free online using your microphone. Supports 12 languages. Audio stays on your device - fully private. No sign-up, works in Chrome.',
+      h1: 'Free Speech to Text Transcription',
+    },
+    howTo: [
+      'Select your language from the dropdown.',
+      'Click Start Recording and allow microphone access when prompted.',
+      'Speak clearly - the transcript appears in real time. Click Stop when done, then copy or save the text.',
+    ],
+    faq: [
+      { q: 'Which browsers support this tool?', a: 'Speech recognition works in Google Chrome and Microsoft Edge. It is not supported in Firefox or Safari due to missing Web Speech API support in those browsers.' },
+      { q: 'Is my audio sent to any server?', a: 'Audio processing is handled by your browser using the built-in Web Speech API. On Chrome, audio is processed by Google speech recognition services as part of the browser engine. Neetab itself never receives or stores your audio.' },
+      { q: 'What languages are supported?', a: 'English (US and UK), Spanish, French, German, Portuguese (Brazil), Italian, Japanese, Chinese (Simplified), Arabic, Hindi, and Korean.' },
+    ],
+  },
+  {
     id: 'tts', slug: 'text-to-speech', name: 'Text to Speech', desc: 'Read text aloud with natural voices',
     emoji: '🔊', tags: ['speech', 'voice', 'read', 'tts', 'audio', 'accessibility'], category: 'Text Tools',
     componentPath: 'text/TextToSpeech',
@@ -1399,6 +1512,7 @@ const tools: ToolMeta[] = [
       { q: 'How accurate is the timing?', a: 'The stopwatch uses JavaScript setInterval with 10ms updates, providing centisecond precision. It is accurate enough for most practical timing purposes.' },
     ],
   },
+
 ];
 
 // ─── Categories ───
