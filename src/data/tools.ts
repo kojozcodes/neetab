@@ -404,6 +404,26 @@ const tools: ToolMeta[] = [
     ],
   },
   {
+    id: 'calorie', slug: 'calorie-calculator', name: 'Calorie Calculator', desc: 'BMR, TDEE and daily macro targets',
+    emoji: '🔥', tags: ['calorie', 'bmr', 'tdee', 'diet', 'nutrition', 'health', 'macro'], category: 'Calculators',
+    componentPath: 'calculators/CalorieCalculator',
+    seo: {
+      title: 'Calorie Calculator - BMR and TDEE Free Online | Neetab',
+      description: 'Calculate your BMR and TDEE free online. Get daily calorie targets for weight loss, maintenance, or muscle gain. Includes macro recommendations. No sign-up.',
+      h1: 'Free Calorie Calculator',
+    },
+    howTo: [
+      'Enter your age, biological sex, weight, and height. Toggle between metric (kg/cm) and imperial (lb/ft/in).',
+      'Select your activity level honestly - most people are Sedentary or Lightly Active.',
+      'Choose your goal (lose weight, maintain, or build muscle) to see your personalized daily calorie target and macros.',
+    ],
+    faq: [
+      { q: 'What is BMR?', a: 'BMR (Basal Metabolic Rate) is the number of calories your body burns at complete rest just to maintain vital functions like breathing, circulation, and cell production. It is the minimum calories needed to stay alive.' },
+      { q: 'What is TDEE?', a: 'TDEE (Total Daily Energy Expenditure) is your BMR multiplied by an activity factor. It represents the total calories you burn in a day including all movement and exercise. Eating at your TDEE means your weight stays stable.' },
+      { q: 'How accurate is this calculator?', a: 'This uses the Mifflin-St Jeor equation, which is the most accurate formula for most people and is used by registered dietitians. Results are within 10% for most individuals. Factors like muscle mass, hormones, and metabolism variation mean results are estimates, not guarantees.' },
+    ],
+  },
+  {
     id: 'discount', slug: 'discount-calculator', name: 'Discount Calculator', desc: 'Sale price & savings',
     emoji: '🏷️', tags: ['shopping', 'sale', 'savings'], category: 'Calculators',
     componentPath: 'calculators/DiscountCalculator',
@@ -1313,6 +1333,25 @@ const tools: ToolMeta[] = [
   },
   // ═══ TEXT TOOLS ═══
   {
+    id: 'charcounter', slug: 'character-counter', name: 'Character Counter', desc: 'Count characters, words, sentences and bytes',
+    emoji: '🔢', tags: ['character', 'count', 'text', 'letters', 'writing'], category: 'Text Tools',
+    componentPath: 'text/CharacterCounter',
+    seo: {
+      title: 'Character Counter - Count Characters Free Online | Neetab',
+      description: 'Count characters with and without spaces, words, sentences, lines, and bytes free online. Also shows top character frequency. Instant, no sign-up.',
+      h1: 'Free Character Counter',
+    },
+    howTo: [
+      'Type or paste your text into the input area.',
+      'Character count, word count, sentence count, and byte size update instantly as you type.',
+      'Scroll down to see the top most-used characters in your text.',
+    ],
+    faq: [
+      { q: 'What is the difference between characters with and without spaces?', a: 'Characters with spaces counts every single character including spaces, tabs, and newlines. Characters without spaces only counts visible characters - letters, numbers, and punctuation. Twitter and LinkedIn character limits count all characters including spaces.' },
+      { q: 'Why does the byte count sometimes differ from the character count?', a: 'Standard ASCII characters (English letters, numbers, basic punctuation) take 1 byte each. Characters outside the basic Latin alphabet - such as accented letters, Arabic, Chinese, or emoji - take 2-4 bytes each in UTF-8 encoding. The byte count matters for database storage and API payload limits.' },
+    ],
+  },
+  {
     id: 'findreplace', slug: 'find-and-replace', name: 'Find & Replace', desc: 'Find and replace text with regex support',
     emoji: '🔍', tags: ['find', 'replace', 'text', 'regex', 'search'], category: 'Text Tools',
     componentPath: 'text/FindAndReplace',
@@ -1368,6 +1407,26 @@ const tools: ToolMeta[] = [
     faq: [
       { q: 'What is WPM in Morse code?', a: 'WPM (words per minute) in Morse code is based on the standard word "PARIS", which contains a representative mix of short and long signals. 15 WPM is a good learning speed; 25+ WPM is considered proficient.' },
       { q: 'How do I enter Morse code manually?', a: 'Use dots (.) for dits, dashes (-) for dahs, spaces between letters, and / between words. For example: "... --- ..." is SOS.' },
+    ],
+  },
+  {
+    id: 'readability', slug: 'readability-checker', name: 'Readability Checker', desc: 'Check Flesch-Kincaid, Gunning Fog and grade level',
+    emoji: '📖', tags: ['readability', 'flesch', 'grade', 'writing', 'text', 'seo'], category: 'Text Tools',
+    componentPath: 'text/ReadabilityChecker',
+    seo: {
+      title: 'Readability Checker - Flesch-Kincaid Score Free | Neetab',
+      description: 'Check text readability free online. Get Flesch Reading Ease, Flesch-Kincaid Grade Level, Gunning Fog, and SMOG scores. Essential for writers and SEOs.',
+      h1: 'Free Readability Checker',
+    },
+    howTo: [
+      'Paste your text into the input area. At least 50 words gives the most accurate scores.',
+      'Read your Flesch Reading Ease score (0-100, higher is easier) and grade level.',
+      'Use the scale reference at the bottom to understand what your score means for your target audience.',
+    ],
+    faq: [
+      { q: 'What is a good Flesch Reading Ease score?', a: 'For general web content, aim for 60-70 (Standard). Blog posts work best at 70-80 (Easy). Technical documentation can go lower. Most popular websites target 60+ to reach the widest audience.' },
+      { q: 'What is the Flesch-Kincaid Grade Level?', a: 'The FK Grade Level estimates the US school grade needed to understand the text. A score of 8 means an 8th-grader can read it. Most mainstream content targets grade 6-8. Academic writing typically scores 12+.' },
+      { q: 'Why do SEOs care about readability?', a: 'Google uses engagement signals like time on page and bounce rate as ranking factors. Easier-to-read content keeps visitors longer, reducing bounce rate. Many SEO tools include readability as a direct on-page factor.' },
     ],
   },
   {

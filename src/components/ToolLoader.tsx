@@ -25,6 +25,7 @@ const componentMap: Record<string, React.LazyExoticComponent<React.ComponentType
   'calculators/DiscountCalculator': lazy(() => import('../tools/calculators/DiscountCalculator')),
   'calculators/AgeCalculator': lazy(() => import('../tools/calculators/AgeCalculator')),
   'calculators/AspectRatioCalculator': lazy(() => import('../tools/calculators/AspectRatioCalculator')),
+  'calculators/CalorieCalculator': lazy(() => import('../tools/calculators/CalorieCalculator')),
   // ── Design Tools ──
   'design/ColorPalette': lazy(() => import('../tools/design/ColorPalette')),
   'design/GradientMaker': lazy(() => import('../tools/design/GradientMaker')),
@@ -84,6 +85,8 @@ const componentMap: Record<string, React.LazyExoticComponent<React.ComponentType
   'text/RomanNumeralConverter': lazy(() => import('../tools/text/RomanNumeralConverter')),
   'text/MorseCodeConverter': lazy(() => import('../tools/text/MorseCodeConverter')),
   'text/SpeechToText': lazy(() => import('../tools/text/SpeechToText')),
+  'text/CharacterCounter': lazy(() => import('../tools/text/CharacterCounter')),
+  'text/ReadabilityChecker': lazy(() => import('../tools/text/ReadabilityChecker')),
 };
 
 function ToolSkeleton() {
