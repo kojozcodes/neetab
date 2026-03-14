@@ -35,6 +35,7 @@ export default function InvoiceGenerator() {
   const [notes, setNotes] = useState('');
   const [pdfBlob, setPdfBlob] = useState<Blob | null>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const addItem = () => setItems(prev => [...prev, { id: nextId++, description: '', qty: 1, price: 0 }]);
   const removeItem = (id: number) => setItems(prev => prev.filter(i => i.id !== id));
@@ -62,7 +63,7 @@ export default function InvoiceGenerator() {
   };
 
   const generatePDF = useCallback(async () => {
-    setLoading(true);
+    setLoading(true); setError('');
     try {
       const { jsPDF } = await import('jspdf');
       const doc = new jsPDF({ unit: 'mm', format: 'a4' });
@@ -161,7 +162,7 @@ export default function InvoiceGenerator() {
 
       setPdfBlob(doc.output('blob'));
     } catch (e) {
-      console.error('PDF generation failed:', e);
+      setError('PDF generation failed. Please check your inputs and try again.');
     }
     setLoading(false);
   }, [from, to, invoiceNo, date, dueDate, items, taxRate, currency, notes, subtotal, tax, total]);
@@ -268,6 +269,8 @@ export default function InvoiceGenerator() {
       <Button onClick={generatePDF} className="w-full" disabled={loading}>
         {loading ? 'Generating...' : '📄 Generate Invoice PDF'}
       </Button>
+
+      {error && <p className="text-xs text-red-500 bg-red-50 dark:bg-red-900/20 rounded-lg px-3 py-2">{error}</p>}
 
       {pdfBlob && (
         <>

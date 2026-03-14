@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react';
+import ErrorBoundary from './ErrorBoundary';
 
 // Map every componentPath to its lazy import
 const componentMap: Record<string, React.LazyExoticComponent<React.ComponentType>> = {
@@ -115,8 +116,10 @@ export default function ToolLoader({ componentPath }: { componentPath: string })
   }
 
   return (
-    <Suspense fallback={<ToolSkeleton />}>
-      <Component />
-    </Suspense>
+    <ErrorBoundary toolName={componentPath.split('/').pop()}>
+      <Suspense fallback={<ToolSkeleton />}>
+        <Component />
+      </Suspense>
+    </ErrorBoundary>
   );
 }

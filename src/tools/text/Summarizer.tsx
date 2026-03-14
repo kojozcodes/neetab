@@ -20,6 +20,7 @@ export default function Summarizer() {
 
   const run = async () => {
     if (!input.trim()) return;
+    if (!API_URL) { setError('AI tools require the backend service. Please set VITE_API_URL in Vercel environment variables.'); return; }
     setLoading(true); setError(''); setResult('');
     try {
       const r = await fetch(`${API_URL}/api/ai/process`, {
@@ -27,8 +28,9 @@ export default function Summarizer() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ tool: 'summarize', text: input, options: { length } }),
       });
-      if (!r.ok) { const e = await r.json(); throw new Error(e.detail || 'Request failed'); }
-      setResult((await r.json()).result);
+      const data = await r.json().catch(() => ({})) as Record<string, string>;
+      if (!r.ok) throw new Error(data.detail || `Server error (${r.status})`);
+      setResult(data.result || '');
     } catch (e: unknown) { setError((e as Error).message); }
     finally { setLoading(false); }
   };

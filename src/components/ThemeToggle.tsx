@@ -4,18 +4,20 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
-    const stored = localStorage.getItem('neetab-theme') as 'light' | 'dark';
-    if (stored) {
-      setTheme(stored);
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark');
-    }
+    try {
+      const stored = localStorage.getItem('neetab-theme') as 'light' | 'dark';
+      if (stored) {
+        setTheme(stored);
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        setTheme('dark');
+      }
+    } catch { /* tracking prevention blocks storage in some browsers */ }
   }, []);
 
   const toggle = () => {
     const next = theme === 'light' ? 'dark' : 'light';
     setTheme(next);
-    localStorage.setItem('neetab-theme', next);
+    try { localStorage.setItem('neetab-theme', next); } catch { /* ignore */ }
     document.documentElement.classList.toggle('dark', next === 'dark');
   };
 

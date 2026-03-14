@@ -98,6 +98,8 @@ async def pdf_to_word(request: Request, file: UploadFile = File(...)):
     content = await file.read()
     if len(content) > MAX_FILE_SIZE:
         raise HTTPException(413, "File too large (max 50MB)")
+    if len(content) < 4 or content[:4] != b'%PDF':
+        raise HTTPException(400, "File does not appear to be a valid PDF")
 
     job_id = str(uuid.uuid4())[:8]
     pdf_path = UPLOAD_DIR / f"{job_id}.pdf"
@@ -149,6 +151,9 @@ async def word_to_pdf(request: Request, file: UploadFile = File(...)):
     content = await file.read()
     if len(content) > MAX_FILE_SIZE:
         raise HTTPException(413, "File too large (max 50MB)")
+    # DOCX = ZIP (PK\x03\x04), DOC = Compound Document (0xD0CF11E0)
+    if len(content) < 4 or content[:4] not in (b'PK\x03\x04', b'\xd0\xcf\x11\xe0'):
+        raise HTTPException(400, "File does not appear to be a valid Word document")
 
     job_id = str(uuid.uuid4())[:8]
     docx_path = UPLOAD_DIR / f"{job_id}.docx"

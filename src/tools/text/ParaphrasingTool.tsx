@@ -22,6 +22,7 @@ export default function ParaphrasingTool() {
 
   const run = async () => {
     if (!input.trim()) return;
+    if (!API_URL) { setError('AI tools require the backend service. Please set VITE_API_URL in Vercel environment variables.'); return; }
     setLoading(true); setError(''); setResult('');
     try {
       const r = await fetch(`${API_URL}/api/ai/process`, {
@@ -29,9 +30,9 @@ export default function ParaphrasingTool() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ tool: 'paraphrase', text: input, options: { style } }),
       });
-      if (!r.ok) { const e = await r.json(); throw new Error(e.detail || 'Request failed'); }
-      const data = await r.json();
-      setResult(data.result);
+      const data = await r.json().catch(() => ({})) as Record<string, string>;
+      if (!r.ok) throw new Error(data.detail || `Server error (${r.status})`);
+      setResult(data.result || '');
     } catch (e: unknown) {
       setError((e as Error).message);
     } finally {

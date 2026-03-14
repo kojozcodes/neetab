@@ -12,6 +12,7 @@ export default function EmailSubjectGenerator() {
 
   const run = async () => {
     if (!emailBody.trim()) return;
+    if (!API_URL) { setError('AI tools require the backend service. Please set VITE_API_URL in Vercel environment variables.'); return; }
     setLoading(true); setError(''); setResult('');
     try {
       const r = await fetch(`${API_URL}/api/ai/process`, {
@@ -19,8 +20,9 @@ export default function EmailSubjectGenerator() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ tool: 'email_subject', text: emailBody }),
       });
-      if (!r.ok) { const e = await r.json(); throw new Error(e.detail || 'Request failed'); }
-      setResult((await r.json()).result);
+      const data = await r.json().catch(() => ({})) as Record<string, string>;
+      if (!r.ok) throw new Error(data.detail || `Server error (${r.status})`);
+      setResult(data.result || '');
     } catch (e: unknown) { setError((e as Error).message); }
     finally { setLoading(false); }
   };
@@ -59,6 +61,8 @@ export default function EmailSubjectGenerator() {
       </button>
 
       {error && <p className="text-xs text-red-500 bg-red-50 dark:bg-red-900/20 rounded-lg px-3 py-2">{error}</p>}
+
+      <p className="text-xs text-surface-400 text-center">Text is processed by AI and not stored on our servers.</p>
 
       {lines.length > 0 && (
         <div className="space-y-2">
