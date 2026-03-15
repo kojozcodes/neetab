@@ -362,6 +362,12 @@ async def health():
     }
 
 
+@app.get("/ping")
+async def ping():
+    """Lightweight keep-alive endpoint. Hit this every 10 min to prevent cold starts."""
+    return {"ok": True}
+
+
 if __name__ == "__main__":
     import uvicorn
     port = int(os.environ.get("PORT", 8000))
