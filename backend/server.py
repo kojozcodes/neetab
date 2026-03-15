@@ -206,7 +206,7 @@ async def word_to_pdf(request: Request, file: UploadFile = File(...)):
 async def _call_gemini(prompt: str, system: str) -> str:
     if not GEMINI_API_KEY:
         raise RuntimeError("GEMINI_API_KEY not set")
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key={GEMINI_API_KEY}"
     body = {
         "contents": [{"parts": [{"text": prompt}]}],
         "generationConfig": {"maxOutputTokens": 1024, "temperature": 0.7},
@@ -230,7 +230,7 @@ async def _call_groq(prompt: str, system: str) -> str:
         r = await client.post(
             "https://api.groq.com/openai/v1/chat/completions",
             headers={"Authorization": f"Bearer {GROQ_API_KEY}"},
-            json={"model": "llama-3.1-70b-versatile", "messages": messages, "max_tokens": 1024, "temperature": 0.7},
+            json={"model": "llama-3.3-70b-versatile", "messages": messages, "max_tokens": 1024, "temperature": 0.7},
             timeout=30.0,
         )
         r.raise_for_status()
