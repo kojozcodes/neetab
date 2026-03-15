@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const API_URL = import.meta.env.VITE_API_URL || '';
+const API_URL = import.meta.env.PUBLIC_API_URL || '';
 const taClass = "w-full px-3 py-2.5 text-sm rounded-lg border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-900 text-surface-900 dark:text-surface-100 resize-none focus:outline-none focus:ring-2 focus:ring-brand-500/40";
 
 export default function BulletPointGenerator() {
@@ -12,7 +12,7 @@ export default function BulletPointGenerator() {
 
   const run = async () => {
     if (!input.trim()) return;
-    if (!API_URL) { setError('AI tools require the backend service. Please set VITE_API_URL in Vercel environment variables.'); return; }
+    if (!API_URL) { setError('AI service is temporarily unavailable. Please try again in a moment.'); return; }
     setLoading(true); setError(''); setResult('');
     try {
       const r = await fetch(`${API_URL}/api/ai/process`, {

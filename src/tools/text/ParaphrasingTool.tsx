@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const API_URL = import.meta.env.VITE_API_URL || '';
+const API_URL = import.meta.env.PUBLIC_API_URL || '';
 
 const STYLES = [
   { value: 'formal',    label: 'Formal' },
@@ -22,7 +22,7 @@ export default function ParaphrasingTool() {
 
   const run = async () => {
     if (!input.trim()) return;
-    if (!API_URL) { setError('AI tools require the backend service. Please set VITE_API_URL in Vercel environment variables.'); return; }
+    if (!API_URL) { setError('AI service is temporarily unavailable. Please try again in a moment.'); return; }
     setLoading(true); setError(''); setResult('');
     try {
       const r = await fetch(`${API_URL}/api/ai/process`, {
