@@ -9,7 +9,7 @@ export default function PDFtoWord() {
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [result, setResult] = useState<{ blob: Blob; size: number } | null>(null);
+  const [result, setResult] = useState<{ blob: Blob; size: number; mode: 'server' | 'client' } | null>(null);
   const [error, setError] = useState('');
 
   // Server-side conversion (real DOCX via pdf2docx + LibreOffice)
@@ -90,7 +90,7 @@ export default function PDFtoWord() {
 
     if (serverBlob) {
       setProgress(100);
-      setResult({ blob: serverBlob, size: serverBlob.size });
+      setResult({ blob: serverBlob, size: serverBlob.size, mode: 'server' });
       setLoading(false);
       return;
     }
@@ -101,20 +101,14 @@ export default function PDFtoWord() {
 
     if (clientBlob) {
       setProgress(100);
-      setResult({ blob: clientBlob, size: clientBlob.size });
+      setResult({ blob: clientBlob, size: clientBlob.size, mode: 'client' });
     } else {
       setError('Failed to convert. Make sure this is a valid PDF with selectable text.');
     }
     setLoading(false);
   }, []);
 
-  const reset = () => {
-    setFile(null);
-    setResult(null);
-    setLoading(false);
-    setProgress(0);
-    setError('');
-  };
+  const reset = () => { setFile(null); setResult(null); setLoading(false); setProgress(0); setError(''); };
 
   return (
     <div>
@@ -155,9 +149,15 @@ export default function PDFtoWord() {
 
       {result && (
         <div>
-          <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs mb-3 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400">
-            ✅ <span><strong>Conversion complete</strong> - Your Word document is ready to download.</span>
-          </div>
+          {result.mode === 'server' ? (
+            <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs mb-3 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400">
+              ✅ <span><strong>Conversion complete</strong> - Formatting, layout, and text preserved.</span>
+            </div>
+          ) : (
+            <div className="px-3 py-2 rounded-lg text-xs mb-3 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400">
+              <strong>Text extracted</strong> - Our conversion server was unavailable, so we extracted the text only. Formatting, images, and tables are not preserved. For full conversion, try again in a moment.
+            </div>
+          )}
 
           <ResultBox label="File Size" value={`${(result.size / 1024).toFixed(0)}KB`} copyable={false} large={false} />
 
