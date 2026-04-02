@@ -22,6 +22,9 @@ export default defineConfig({
         if (url.includes('/tools/')) {
           return { ...item, lastmod, changefreq: 'weekly', priority: 0.8 };
         }
+        if (url.includes('/blog/')) {
+          return { ...item, lastmod, changefreq: 'monthly', priority: 0.7 };
+        }
         return { ...item, lastmod, changefreq: 'monthly', priority: 0.5 };
       },
     }),

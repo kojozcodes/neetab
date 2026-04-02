@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const posts = [
+  {
+    slug: 'free-ai-writing-tools-no-signup',
+    title: "Free AI Writing Tools That Don't Require Sign-Up (2026)",
+    description: '8 free AI writing tools you can use right now — no account, no email, no credit card. AI humanizer, paraphrasing tool, email writer & more.',
+    date: '2026-03-20',
+    category: 'AI Tools',
+    readTime: '6 min read',
+  },
+];
+---
+
+<Layout
+  title="Blog | Neetab"
+  description="Guides and tips on free AI writing tools, online utilities, and productivity tools — no sign-up required."
+  path="/blog"
+>
+  <Header slot="header" />
+
+  <div class="max-w-2xl mx-auto px-5 py-10 animate-fade-in">
+    <h1 class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-surface-900 dark:text-surface-100 mb-2">
+      Blog
+    </h1>
+    <p class="text-sm text-surface-500 mb-8">Guides on AI tools, productivity, and getting things done online.</p>
+
+    <div class="space-y-4">
+      {posts.map(post => (
+        <a href={`/blog/${post.slug}`} class="card p-5 flex flex-col gap-2 group block">
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 dark:bg-brand-950/30 text-brand-600 dark:text-brand-400 border border-brand-200 dark:border-brand-800">
+              {post.category}
+            </span>
+            <span class="text-[11px] text-surface-400">{post.readTime}</span>
+          </div>
+          <h2 class="text-base font-bold text-surface-900 dark:text-surface-100 group-hover:text-brand-500 transition-colors leading-snug">
+            {post.title}
+          </h2>
+          <p class="text-xs text-surface-500 leading-relaxed">{post.description}</p>
+          <time class="text-[11px] text-surface-400" datetime={post.date}>
+            {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</Layout>
