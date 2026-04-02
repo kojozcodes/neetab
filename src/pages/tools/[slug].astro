@@ -155,6 +155,15 @@ const jsonLd = [
     )}
   </div>
 
+    <!-- About this tool (crawlable long-form content, not shown prominently to users) -->
+    {tool.about && (
+      <div class="mt-8 pt-6 border-t border-surface-100 dark:border-surface-800 animate-fade-in" style="animation-delay: 250ms">
+        <h2 class="text-[11px] font-bold uppercase tracking-wider text-surface-400 mb-2.5">About this Tool</h2>
+        <p class="text-xs text-surface-500 dark:text-surface-500 leading-relaxed">{tool.about}</p>
+      </div>
+    )}
+  </div>
+
   <Footer slot="footer" />
 </Layout>
 
