@@ -66,7 +66,7 @@ export default function MergePDF() {
       }
       const bytes = await merged.save();
       setTotalPages(merged.getPageCount());
-      setResultBlob(new Blob([bytes], { type: 'application/pdf' }));
+      setResultBlob(new Blob([bytes as BlobPart], { type: 'application/pdf' }));
       setProgress(100);
     } catch {
       setError('Failed to merge PDFs. Make sure all files are valid, unlocked PDFs.');

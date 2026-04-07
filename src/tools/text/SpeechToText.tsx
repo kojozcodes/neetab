@@ -17,8 +17,8 @@ const LANGUAGES = [
 
 declare global {
   interface Window {
-    SpeechRecognition: typeof SpeechRecognition;
-    webkitSpeechRecognition: typeof SpeechRecognition;
+    SpeechRecognition: any;
+    webkitSpeechRecognition: any;
   }
 }
 
@@ -30,7 +30,7 @@ export default function SpeechToText() {
   const [lang, setLang] = useState('en-US');
   const [continuous, setContinuous] = useState(true);
   const [copied, setCopied] = useState(false);
-  const recogRef = useRef<SpeechRecognition | null>(null);
+  const recogRef = useRef<any>(null);
 
   useEffect(() => {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -45,7 +45,7 @@ export default function SpeechToText() {
     recog.continuous = continuous;
     recog.interimResults = true;
 
-    recog.onresult = (e: SpeechRecognitionEvent) => {
+    recog.onresult = (e: any) => {
       let final = '';
       let inter = '';
       for (let i = e.resultIndex; i < e.results.length; i++) {

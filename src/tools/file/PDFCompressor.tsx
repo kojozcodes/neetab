@@ -69,7 +69,7 @@ export default function PDFCompressor() {
       finalDoc.setCreator('');
       const finalBytes = await finalDoc.save({ useObjectStreams: level !== 'printer' });
       setProgress(100);
-      setResultBlob(new Blob([finalBytes], { type: 'application/pdf' }));
+      setResultBlob(new Blob([finalBytes as BlobPart], { type: 'application/pdf' }));
     } catch {
       setError('Failed to compress PDF. Make sure the file is a valid, unlocked PDF.');
     }
