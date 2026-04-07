@@ -27,6 +27,7 @@ const componentMap: Record<string, React.LazyExoticComponent<React.ComponentType
   'calculators/AgeCalculator': lazy(() => import('../tools/calculators/AgeCalculator')),
   'calculators/AspectRatioCalculator': lazy(() => import('../tools/calculators/AspectRatioCalculator')),
   'calculators/CalorieCalculator': lazy(() => import('../tools/calculators/CalorieCalculator')),
+  'calculators/PAYETaxNigeria': lazy(() => import('../tools/calculators/PAYETaxNigeria')),
   // ── Design Tools ──
   'design/ColorPalette': lazy(() => import('../tools/design/ColorPalette')),
   'design/GradientMaker': lazy(() => import('../tools/design/GradientMaker')),
